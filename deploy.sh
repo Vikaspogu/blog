@@ -23,3 +23,17 @@ git commit -m "$msg"
 
 # Push source and build repos.
 git push origin master
+
+printf "\033[0;32mPushing updates to blog repo...\033[0m\n"
+
+# Go to Root folder
+cd ..
+
+# Add changes to git.
+git add .
+
+# Commit changes.
+git commit -m "$1"
+
+# Push source and build repos.
+git push origin master

@@ -19,11 +19,11 @@ pygmentscodefencesguesssyntax = true
     author = "Vikas Pogu"
     description = "Vikas Pogu's personal website"
     keywords = "blog,developer,personal"
-    info = "Full Stack DevOps and Magician"
-    avatarurl = "images/avatar.jpg"
-    footercontent = "Enter a text here."
+    info = "Senior Middleware/PaaS Developer"
+    avatarurl = "images/myAvatar.png"
+    #footercontent = "Enter a text here."
 
-    dateformat = "January 2, 2006"
+    dateformat = "December 12, 2019"
 
     hideCredits = false
     hideCopyright = false
@@ -65,19 +65,14 @@ pygmentscodefencesguesssyntax = true
     weight = 2
     url = "https://gitlab.com/vikaspogu/"
 [[params.social]]
-    name = "Twitter"
-    icon = "fab fa-twitter"
-    weight = 3
-    url = "https://twitter.com/vikaspogu/"
-[[params.social]]
     name = "LinkedIn"
     icon = "fab fa-linkedin"
-    weight = 4
+    weight = 3
     url = "https://www.linkedin.com/in/vikaspogu/"
 [[params.social]]
     name = "Medium"
     icon = "fab fa-medium"
-    weight = 5
+    weight = 4
     url = "https://medium.com/@vikaspogu"
 
 
@@ -97,12 +92,3 @@ pygmentscodefencesguesssyntax = true
             weight = 2
             url = "posts/"
 
-            [[languages.en.menu.main]]
-            name = "Projects"
-            weight = 3
-            url = "projects/"
-
-            [[languages.en.menu.main]]
-            name = "Contact me"
-            weight = 5
-            url = "contact/"
