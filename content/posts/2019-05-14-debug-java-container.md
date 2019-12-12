@@ -1,6 +1,6 @@
 +++
 title="Debugging a Java application in OpenShift"
-date="2019-05-14"
+date= 2019-05-14T14:36:27-05:00
 tags=["OpenShift", "Java"]
 +++
 
