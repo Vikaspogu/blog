@@ -9,7 +9,7 @@ externalLink = ""
 series = []
 +++
 
-In this post, I’ll share my home setup for [Rancher's k3s](https://k3s.io/) kubernetes cluster
+In this post, I’ll share my home setup for [Rancher's k3s](https://k3s.io/) kubernetes cluster.
 
 Requirements:
 
@@ -24,7 +24,7 @@ Requirements:
 
 ### Setting up a Pi Kubernetes Cluster
 
-I followed an excellent guide written by Alex Ellis [here](https://blog.alexellis.io/test-drive-k3s-on-raspberry-pi/) to initialize a cluster on the master and then join a single node
+I followed an excellent guide written by Alex Ellis [here](https://blog.alexellis.io/test-drive-k3s-on-raspberry-pi/) to initialize a cluster on the master and then join a single node.
 
 ```bash
 $ k3s kubectl get nodes
@@ -38,14 +38,14 @@ pi-master   Ready    master   3d     v1.16.3-k3s.2
 - Add a DNS entry for the wildcard domain `*.home.vikaspogu.com` to point at the dynamic IP
 - Open ports `80` and `443` on router’s firewall
 
-At this point a short `dig` on domain should return your dynamic IP
+At this point a short `dig` on domain should return your dynamic IP.
 
 ```bash
 $ dig +short test.home.vikaspogu.com
 X.X.X.X
 ```
 
-I found this script online which will update DNS record if Dynamic IP is changed
+I found this script online which will update DNS record if Dynamic IP is changed.
 
 ```sh
 #!/bin/sh
@@ -82,7 +82,7 @@ curl -s -X PUT "https://api.cloudflare.com/client/v4/zones/$zoneid/dns_records/$
   --data "{\"type\":\"A\",\"name\":\"$dnsrecord\",\"content\":\"$ip\",\"ttl\":1,\"proxied\":false}" | jq
 ```
 
-Create a configmap from script, secret with cloudflare `EMAIL` and `GLOBAL_API_TOKEN`
+Create a configmap from script, secret with cloudflare `EMAIL` and `GLOBAL_API_TOKEN`.
 
 ```bash
 $ k3s create configmap update-script --from-file=cloudfare-dns-update.sh
@@ -90,7 +90,7 @@ $ k3s kubectl create secret generic cloudflare --from-literal=email=me@cloudflar
 --from-literal=api_key=1234567890abcdef1234567890abcdef
 ```
 
-Now create a kubernetes cronjob to update DNS record to right address
+Now create a kubernetes cronjob to update DNS record to right address.
 
 ```yaml
 apiVersion: batch/v1beta1
@@ -133,19 +133,19 @@ spec:
 
 ### Traefik and Let’s Encrypt
 
-With a functioning cluster and the networking setup complete, the next task is to deploy a reverse proxy to manage the application routing
+With a functioning cluster and the networking setup complete, the next task is to deploy a reverse proxy to manage the application routing.
 
-In Kubernetes we can deploy an Ingress Controller to achieve this. An Ingress Controller is an implementation of a reverse proxy which listens for changes to KubernetesIngress resources and updates it’s configuration accordingly
+In Kubernetes we can deploy an Ingress Controller to achieve this. An Ingress Controller is an implementation of a reverse proxy which listens for changes to KubernetesIngress resources and updates it’s configuration accordingly.
 
-Traefik provides an detailed [instructions](https://docs.traefik.io/v1.7/user-guide/kubernetes/) on kubernetes implementation but I customised it slightly to get things working with my setup
+Traefik provides an detailed [instructions](https://docs.traefik.io/v1.7/user-guide/kubernetes/) on kubernetes implementation but I customised it slightly to get things working with my setup.
 
-First create RoleBinding's
+First create RoleBinding's.
 
 ```bash
 $ k3s kubectl apply -f https://raw.githubusercontent.com/containous/traefik/v1.7/examples/k8s/traefik-rbac.yaml
 ```
 
-Configure Let’s Encrypt to support HTTPS endpoint and automatically fetch certificates. I used Cloudflare as the DNS provider which configures Traefik to use DNS records for domain validation
+Configure Let’s Encrypt to support HTTPS endpoint and automatically fetch certificates. I used Cloudflare as the DNS provider which configures Traefik to use DNS records for domain validation.
 
 ```yaml
 [acme]
@@ -280,7 +280,7 @@ spec:
     - 192.168.0.101 # This is the node address
 ```
 
-Deploy Ingress controller for traefik dashboard
+Deploy Ingress controller for traefik dashboard.
 
 ```yaml
 ---
@@ -306,9 +306,9 @@ Voila!
 
 ### Deploy kubernetes dashboard
 
-Follow these instructions to [deploy dashboard UI](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/)
+Follow these instructions to [deploy dashboard UI](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/).
 
-Create ingress controller to access dashboard
+Create ingress controller to access dashboard.
 
 ```yaml
 ---
