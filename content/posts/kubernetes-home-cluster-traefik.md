@@ -9,22 +9,22 @@ externalLink = ""
 series = []
 +++
 
-In this post, I’ll share my setup for [Rancher's k3s](https://k3s.io/) kubernetes cluster at my home.
+In this post, I’ll share my home setup for [Rancher's k3s](https://k3s.io/) kubernetes cluster
 
-Few requirements:
+Requirements:
 
-- I wanted the web interface to be accessible outside of my home, so I could check and manage devices while away.
-- I needed to manage dynamic DNS, since I don’t have a static IP.
+- I wanted the web interface to be accessible outside of my home so I could check and manage devices while away
+- I need to manage dynamic DNS since I don’t have a static IP
 
 ### Setup
 
 - Setting up a master + single node Kubernetes cluster
-- Deploying DNS updater as a Kubernetes CronJob object.
-- Deploying Traefik as a Kubernetes Ingress Controller, and configuring it to manage SSL with Let’s Encrypt.
+- Deploying DNS updater as a Kubernetes CronJob object
+- Deploying Traefik as a Kubernetes Ingress Controller and configuring it to manage SSL with Let’s Encrypt
 
 ### Setting up a Pi Kubernetes Cluster
 
-I followed excellent guide written by Alex Ellis [here](https://blog.alexellis.io/test-drive-k3s-on-raspberry-pi/) to initialize a cluster on the master and then join single node.
+I followed an excellent guide written by Alex Ellis [here](https://blog.alexellis.io/test-drive-k3s-on-raspberry-pi/) to initialize a cluster on the master and then join a single node
 
 ```bash
 $ k3s kubectl get nodes
@@ -35,7 +35,7 @@ pi-master   Ready    master   3d     v1.16.3-k3s.2
 
 ### DNS and Routing
 
-- Add a DNS entry to point wildcard domain `*.home.vikaspogu.com` to dynamic IP
+- Add a DNS entry for the wildcard domain `*.home.vikaspogu.com` to point at the dynamic IP
 - Open ports `80` and `443` on router’s firewall
 
 At this point a short `dig` on domain should return your dynamic IP
@@ -90,7 +90,7 @@ $ k3s kubectl create secret generic cloudflare --from-literal=email=me@cloudflar
 --from-literal=api_key=1234567890abcdef1234567890abcdef
 ```
 
-Now kubernetes cronjob to update DNS record to right address perodically using earlier script
+Now create a kubernetes cronjob to update DNS record to right address
 
 ```yaml
 apiVersion: batch/v1beta1
@@ -133,11 +133,11 @@ spec:
 
 ### Traefik and Let’s Encrypt
 
-With a functioning cluster, and the networking setup complete, the next task is to deploy a reverse proxy to manage the application routing
+With a functioning cluster and the networking setup complete, the next task is to deploy a reverse proxy to manage the application routing
 
 In Kubernetes we can deploy an Ingress Controller to achieve this. An Ingress Controller is an implementation of a reverse proxy which listens for changes to KubernetesIngress resources and updates it’s configuration accordingly
 
-Traefik provide detailed [instructions](https://docs.traefik.io/v1.7/user-guide/kubernetes/) to get their implementation running, but I customised it slightly to get things working with my setup
+Traefik provides an detailed [instructions](https://docs.traefik.io/v1.7/user-guide/kubernetes/) on kubernetes implementation but I customised it slightly to get things working with my setup
 
 First create RoleBinding's
 
@@ -161,7 +161,7 @@ Configure Let’s Encrypt to support HTTPS endpoint and automatically fetch cert
       sans = ["home.vikaspogu.com"]
 ```
 
-The Deployment objects looks like this:
+The Deployment objects look like this:
 
 ```yaml
 apiVersion: v1
