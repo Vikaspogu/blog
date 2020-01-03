@@ -216,7 +216,7 @@ Since my sample application is built using OpenShift S2I process and pushed into
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://vikaspogu.dev/about/</guid>
-      <description>Hi! My name is Vikas Pogu. I’m a Senior Consultant at Red Hat and am a tech enthusiast.</description>
+      <description>Hi! My name is Vikas Pogu. I’m a Senior Consultant at RedHat and am a tech enthusiast.</description>
     </item>
     
   </channel>
