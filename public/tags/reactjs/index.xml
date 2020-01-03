@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ReactJS on vikaspogu</title>
+    <link>https://vikaspogu.dev/tags/reactjs/</link>
+    <description>Recent content in ReactJS on vikaspogu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 01 Jul 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://vikaspogu.dev/tags/reactjs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Patternfly setup in React Application</title>
+      <link>https://vikaspogu.dev/posts/2019-07-01-patternfly-setup-react/</link>
+      <pubDate>Mon, 01 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/2019-07-01-patternfly-setup-react/</guid>
+      <description>To order to integrate Patternfly framework into a ReactJS application, create a new project or use an existing one
+$ npx create-react-app patternfly-setup-react Install patternfly dependencies react-core, react-table and patternfly
+$ npm i --save @patternfly/patternfly \  @patternfly/react-core @patternfly/react-table Note: Import base.css and patternfly.css in your project, or some components may diverge in appearance
+//This imports are must to render css import &amp;#34;@patternfly/react-core/dist/styles/base.css&amp;#34;; import &amp;#34;@patternfly/patternfly/patternfly.css&amp;#34;; To make sure everything is working correctly, update App.</description>
+    </item>
+    
+  </channel>
+</rss>

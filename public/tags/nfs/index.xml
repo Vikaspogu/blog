@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NFS on vikaspogu</title>
+    <link>https://vikaspogu.dev/tags/nfs/</link>
+    <description>Recent content in NFS on vikaspogu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 02 Nov 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://vikaspogu.dev/tags/nfs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Create and add NFS storage to RHV</title>
+      <link>https://vikaspogu.dev/posts/2019-11-02-create-nfs-server-rhel-rhv/</link>
+      <pubDate>Sat, 02 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/2019-11-02-create-nfs-server-rhel-rhv/</guid>
+      <description>Set up NFS shares that will serve as storage domains on a Red Hat Enterprise Linux server.
+Add firewall rule are to rhel server
+firewall-cmd --permanent --add-service nfs firewall-cmd --permanent --add-service mountd firewall-cmd --reload Create and add group kvm; set the ownership of your exported directories to 36:36, which gives vdsm:kvm ownership; change the mode of the directories so that read and write access is granted to the owner
+groupadd kvm -g 36 useradd vdsm -u 36 -g 36 mkdir -pv /home/rhv-data-vol chown -R 36:36 /home/rhv-data-vol chmod 0755 /home/rhv-data-vol Add newly created directory to /etc/exports file which controls file systems are exported to remote hosts and specifies options.</description>
+    </item>
+    
+  </channel>
+</rss>

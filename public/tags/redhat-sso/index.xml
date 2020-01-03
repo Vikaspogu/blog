@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>RedHat SSO on vikaspogu</title>
+    <link>https://vikaspogu.dev/tags/redhat-sso/</link>
+    <description>Recent content in RedHat SSO on vikaspogu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 27 Jul 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://vikaspogu.dev/tags/redhat-sso/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Go JWT Authentication with keycloak</title>
+      <link>https://vikaspogu.dev/posts/2019-07-27-sso-jwt-golang/</link>
+      <pubDate>Sat, 27 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/2019-07-27-sso-jwt-golang/</guid>
+      <description>Recently I was working on a React project with Go backend using Gin web framework. Keycloak was the authentication mechanism for the frontend; I also wanted to secure the backend using JSON Web Tokens which was provided by Keycloak on every login. Setup for jwt verification in Go was easy.
+First, copy RS256 algorithm public key value from Keycloak
+Send the token as Authorization header
+axios .get(BACKEND_URL.concat(&amp;#34;sampleendpoint&amp;#34;), { headers: { Authorization: this.</description>
+    </item>
+    
+    <item>
+      <title>React App with RedHat SSO or keycloak</title>
+      <link>https://vikaspogu.dev/posts/2019-07-25-redhat-sso-react/</link>
+      <pubDate>Thu, 25 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/2019-07-25-redhat-sso-react/</guid>
+      <description>In this post, I will show you how to secure a React app using RedHat SSO (upstream keycloak). In this case, openid-connect is my identity provider.
+Install the offical keycloak js adapter
+$ npm i keycloak-js --save Setup the client with the host and port; in my case it&#39;s localhost:9000
+In App.js add in a JavaScript object with the required configuration; you will find these configurations under Clients-&amp;gt;Installation
+//keycloak init options const initOptions = { url: &amp;#34;https://localhost:8080/auth&amp;#34;, realm: &amp;#34;test&amp;#34;, clientId: &amp;#34;react-app&amp;#34;, onLoad: &amp;#34;login-required&amp;#34; }; By default, to authenticate you need to call the login function.</description>
+    </item>
+    
+  </channel>
+</rss>

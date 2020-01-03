@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>couchbase on vikaspogu</title>
+    <link>https://vikaspogu.dev/tags/couchbase/</link>
+    <description>Recent content in couchbase on vikaspogu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 28 Aug 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://vikaspogu.dev/tags/couchbase/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Configuring couchbase SSL for dynamic certificates in Openshift</title>
+      <link>https://vikaspogu.dev/posts/2019-08-28-couchbase-ssl-openshift/</link>
+      <pubDate>Wed, 28 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/2019-08-28-couchbase-ssl-openshift/</guid>
+      <description>If you have followed dynamic creation of java keystores in openshift post and wondered how to use similar concepts for couchbase database and a java application. This post will help you.
+Couchbase setup This is the couchbase documentation for configuring server side certificates, we are interested in last few steps since openshift will generate key and cert by adding annotation to the couchbase service.
+Note: By adding this annotation you can dynamically create certificates service.</description>
+    </item>
+    
+  </channel>
+</rss>
