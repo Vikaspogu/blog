@@ -87,3 +87,11 @@ Trying to pull docker.io/tomcat...
 ....
 d2e6db3c7....
 ```
+
+Building images:
+
+**Note:** The podman-remote.conf file seems to be ignored by the podman build command, so we have to add `--remote-host 127.0.0.1 --username root --port 2222` to each command
+
+```bash
+$ podman --remote-host 127.0.0.1 --username root --port 2222 build --tag mytag .
+```
