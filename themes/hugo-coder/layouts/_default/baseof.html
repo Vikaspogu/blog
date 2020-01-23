@@ -19,7 +19,7 @@
   {{ if .Permalink }}
   <base href="{{ .Permalink }}">
   {{ end }}
-  <title>{{  "title" }}</title>
+  <title>{{  block "title" . }}{{ .Site.Title }}{{ end }}</title>
 
   {{ if .Permalink }}
   <link rel="canonical" href="{{ .Permalink }}">
