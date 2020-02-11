@@ -4,7 +4,7 @@ title = "Jenkins Openshift OAuth SSL"
 description = "Add SSL certificates for Openshift Jenkins Authentication using Openshift OAuth plugin"
 slug = "" 
 tags = ["openshift", "jenkins", "ssl"]
-categories = ["openshift", "jenkins", "ssl"]
+categories = []
 externalLink = ""
 series = []
 +++
