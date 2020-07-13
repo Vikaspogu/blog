@@ -1,7 +1,7 @@
 +++
 title="Debugging a .NET Core application running on OpenShift"
 date="2019-05-14"
-tags=["OpenShift", ".NET"]
+tags=["OpenShift", "dot net"]
 +++
 
 This post is about how to remote debug a ASP.NET Core application on OpenShift using Visual Studio Code. You can use any Microsoft proprietary debugger engine `vsdbg` with Visual Studio Code.
