@@ -41,8 +41,7 @@ Expose `tekton-dashboard` service as a route
 oc expose service tekton-dashboard \
   -n tekton-pipelines \
   --name "tekton-dashboard" \
-  --port="http" \
-  --hostname=tekton-dashboard.${openshift_master_default_subdomain}
+  --port="http"
 ```
 
 ![tekton dashboard](/images/tekton-intro/dashboard.png)

@@ -30,8 +30,8 @@ spec:
 On one of the master node, execute these commands.
 
 ```bash
-$ kubectl proxy & PID=$!
-$ curl -X PUT http://localhost:8001/api/v1/namespaces/delete-me/finalize \
+kubectl proxy & PID=$!
+curl -X PUT http://localhost:8001/api/v1/namespaces/delete-me/finalize \
 -H "Content-Type: application/json" --data-binary @ns-without-finalizers.json
-$ kill $PID
+kill $PID
 ```
