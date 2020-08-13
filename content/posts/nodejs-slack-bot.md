@@ -19,7 +19,7 @@ First create a slack [workspace](https://slack.com/intl/en-ng/create#email)
 
 ![create_workspace](/images/slack-bot/create_workspace.png)
 
-Create a new bot at [slack apps](api.slack.com/apps)
+Create a new bot at [slack apps](https://api.slack.com/apps)
 
 - Give your new app a name
 - Choose workspace you created before to install the app
