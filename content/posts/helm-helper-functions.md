@@ -51,6 +51,15 @@ Full example
 {{- end -}}
 ```
 
+Another way to manipulate strings in `helpers.tpl` is using `printf`
+
+```
+{{- define "ocp-openjdk.hostname" -}}
+{{- printf "%s-%s%s" .Release.Name .Release.Namespace (.Values.subdomain | default ".apps.amp01.nonprod" ) -}}
+{{- end -}}
+```
+
+
 ## Resources
 
 - [Sprig functions](https://github.com/Masterminds/sprig)
