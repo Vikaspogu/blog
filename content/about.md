@@ -5,12 +5,11 @@ slug = "about"
 
 ## About Me
 
-Hello! My name is Vikas Pogu. I’m a Senior App Dev Consultant at Red Hat and am a tech enthusiast.
-Me
+Hello! My name is Vikas Pogu. I’m a Senior App Dev Consultant at Red Hat.
 
 ## My Background
 
-I have about 8 years of experience in the IT/Engineering Industry that ranges from Software Developer and DevOps.
+I have about 8 years of experience in the IT/Techonolgy Industry.
 
 ## Stuff I Work On
 
@@ -22,8 +21,6 @@ I primarily work with the following:
     * Basic to Intermediate Golang
   * Scripting:
     * Bash
-  * Linux:
-    * Deployment, Administering
   * Automation
     * CI/CD, Jenkins, Ansible, Bash
   * DevOps
@@ -32,7 +29,6 @@ I primarily work with the following:
     * Openshift and Kubernetes for Orchestrators
   * Open Source
   * Knowledge Sharing
-
 
 Thanks for reading!
 
