@@ -7,9 +7,10 @@
 ```
 git clone https://github.com/Vikaspogu/blog.git
 cd blog
-rm -rf public
-git submodule add -b master https://github.com/vikaspogu/vikaspogu.github.io.git public
+git rm --cached public -fr
+git submodule add --force -b master git@github.com:vikaspogu/vikaspogu.github.io.git public
 hugo
+./deploy.sh "<commit message>"
 ```
 
 ### Links
