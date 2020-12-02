@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="google-site-verification" content="5JztMFjgtrbhV0pe_cLh7EH3c0NJBY7sVrnd7x86pMI" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+  <meta name="author" content="Vikas Pogu">
+  
+  <meta name="description" content="Vikas Pogu&#39;s Blog">
+  
+  <meta name="keywords" content="blog,developer">
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Slack bot with Nodejs"/>
+<meta name="twitter:description" content="Building a slack bot using bolt library in Nodejs"/>
+
+  <meta property="og:title" content="Slack bot with Nodejs" />
+<meta property="og:description" content="Building a slack bot using bolt library in Nodejs" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://vikaspogu.dev/posts/nodejs-slack-bot/" />
+<meta property="article:published_time" content="2020-07-04T15:08:54-05:00" />
+<meta property="article:modified_time" content="2020-07-04T15:08:54-05:00" />
+
+
+  
+  <base href="https://vikaspogu.dev/posts/nodejs-slack-bot/">
+  
+  <title>
+  Slack bot with Nodejs · vikaspogu
+</title>
+
+  
+  <link rel="canonical" href="https://vikaspogu.dev/posts/nodejs-slack-bot/">
+  
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"
+    integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+  
+  
+  
+  <link rel="stylesheet" href="https://vikaspogu.dev/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw="
+    crossorigin="anonymous" media="screen" />
+  
+
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://vikaspogu.dev/css/coder-dark.min.83a2010dac9f59f943b3004cd6c4f230507ad036da635d3621401d42ec4e2835.css" integrity="sha256-g6IBDayfWflDswBM1sTyMFB60DbaY102IUAdQuxOKDU="
+    crossorigin="anonymous" media="screen" />
+  
+  
+
+  
+
+  
+
+  <link rel="icon" type="image/png" href="https://vikaspogu.dev/images/favicon-32x32.png"
+    sizes="32x32">
+  <link rel="icon" type="image/png" href="https://vikaspogu.dev/images/favicon-16x16.png"
+    sizes="16x16">
+
+  <meta name="generator" content="Hugo 0.79.0" />
+</head>
+
+
+
+
+
+
+<body class="colorscheme-auto">
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://vikaspogu.dev/">
+      vikaspogu
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+      
+      <li class="navigation-item">
+        <a class="navigation-link" href="https://vikaspogu.dev/about/">About</a>
+      </li>
+      
+      <li class="navigation-item">
+        <a class="navigation-link" href="https://vikaspogu.dev/posts/">Blog</a>
+      </li>
+      
+      
+      
+    </ul>
+  </section>
+</nav>
+<script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "https:\/\/vikaspogu.dev"
+        },
+        "articleSection" : "posts",
+        "name" : "Slack bot with Nodejs",
+        "headline" : "Slack bot with Nodejs",
+        "description" : "Building a slack bot using bolt library in Nodejs",
+        "inLanguage" : "en-US",
+        "author" : "Vikas Pogu",
+        "creator" : "Vikas Pogu",
+        "publisher": "Vikas Pogu",
+        "accountablePerson" : "Vikas Pogu",
+        "copyrightHolder" : "Vikas Pogu",
+        "copyrightYear" : "2020",
+        "datePublished": "2020-07-04 15:08:54 -0500 CDT",
+        "dateModified" : "2020-07-04 15:08:54 -0500 CDT",
+        "url" : "https:\/\/vikaspogu.dev\/posts\/nodejs-slack-bot\/",
+        "wordCount" : "421",
+        "keywords" : [ "slack-bot","nodejs","Blog" ]
+    }
+    </script>
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Slack bot with Nodejs</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2020-07-04T15:08:54-05:00'>
+                July 4, 2020
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              2 minutes read
+            </span>
+          </div>
+          
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="https://vikaspogu.dev/tags/slack-bot/">slack-bot</a>
+      <span class="separator">•</span>
+    <a href="https://vikaspogu.dev/tags/nodejs/">nodejs</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        <p>Build your own personal slack bot in few steps. In this post we&rsquo;ll navigate through process of creating the bot.</p>
+<h2 id="slack-setup">Slack setup</h2>
+<p>First create a slack <a href="https://slack.com/intl/en-ng/create#email">workspace</a></p>
+<ul>
+<li>Give your workspace a name</li>
+</ul>
+<p><img src="https://vikaspogu.dev/images/slack-bot/create_workspace.png" alt="create_workspace"></p>
+<p>Create a new bot at <a href="https://api.slack.com/apps">slack apps</a></p>
+<ul>
+<li>Give your new app a name</li>
+<li>Choose workspace you created before to install the app</li>
+</ul>
+<p><img src="https://vikaspogu.dev/images/slack-bot/create_app.png" alt="create_app"></p>
+<p>Then go to <code>Features &gt; OAuth &amp; Permissions</code> screen to scroll down to <code>Bot Token Scopes</code> to specify the OAuth scopes, select <code>app_mentions</code> and <code>chat_write</code> to enable the bot to send messages.</p>
+<p><img src="https://vikaspogu.dev/images/slack-bot/add_oauth.png" alt="add_oauth"></p>
+<p>Before jumping into application setup, let&rsquo;s copy signing secret and verification token from basic information page. we&rsquo;ll be using this later in our nodejs application</p>
+<p><img src="https://vikaspogu.dev/images/slack-bot/secret_token.png" alt="secret_token"></p>
+<h2 id="application-setup">Application setup</h2>
+<p>Create a npm project, install <code>@slack/bolt</code> and <code>dotenv</code> packages</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir test-bot &amp;&amp; <span style="color:#fff;font-weight:bold">cd</span> test-bot
+npm init -y
+npm i dotenv @slack/bolt -S
+</code></pre></div><p>Add start command to scripts if necessary</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#f00">...</span>
+<span style="color:#0ff;font-weight:bold">&#34;scripts&#34;</span><span style="color:#f00">:</span> {
+  <span style="font-weight:bold">&#34;start&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;node index.js&#34;</span>
+}
+</code></pre></div><p>Create a <code>.env</code> file and add <code>SLACK_SIGNING_SECRET</code>, <code>SLACK_BOT_TOKEN</code></p>
+<p><strong>Note:</strong> Don&rsquo;t commit this file to any repo</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-env" data-lang="env">SLACK_BOT_TOKEN= <span style="color:#007f7f">#token goes here</span>
+SLACK_SIGNING_SECRET= <span style="color:#007f7f">#sigining secret goes here</span>
+</code></pre></div><p>In your index.js file, require the Bolt package, and initialize an app with credentials</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">require(<span style="color:#0ff;font-weight:bold">&#34;dotenv&#34;</span>).config();
+<span style="color:#fff;font-weight:bold">const</span> { App } = require(<span style="color:#0ff;font-weight:bold">&#34;@slack/bolt&#34;</span>);
+
+<span style="color:#fff;font-weight:bold">const</span> bot = <span style="color:#fff;font-weight:bold">new</span> App({
+  signingSecret: process.env.SLACK_SIGNING_SECRET,
+  token: process.env.SLACK_BOT_TOKEN,
+  endpoints: <span style="color:#0ff;font-weight:bold">&#34;/slack/events&#34;</span>,
+});
+
+(<span style="color:#fff;font-weight:bold">async</span> () =&gt; {
+  <span style="color:#007f7f">// Start the app
+</span><span style="color:#007f7f"></span>  <span style="color:#fff;font-weight:bold">await</span> bot.start(process.env.PORT || <span style="color:#ff0;font-weight:bold">3000</span>);
+
+  console.log(<span style="color:#0ff;font-weight:bold">&#34;⚡️ Bolt app is running!&#34;</span>);
+})();
+</code></pre></div><p>Deploy application to a live server like <code>ngrok</code>.</p>
+<h4 id="event-setup">Event Setup</h4>
+<p>We&rsquo;ll need to subscribe to events, so that when a Slack event happens (like a user mentions app), app server will receive an event payload</p>
+<ul>
+<li>
+<p>Go to Event Subscriptions from the left-hand menu, and turn the toggle switch on to enable events</p>
+</li>
+<li>
+<p>Enter your Request URL</p>
+</li>
+</ul>
+<p><img src="https://vikaspogu.dev/images/slack-bot/enable_events.png" alt="enable_events"></p>
+<p>Subscribe to <code>app_mention</code> event</p>
+<p><img src="https://vikaspogu.dev/images/slack-bot/event_subscribe.png" alt="event_subscribe"></p>
+<p>Install app to workspace</p>
+<p><img src="https://vikaspogu.dev/images/slack-bot/install_app_workspace.png" alt="install_app_workspace"></p>
+<p>You should see bot in your workspace now!</p>
+<h4 id="handling-events">Handling Events</h4>
+<p>To listen to any Events API events from Slack, use the event() method. This allows your app to take action when something happens in Slack. In this scenario, it&rsquo;s triggered when a user mentions app.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">bot.event(<span style="color:#0ff;font-weight:bold">&#34;app_mention&#34;</span>, <span style="color:#fff;font-weight:bold">async</span> ({ context, event }) =&gt; {
+  <span style="color:#fff;font-weight:bold">try</span> {
+    <span style="color:#fff;font-weight:bold">const</span> command = event.text;
+    <span style="color:#fff;font-weight:bold">let</span> reply;
+    <span style="color:#fff;font-weight:bold">if</span> (command.includes(<span style="color:#0ff;font-weight:bold">&#34;Hi&#34;</span>)) {
+      reply = <span style="color:#0ff;font-weight:bold">`Hi &lt;@</span><span style="color:#0ff;font-weight:bold">${</span>event.user<span style="color:#0ff;font-weight:bold">}</span><span style="color:#0ff;font-weight:bold">&gt;,  you mentioned me`</span>;
+    } <span style="color:#fff;font-weight:bold">else</span> {
+      reply = <span style="color:#0ff;font-weight:bold">&#34;How can i help you?&#34;</span>;
+    }
+    <span style="color:#fff;font-weight:bold">await</span> bot.client.chat.postMessage({
+      token: context.botToken,
+      channel: event.channel,
+      text: <span style="color:#0ff;font-weight:bold">`</span><span style="color:#0ff;font-weight:bold">${</span>reply<span style="color:#0ff;font-weight:bold">}</span><span style="color:#0ff;font-weight:bold">`</span>,
+    });
+  } <span style="color:#fff;font-weight:bold">catch</span> (e) {
+    console.log(<span style="color:#0ff;font-weight:bold">`error responding </span><span style="color:#0ff;font-weight:bold">${</span>e<span style="color:#0ff;font-weight:bold">}</span><span style="color:#0ff;font-weight:bold">`</span>);
+  }
+});
+</code></pre></div><p>Okay, let&rsquo;s try the app!</p>
+<p>Add app to a channel and mention the app. You should see a reponse from bot!</p>
+<h3 id="troubleshooting">Troubleshooting</h3>
+<p>Reinstall app if you don&rsquo;t see any responses from bot</p>
+<p><img src="https://vikaspogu.dev/images/slack-bot/reinstall_app.png" alt="reinstall_app"></p>
+
+      </div>
+
+      <footer>
+        
+
+
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+</body>
+
+</html>

@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on vikaspogu</title>
+    <link>https://vikaspogu.dev/tags/</link>
+    <description>Recent content in Tags on vikaspogu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 01 Dec 2020 12:07:46 -0600</lastBuildDate><atom:link href="https://vikaspogu.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>boot</title>
+      <link>https://vikaspogu.dev/tags/boot/</link>
+      <pubDate>Tue, 01 Dec 2020 12:07:46 -0600</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/boot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>grub</title>
+      <link>https://vikaspogu.dev/tags/grub/</link>
+      <pubDate>Tue, 01 Dec 2020 12:07:46 -0600</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/grub/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>authentication</title>
+      <link>https://vikaspogu.dev/tags/authentication/</link>
+      <pubDate>Thu, 12 Nov 2020 08:39:50 -0600</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/authentication/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>authorization</title>
+      <link>https://vikaspogu.dev/tags/authorization/</link>
+      <pubDate>Thu, 12 Nov 2020 08:39:50 -0600</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/authorization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>istio</title>
+      <link>https://vikaspogu.dev/tags/istio/</link>
+      <pubDate>Thu, 12 Nov 2020 08:39:50 -0600</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/istio/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jwt</title>
+      <link>https://vikaspogu.dev/tags/jwt/</link>
+      <pubDate>Thu, 12 Nov 2020 08:39:50 -0600</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/jwt/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>keycloak</title>
+      <link>https://vikaspogu.dev/tags/keycloak/</link>
+      <pubDate>Thu, 12 Nov 2020 08:39:50 -0600</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/keycloak/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>service mesh</title>
+      <link>https://vikaspogu.dev/tags/service-mesh/</link>
+      <pubDate>Thu, 12 Nov 2020 08:39:50 -0600</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/service-mesh/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>loki</title>
+      <link>https://vikaspogu.dev/tags/loki/</link>
+      <pubDate>Wed, 04 Nov 2020 10:34:30 -0600</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/loki/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rsyslog</title>
+      <link>https://vikaspogu.dev/tags/rsyslog/</link>
+      <pubDate>Wed, 04 Nov 2020 10:34:30 -0600</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/rsyslog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ad-blocker</title>
+      <link>https://vikaspogu.dev/tags/ad-blocker/</link>
+      <pubDate>Wed, 19 Aug 2020 08:52:26 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/ad-blocker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>adguard</title>
+      <link>https://vikaspogu.dev/tags/adguard/</link>
+      <pubDate>Wed, 19 Aug 2020 08:52:26 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/adguard/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubernetes</title>
+      <link>https://vikaspogu.dev/tags/kubernetes/</link>
+      <pubDate>Wed, 19 Aug 2020 08:52:26 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gatekeeper</title>
+      <link>https://vikaspogu.dev/tags/gatekeeper/</link>
+      <pubDate>Tue, 18 Aug 2020 14:47:02 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/gatekeeper/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>opa</title>
+      <link>https://vikaspogu.dev/tags/opa/</link>
+      <pubDate>Tue, 18 Aug 2020 14:47:02 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/opa/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Openshift</title>
+      <link>https://vikaspogu.dev/tags/openshift/</link>
+      <pubDate>Tue, 18 Aug 2020 14:47:02 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/openshift/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>configuration-as-code-plugin</title>
+      <link>https://vikaspogu.dev/tags/configuration-as-code-plugin/</link>
+      <pubDate>Tue, 18 Aug 2020 14:45:23 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/configuration-as-code-plugin/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jenkins</title>
+      <link>https://vikaspogu.dev/tags/jenkins/</link>
+      <pubDate>Tue, 18 Aug 2020 14:45:23 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/jenkins/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pipeline-job</title>
+      <link>https://vikaspogu.dev/tags/pipeline-job/</link>
+      <pubDate>Tue, 18 Aug 2020 14:45:23 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/pipeline-job/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>date</title>
+      <link>https://vikaspogu.dev/tags/date/</link>
+      <pubDate>Tue, 07 Jul 2020 09:19:15 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/date/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>groovy</title>
+      <link>https://vikaspogu.dev/tags/groovy/</link>
+      <pubDate>Tue, 07 Jul 2020 09:19:15 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/groovy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jcasc</title>
+      <link>https://vikaspogu.dev/tags/jcasc/</link>
+      <pubDate>Mon, 06 Jul 2020 13:23:05 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/jcasc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docker</title>
+      <link>https://vikaspogu.dev/tags/docker/</link>
+      <pubDate>Sun, 05 Jul 2020 16:26:22 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>garage-door</title>
+      <link>https://vikaspogu.dev/tags/garage-door/</link>
+      <pubDate>Sun, 05 Jul 2020 16:26:22 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/garage-door/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>NodeJS</title>
+      <link>https://vikaspogu.dev/tags/nodejs/</link>
+      <pubDate>Sun, 05 Jul 2020 16:26:22 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/nodejs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>raspberry-pi</title>
+      <link>https://vikaspogu.dev/tags/raspberry-pi/</link>
+      <pubDate>Sun, 05 Jul 2020 16:26:22 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/raspberry-pi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>slack-bot</title>
+      <link>https://vikaspogu.dev/tags/slack-bot/</link>
+      <pubDate>Sat, 04 Jul 2020 15:08:54 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/slack-bot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>k3s</title>
+      <link>https://vikaspogu.dev/tags/k3s/</link>
+      <pubDate>Sat, 07 Mar 2020 14:31:32 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/k3s/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pi-hole</title>
+      <link>https://vikaspogu.dev/tags/pi-hole/</link>
+      <pubDate>Sat, 07 Mar 2020 14:31:32 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/pi-hole/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ssl</title>
+      <link>https://vikaspogu.dev/tags/ssl/</link>
+      <pubDate>Mon, 10 Feb 2020 17:24:56 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/ssl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>macos</title>
+      <link>https://vikaspogu.dev/tags/macos/</link>
+      <pubDate>Mon, 06 Jan 2020 14:15:03 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/macos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>podman</title>
+      <link>https://vikaspogu.dev/tags/podman/</link>
+      <pubDate>Mon, 06 Jan 2020 14:15:03 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/podman/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vagrant</title>
+      <link>https://vikaspogu.dev/tags/vagrant/</link>
+      <pubDate>Mon, 06 Jan 2020 14:15:03 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/vagrant/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>grafana</title>
+      <link>https://vikaspogu.dev/tags/grafana/</link>
+      <pubDate>Wed, 01 Jan 2020 16:19:29 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/grafana/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>influxdb</title>
+      <link>https://vikaspogu.dev/tags/influxdb/</link>
+      <pubDate>Wed, 01 Jan 2020 16:19:29 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/influxdb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>telegraf</title>
+      <link>https://vikaspogu.dev/tags/telegraf/</link>
+      <pubDate>Wed, 01 Jan 2020 16:19:29 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/telegraf/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>traefik</title>
+      <link>https://vikaspogu.dev/tags/traefik/</link>
+      <pubDate>Tue, 31 Dec 2019 13:47:10 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/traefik/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>basicauth</title>
+      <link>https://vikaspogu.dev/tags/basicauth/</link>
+      <pubDate>Mon, 16 Dec 2019 15:29:34 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/basicauth/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gin</title>
+      <link>https://vikaspogu.dev/tags/gin/</link>
+      <pubDate>Mon, 16 Dec 2019 15:29:34 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/gin/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>golang</title>
+      <link>https://vikaspogu.dev/tags/golang/</link>
+      <pubDate>Mon, 16 Dec 2019 15:29:34 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>NFS</title>
+      <link>https://vikaspogu.dev/tags/nfs/</link>
+      <pubDate>Sat, 02 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/nfs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>RHV</title>
+      <link>https://vikaspogu.dev/tags/rhv/</link>
+      <pubDate>Sat, 02 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/rhv/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>couchbase</title>
+      <link>https://vikaspogu.dev/tags/couchbase/</link>
+      <pubDate>Wed, 28 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/couchbase/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tektoncd</title>
+      <link>https://vikaspogu.dev/tags/tektoncd/</link>
+      <pubDate>Fri, 09 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/tektoncd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>RedHat SSO</title>
+      <link>https://vikaspogu.dev/tags/redhat-sso/</link>
+      <pubDate>Sat, 27 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/redhat-sso/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>React</title>
+      <link>https://vikaspogu.dev/tags/react/</link>
+      <pubDate>Thu, 25 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/react/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Gluster</title>
+      <link>https://vikaspogu.dev/tags/gluster/</link>
+      <pubDate>Tue, 16 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/gluster/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Heketi</title>
+      <link>https://vikaspogu.dev/tags/heketi/</link>
+      <pubDate>Tue, 16 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/heketi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Patternfly</title>
+      <link>https://vikaspogu.dev/tags/patternfly/</link>
+      <pubDate>Mon, 01 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/patternfly/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ReactJS</title>
+      <link>https://vikaspogu.dev/tags/reactjs/</link>
+      <pubDate>Mon, 01 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/reactjs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>LDAP</title>
+      <link>https://vikaspogu.dev/tags/ldap/</link>
+      <pubDate>Wed, 15 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/ldap/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Prometheus</title>
+      <link>https://vikaspogu.dev/tags/prometheus/</link>
+      <pubDate>Wed, 15 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/prometheus/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Spring Boot</title>
+      <link>https://vikaspogu.dev/tags/spring-boot/</link>
+      <pubDate>Wed, 15 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/spring-boot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Java</title>
+      <link>https://vikaspogu.dev/tags/java/</link>
+      <pubDate>Tue, 14 May 2019 14:36:27 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dot net</title>
+      <link>https://vikaspogu.dev/tags/dot-net/</link>
+      <pubDate>Tue, 14 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/dot-net/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>YourKit-JavaProfiler</title>
+      <link>https://vikaspogu.dev/tags/yourkit-javaprofiler/</link>
+      <pubDate>Tue, 14 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/tags/yourkit-javaprofiler/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

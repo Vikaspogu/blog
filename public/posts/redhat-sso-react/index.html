@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="google-site-verification" content="5JztMFjgtrbhV0pe_cLh7EH3c0NJBY7sVrnd7x86pMI" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+  <meta name="author" content="Vikas Pogu">
+  
+  <meta name="description" content="Vikas Pogu&#39;s Blog">
+  
+  <meta name="keywords" content="blog,developer">
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="React App with RedHat SSO or keycloak"/>
+<meta name="twitter:description" content="In this post, I will show you how to secure a React app using RedHat SSO (upstream keycloak). In this case, openid-connect is my identity provider.
+Install the offical keycloak js adapter
+$ npm i keycloak-js --save Setup the client with the host and port; in my case it&rsquo;s localhost:9000
+In App.js add in a JavaScript object with the required configuration; you will find these configurations under Clients-&gt;Installation
+//keycloak init options const initOptions = { url: &#34;https://localhost:8080/auth&#34;, realm: &#34;test&#34;, clientId: &#34;react-app&#34;, onLoad: &#34;login-required&#34; }; By default, to authenticate you need to call the login function."/>
+
+  <meta property="og:title" content="React App with RedHat SSO or keycloak" />
+<meta property="og:description" content="In this post, I will show you how to secure a React app using RedHat SSO (upstream keycloak). In this case, openid-connect is my identity provider.
+Install the offical keycloak js adapter
+$ npm i keycloak-js --save Setup the client with the host and port; in my case it&rsquo;s localhost:9000
+In App.js add in a JavaScript object with the required configuration; you will find these configurations under Clients-&gt;Installation
+//keycloak init options const initOptions = { url: &#34;https://localhost:8080/auth&#34;, realm: &#34;test&#34;, clientId: &#34;react-app&#34;, onLoad: &#34;login-required&#34; }; By default, to authenticate you need to call the login function." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://vikaspogu.dev/posts/redhat-sso-react/" />
+<meta property="article:published_time" content="2019-07-25T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-07-25T00:00:00+00:00" />
+
+
+  
+  <base href="https://vikaspogu.dev/posts/redhat-sso-react/">
+  
+  <title>
+  React App with RedHat SSO or keycloak · vikaspogu
+</title>
+
+  
+  <link rel="canonical" href="https://vikaspogu.dev/posts/redhat-sso-react/">
+  
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"
+    integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+  
+  
+  
+  <link rel="stylesheet" href="https://vikaspogu.dev/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw="
+    crossorigin="anonymous" media="screen" />
+  
+
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://vikaspogu.dev/css/coder-dark.min.83a2010dac9f59f943b3004cd6c4f230507ad036da635d3621401d42ec4e2835.css" integrity="sha256-g6IBDayfWflDswBM1sTyMFB60DbaY102IUAdQuxOKDU="
+    crossorigin="anonymous" media="screen" />
+  
+  
+
+  
+
+  
+
+  <link rel="icon" type="image/png" href="https://vikaspogu.dev/images/favicon-32x32.png"
+    sizes="32x32">
+  <link rel="icon" type="image/png" href="https://vikaspogu.dev/images/favicon-16x16.png"
+    sizes="16x16">
+
+  <meta name="generator" content="Hugo 0.79.0" />
+</head>
+
+
+
+
+
+
+<body class="colorscheme-auto">
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://vikaspogu.dev/">
+      vikaspogu
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+      
+      <li class="navigation-item">
+        <a class="navigation-link" href="https://vikaspogu.dev/about/">About</a>
+      </li>
+      
+      <li class="navigation-item">
+        <a class="navigation-link" href="https://vikaspogu.dev/posts/">Blog</a>
+      </li>
+      
+      
+      
+    </ul>
+  </section>
+</nav>
+<script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "https:\/\/vikaspogu.dev"
+        },
+        "articleSection" : "posts",
+        "name" : "React App with RedHat SSO or keycloak",
+        "headline" : "React App with RedHat SSO or keycloak",
+        "description" : "In this post, I will show you how to secure a React app using RedHat SSO (upstream keycloak). In this case, openid-connect is my identity provider.\nInstall the offical keycloak js adapter\n$ npm i keycloak-js --save Setup the client with the host and port; in my case it\u0026rsquo;s localhost:9000\nIn App.js add in a JavaScript object with the required configuration; you will find these configurations under Clients-\u0026gt;Installation\n\/\/keycloak init options const initOptions = { url: \u0026#34;https:\/\/localhost:8080\/auth\u0026#34;, realm: \u0026#34;test\u0026#34;, clientId: \u0026#34;react-app\u0026#34;, onLoad: \u0026#34;login-required\u0026#34; }; By default, to authenticate you need to call the login function.",
+        "inLanguage" : "en-US",
+        "author" : "Vikas Pogu",
+        "creator" : "Vikas Pogu",
+        "publisher": "Vikas Pogu",
+        "accountablePerson" : "Vikas Pogu",
+        "copyrightHolder" : "Vikas Pogu",
+        "copyrightYear" : "2019",
+        "datePublished": "2019-07-25 00:00:00 \u002b0000 UTC",
+        "dateModified" : "2019-07-25 00:00:00 \u002b0000 UTC",
+        "url" : "https:\/\/vikaspogu.dev\/posts\/redhat-sso-react\/",
+        "wordCount" : "289",
+        "keywords" : [ "RedHat SSO","React","keycloak","Blog" ]
+    }
+    </script>
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">React App with RedHat SSO or keycloak</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2019-07-25T00:00:00Z'>
+                July 25, 2019
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              2 minutes read
+            </span>
+          </div>
+          
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="https://vikaspogu.dev/tags/redhat-sso/">RedHat SSO</a>
+      <span class="separator">•</span>
+    <a href="https://vikaspogu.dev/tags/react/">React</a>
+      <span class="separator">•</span>
+    <a href="https://vikaspogu.dev/tags/keycloak/">keycloak</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        <p>In this post, I will show you how to secure a React app using RedHat SSO (upstream keycloak). In this case, <code>openid-connect</code> is my identity provider.</p>
+<p><img src="https://vikaspogu.dev/images/sso-openid.png" alt="sso_setup"></p>
+<p>Install the offical keycloak js adapter</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ npm i keycloak-js --save
+</code></pre></div><p>Setup the client with the host and port; in my case it&rsquo;s <code>localhost:9000</code></p>
+<p><img src="https://vikaspogu.dev/images/sso-client-settings.png" alt="sso_setup"></p>
+<p>In App.js add in a JavaScript object with the required configuration; you will find these configurations under <code>Clients</code>-&gt;<code>Installation</code></p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#007f7f">//keycloak init options
+</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">const</span> initOptions = {
+  url: <span style="color:#0ff;font-weight:bold">&#34;https://localhost:8080/auth&#34;</span>,
+  realm: <span style="color:#0ff;font-weight:bold">&#34;test&#34;</span>,
+  clientId: <span style="color:#0ff;font-weight:bold">&#34;react-app&#34;</span>,
+  onLoad: <span style="color:#0ff;font-weight:bold">&#34;login-required&#34;</span>
+};
+</code></pre></div><p><img src="https://vikaspogu.dev/images/sso-config.png" alt="sso_setup"></p>
+<p>By default, to authenticate you need to call the login function. However, there are two options available to make the adapter automatically authenticate. You can pass <code>login-required</code> or <code>check-sso</code> to the init function. <code>login-required</code> will authenticate the client if the user is logged-in to <code>{project_name}</code> or display the login page if not. <code>check-sso</code> will only authenticate the client if the user is already logged-in; if the user is not logged-in the browser will be redirected back to the application and remain unauthenticated.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">componentDidMount() {
+    <span style="color:#fff;font-weight:bold">let</span> keycloak = Keycloak(initOptions);
+    keycloak.init({ onLoad: initOptions.onLoad }).succes(authenticated =&gt; {});
+}
+</code></pre></div><p>Finally</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#fff;font-weight:bold">import</span> * as Keycloak from <span style="color:#0ff;font-weight:bold">&#34;keycloak-js&#34;</span>;
+
+<span style="color:#007f7f">//keycloak init options
+</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">const</span> initOptions = {
+  url: <span style="color:#0ff;font-weight:bold">&#34;https://localhost:8080/auth&#34;</span>,
+  realm: <span style="color:#0ff;font-weight:bold">&#34;test&#34;</span>,
+  clientId: <span style="color:#0ff;font-weight:bold">&#34;react-app&#34;</span>,
+  onLoad: <span style="color:#0ff;font-weight:bold">&#34;login-required&#34;</span>
+};
+
+<span style="color:#fff;font-weight:bold">class</span> App <span style="color:#fff;font-weight:bold">extends</span> React.Component {
+  constructor(props) {
+    <span style="color:#fff;font-weight:bold">super</span>(props);
+    <span style="color:#fff;font-weight:bold">this</span>.state = {
+      keycloak: <span style="color:#fff;font-weight:bold">null</span>,
+      authenticated: <span style="color:#fff;font-weight:bold">false</span>
+    };
+  }
+  componentDidMount() {
+    <span style="color:#fff;font-weight:bold">let</span> keycloak = Keycloak(initOptions);
+    keycloak.init({ onLoad: initOptions.onLoad }).success(authenticated =&gt; {
+      <span style="color:#fff;font-weight:bold">this</span>.setState({ keycloak: keycloak, authenticated: authenticated });
+    });
+  }
+  render() {
+    <span style="color:#fff;font-weight:bold">const</span> { keycloak, authenticated } = <span style="color:#fff;font-weight:bold">this</span>.state;
+    <span style="color:#fff;font-weight:bold">if</span> (keycloak) {
+      <span style="color:#fff;font-weight:bold">if</span> (authenticated) {
+        <span style="color:#fff;font-weight:bold">return</span> (
+          &lt;React.Fragment&gt;
+            &lt;AppRouter /&gt;
+          &lt;<span style="color:#f00">/React.Fragment&gt;</span>
+        );
+      }
+    }
+    <span style="color:#fff;font-weight:bold">return</span> &lt;div&gt;Initializing SS0...&lt;<span style="color:#f00">/div&gt;;</span>
+  }
+}
+</code></pre></div><p>Run your app</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ npm run start
+</code></pre></div><p>Navigate to <code>http://localhost:9000</code>; you should see the login page if you are not authenticated</p>
+
+      </div>
+
+      <footer>
+        
+
+
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+</body>
+
+</html>

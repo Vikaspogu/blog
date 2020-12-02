@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>vagrant on vikaspogu</title>
+    <link>https://vikaspogu.dev/tags/vagrant/</link>
+    <description>Recent content in vagrant on vikaspogu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 06 Jan 2020 14:15:03 -0500</lastBuildDate><atom:link href="https://vikaspogu.dev/tags/vagrant/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Installing Podman remote client on macOS using vagrant</title>
+      <link>https://vikaspogu.dev/posts/podman-macos/</link>
+      <pubDate>Mon, 06 Jan 2020 14:15:03 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/podman-macos/</guid>
+      <description>Installing podman as a remote client on macOS using vagrant. Vagrant setup is not covered in this post.
+Podman remote client Podman is the tool to start and manage containers. On macOS we have to use a thin remote-client that connects to a real Podman process running on a Linux host.
+Here are the main steps how to configure the remote-client to work with a Linux host:
+ Create a linux machine using Vagrant Set key based ssh as root to the Linux host Install remote-client binary with Homebrew: brew cask install podman  Create a fedora vagrant box.</description>
+    </item>
+    
+  </channel>
+</rss>
