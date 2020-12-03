@@ -5,7 +5,7 @@ slug = "about"
 
 ## About Me
 
-Hello! My name is Vikas Pogu. I’m a Senior App Dev Consultant at Red Hat.
+Hello! My name is Vikas Pogu. I’m a Senior Application Development Consultant at Red Hat.
 
 ## My Background
 
