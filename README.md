@@ -1,8 +1,8 @@
-# Vikas Pogu Blog
+# Blog
 
 ## This is my personal blog
 
-## Cloning repo
+### Cloning repo
 
 ```
 git clone https://github.com/Vikaspogu/blog.git
@@ -11,6 +11,12 @@ git rm --cached public -fr
 git submodule add --force -b master git@github.com:vikaspogu/vikaspogu.github.io.git public
 hugo
 ./deploy.sh "<commit message>"
+```
+
+### Update submodule
+
+```
+git submodule update --init --recursive
 ```
 
 ### Links
