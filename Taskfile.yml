@@ -2,7 +2,8 @@
 version: "3"
 
 tasks:
-  push-new-blog:
+  main:
+    desc: Push changes to github io and blog repo
     cmds:
       - task: deploy-updates-github-io
       - task: push-updates-to-blog-repo
@@ -11,7 +12,7 @@ tasks:
     cmds:
       - hugo
       - cd public
-      - git add
+      - git add .
       - msg="rebuilding site $(date)" && git commit -m "$msg"
       - git push origin master
   push-updates-to-blog-repo:
