@@ -17,7 +17,7 @@ pygmentscodefencesguesssyntax = true
     author = "Vikas Pogu"
     description = "Vikas Pogu's Blog"
     keywords = "blog,developer"
-    info = "Senior App Dev Consultant"
+    info = "Senior Application Development Consultant"
     avatarurl = "images/myAvatar.png"
     #footercontent = "Enter a text here."
 
