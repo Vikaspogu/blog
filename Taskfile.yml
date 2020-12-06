@@ -19,6 +19,7 @@ tasks:
     cmds:
       - git add .
       - git commit -m "{{.COMMIT_MSG}}"
+      - git push origin master
   pull-submodule:
     desc: Pull changes from submodule repo
     cmds:
