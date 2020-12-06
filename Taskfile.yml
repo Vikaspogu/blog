@@ -5,13 +5,13 @@ tasks:
   main:
     desc: Push changes to github io and blog repo
     cmds:
+      - hugo
       - task: deploy-updates-github-io
       - task: push-updates-to-blog-repo
   deploy-updates-github-io:
     desc: Deploy updates to github io repo
+    dir: public
     cmds:
-      - hugo
-      - cd public
       - git add .
       - msg="rebuilding site $(date)" && git commit -m "$msg"
       - git push origin master
