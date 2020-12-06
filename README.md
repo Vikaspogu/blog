@@ -1,6 +1,22 @@
 # Blog
 
-## This is my personal blog
+ [![GitHub last commit](https://img.shields.io/github/last-commit/vikaspogu/blog?color=purple&style=flat-square)](https://github.com/vikaspogu/blog/commits/master)
+
+## Overview
+
+Welcome to my blog repo
+
+---
+
+## :wrench:&nbsp; Tools
+
+_Below are the tools in use in this repo_
+
+| Tool                                                   | Purpose                                                                                                   |
+|--------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| [go-task](https://github.com/go-task/task)             | Replacement for make and makefiles, who honestly likes that?                                              |
+
+## Useful Information
 
 ### Cloning repo
 
@@ -19,6 +35,6 @@ hugo
 git submodule update --init --recursive
 ```
 
-### Links
+### Helpful Links
 
 [Hugo site on GitHub Pages](https://dev.to/dgavlock/creating-a-hugo-site-on-github-pages-3cjo)
