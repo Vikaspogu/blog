@@ -2,26 +2,27 @@
 version: "3"
 
 tasks:
-  main:
+  push:
     desc: Push changes to github io and blog repo
     cmds:
       - hugo
       - task: deploy-updates-github-io
       - task: push-updates-to-blog-repo
-  deploy-updates-github-io:
+  push-github-io:
     desc: Deploy updates to github io repo
     dir: public
     cmds:
       - git add .
       - msg="rebuilding site $(date)" && git commit -m "$msg"
       - git push origin master
-  push-updates-to-blog-repo:
+  push-blog:
     desc: Push new changes to blog repo
     cmds:
       - git add .
       - git commit -m "{{.COMMIT_MSG}}"
       - git push origin master
-  pull-submodule:
-    desc: Pull changes from submodule repo
+  pull:
+    desc: Pull changes from submodule repo and blog repo
     cmds:
+      - git pull
       - git submodule update --init --recursive
