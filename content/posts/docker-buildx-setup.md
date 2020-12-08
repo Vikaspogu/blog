@@ -83,3 +83,9 @@ $ docker buildx use amr64
 # build the multi images
 $ docker buildx build -t vikaspogu/test:v0.0.1 . --push --platform linux/arm64
 ```
+
+> If you encounter `/bin/sh: Invalid ELF image for this architecture` error. Run following docker image and then build
+
+```
+$ docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+```
