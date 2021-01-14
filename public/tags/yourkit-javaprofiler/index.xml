@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>YourKit-JavaProfiler on vikaspogu</title>
+    <link>https://vikaspogu.dev/tags/yourkit-javaprofiler/</link>
+    <description>Recent content in YourKit-JavaProfiler on vikaspogu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 14 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://vikaspogu.dev/tags/yourkit-javaprofiler/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Profiling a application in OpenShift container</title>
+      <link>https://vikaspogu.dev/posts/javaprofiler-openshift/</link>
+      <pubDate>Tue, 14 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/javaprofiler-openshift/</guid>
+      <description>Sometimes writing code that just runs is not enough. We might want to know what goes on internally such as how memory is allocated, consequences of using one coding approach over another, implications of concurrent executions, areas to improve performance, etc. We can use profilers for this.
+In this post I&amp;rsquo;ll discuss how to use YourKit-JavaProfiler inside a container.
+Since my sample application is built using OpenShift S2I process and pushed into openshift internal registry, I&amp;rsquo;ll have to pull the image locally.</description>
+    </item>
+    
+  </channel>
+</rss>

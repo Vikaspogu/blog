@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="google-site-verification" content="5JztMFjgtrbhV0pe_cLh7EH3c0NJBY7sVrnd7x86pMI" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+  <meta name="author" content="Vikas Pogu">
+  
+  <meta name="description" content="Vikas Pogu&#39;s Blog">
+  
+  <meta name="keywords" content="blog,developer">
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Authenticate a Node application with LDAP"/>
+<meta name="twitter:description" content="This post demonstrates how to authenticate a user against LDAP.
+Let&rsquo;s start by installing basic-auth and ldapauth-fork packages
+npm install ldapauth-fork npm install basic-auth Steps for implementation;
+ Add packages Create a ldap variable with authentication configuration Basic auth should prompt for you username and password. Once user is found, verify the given password by trying to bind the user client with the found LDAP user object and given password.  const auth = require(&#34;basic-auth&#34;); var LdapAuth = require(&#34;ldapauth-fork&#34;); var ldap = new LdapAuth({ url: &#34;ldap://ldap-url:389&#34;, bindDN: &#34;uid=rc,ou=AppAccounts,ou=People,ou=Entsys,dc=example."/>
+
+  <meta property="og:title" content="Authenticate a Node application with LDAP" />
+<meta property="og:description" content="This post demonstrates how to authenticate a user against LDAP.
+Let&rsquo;s start by installing basic-auth and ldapauth-fork packages
+npm install ldapauth-fork npm install basic-auth Steps for implementation;
+ Add packages Create a ldap variable with authentication configuration Basic auth should prompt for you username and password. Once user is found, verify the given password by trying to bind the user client with the found LDAP user object and given password.  const auth = require(&#34;basic-auth&#34;); var LdapAuth = require(&#34;ldapauth-fork&#34;); var ldap = new LdapAuth({ url: &#34;ldap://ldap-url:389&#34;, bindDN: &#34;uid=rc,ou=AppAccounts,ou=People,ou=Entsys,dc=example." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://vikaspogu.dev/posts/node-ldap-auth/" />
+<meta property="article:published_time" content="2019-05-15T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-05-15T00:00:00+00:00" />
+
+
+  
+  <base href="https://vikaspogu.dev/posts/node-ldap-auth/">
+  
+  <title>
+  Authenticate a Node application with LDAP · vikaspogu
+</title>
+
+  
+  <link rel="canonical" href="https://vikaspogu.dev/posts/node-ldap-auth/">
+  
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"
+    integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+  
+  
+  
+  <link rel="stylesheet" href="https://vikaspogu.dev/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw="
+    crossorigin="anonymous" media="screen" />
+  
+
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://vikaspogu.dev/css/coder-dark.min.83a2010dac9f59f943b3004cd6c4f230507ad036da635d3621401d42ec4e2835.css" integrity="sha256-g6IBDayfWflDswBM1sTyMFB60DbaY102IUAdQuxOKDU="
+    crossorigin="anonymous" media="screen" />
+  
+  
+
+  
+
+  
+
+  <link rel="icon" type="image/png" href="https://vikaspogu.dev/images/favicon-32x32.png"
+    sizes="32x32">
+  <link rel="icon" type="image/png" href="https://vikaspogu.dev/images/favicon-16x16.png"
+    sizes="16x16">
+
+  <meta name="generator" content="Hugo 0.80.0" />
+</head>
+
+
+
+
+
+
+<body class="colorscheme-auto">
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://vikaspogu.dev/">
+      vikaspogu
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+      
+      <li class="navigation-item">
+        <a class="navigation-link" href="https://vikaspogu.dev/about/">About</a>
+      </li>
+      
+      <li class="navigation-item">
+        <a class="navigation-link" href="https://vikaspogu.dev/posts/">Blog</a>
+      </li>
+      
+      
+      
+    </ul>
+  </section>
+</nav>
+<script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "https:\/\/vikaspogu.dev"
+        },
+        "articleSection" : "posts",
+        "name" : "Authenticate a Node application with LDAP",
+        "headline" : "Authenticate a Node application with LDAP",
+        "description" : "This post demonstrates how to authenticate a user against LDAP.\nLet\u0026rsquo;s start by installing basic-auth and ldapauth-fork packages\nnpm install ldapauth-fork npm install basic-auth Steps for implementation;\n Add packages Create a ldap variable with authentication configuration Basic auth should prompt for you username and password. Once user is found, verify the given password by trying to bind the user client with the found LDAP user object and given password.  const auth = require(\u0026#34;basic-auth\u0026#34;); var LdapAuth = require(\u0026#34;ldapauth-fork\u0026#34;); var ldap = new LdapAuth({ url: \u0026#34;ldap:\/\/ldap-url:389\u0026#34;, bindDN: \u0026#34;uid=rc,ou=AppAccounts,ou=People,ou=Entsys,dc=example.",
+        "inLanguage" : "en-US",
+        "author" : "Vikas Pogu",
+        "creator" : "Vikas Pogu",
+        "publisher": "Vikas Pogu",
+        "accountablePerson" : "Vikas Pogu",
+        "copyrightHolder" : "Vikas Pogu",
+        "copyrightYear" : "2019",
+        "datePublished": "2019-05-15 00:00:00 \u002b0000 UTC",
+        "dateModified" : "2019-05-15 00:00:00 \u002b0000 UTC",
+        "url" : "https:\/\/vikaspogu.dev\/posts\/node-ldap-auth\/",
+        "wordCount" : "159",
+        "keywords" : [ "NodeJS","LDAP","Blog" ]
+    }
+    </script>
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Authenticate a Node application with LDAP</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2019-05-15T00:00:00Z'>
+                May 15, 2019
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              One minute read
+            </span>
+          </div>
+          
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="https://vikaspogu.dev/tags/nodejs/">NodeJS</a>
+      <span class="separator">•</span>
+    <a href="https://vikaspogu.dev/tags/ldap/">LDAP</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        <p>This post demonstrates how to authenticate a user against LDAP.</p>
+<p>Let&rsquo;s start by installing <a href="https://www.npmjs.com/package/basic-auth">basic-auth</a> and <a href="https://www.npmjs.com/package/ldapauth-fork">ldapauth-fork</a> packages</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npm install ldapauth-fork
+npm install basic-auth
+</code></pre></div><p>Steps for implementation;</p>
+<ol>
+<li>Add packages</li>
+<li>Create a <code>ldap</code> variable with authentication configuration</li>
+<li>Basic auth should prompt for you username and password. Once user is found, verify the given password by trying to bind the user client with the found LDAP user object and given password.</li>
+</ol>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#fff;font-weight:bold">const</span> auth = require(<span style="color:#0ff;font-weight:bold">&#34;basic-auth&#34;</span>);
+<span style="color:#fff;font-weight:bold">var</span> LdapAuth = require(<span style="color:#0ff;font-weight:bold">&#34;ldapauth-fork&#34;</span>);
+
+<span style="color:#fff;font-weight:bold">var</span> ldap = <span style="color:#fff;font-weight:bold">new</span> LdapAuth({
+  url: <span style="color:#0ff;font-weight:bold">&#34;ldap://ldap-url:389&#34;</span>,
+  bindDN: <span style="color:#0ff;font-weight:bold">&#34;uid=rc,ou=AppAccounts,ou=People,ou=Entsys,dc=example.com&#34;</span>,
+  bindCredentials: <span style="color:#0ff;font-weight:bold">&#34;credentials&#34;</span>,
+  searchBase: <span style="color:#0ff;font-weight:bold">&#34;ou=entsys,dc=example.com&#34;</span>,
+  searchFilter: <span style="color:#0ff;font-weight:bold">&#34;(uid={{username}})&#34;</span>,
+  reconnect: <span style="color:#fff;font-weight:bold">true</span>
+});
+
+app.use(<span style="color:#0ff;font-weight:bold">&#34;/api/admin/&#34;</span>, (req, res, next) =&gt; {
+  <span style="color:#fff;font-weight:bold">const</span> credentials = auth(req);
+  <span style="color:#fff;font-weight:bold">if</span> (credentials) {
+    ldap.authenticate(credentials.name, credentials.pass, <span style="color:#fff;font-weight:bold">function</span>(err, user) {
+      <span style="color:#fff;font-weight:bold">if</span> (err) {
+        console.log(err.message);
+        <span style="color:#fff;font-weight:bold">return</span> res
+          .status(<span style="color:#0ff;font-weight:bold">&#34;401&#34;</span>)
+          .set({ <span style="color:#0ff;font-weight:bold">&#34;WWW-Authenticate&#34;</span>: <span style="color:#0ff;font-weight:bold">&#39;Basic realm=&#34;Access Denied&#34;&#39;</span> })
+          .end(<span style="color:#0ff;font-weight:bold">&#34;access denied&#34;</span>);
+      }
+      req.user = user;
+      next();
+    });
+  } <span style="color:#fff;font-weight:bold">else</span> {
+    <span style="color:#fff;font-weight:bold">return</span> res
+      .status(<span style="color:#0ff;font-weight:bold">&#34;401&#34;</span>)
+      .set({ <span style="color:#0ff;font-weight:bold">&#34;WWW-Authenticate&#34;</span>: <span style="color:#0ff;font-weight:bold">&#39;Basic realm=&#34;Access Denied&#34;&#39;</span> })
+      .end(<span style="color:#0ff;font-weight:bold">&#34;access denied&#34;</span>);
+  }
+});
+</code></pre></div><p>Visit <a href="https://www.npmjs.com/package/basic-auth">basic-auth</a>, <a href="https://www.npmjs.com/package/ldapauth-fork">ldapauth-fork</a> packages for more information on configuration.</p>
+
+      </div>
+
+      <footer>
+        
+
+
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+</body>
+
+</html>

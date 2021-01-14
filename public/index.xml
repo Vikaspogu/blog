@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>vikaspogu</title>
+    <link>https://vikaspogu.dev/</link>
+    <description>Recent content on vikaspogu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 05 Dec 2020 10:22:47 -0600</lastBuildDate><atom:link href="https://vikaspogu.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Setting up docker buildx on Linux</title>
+      <link>https://vikaspogu.dev/posts/docker-buildx-setup/</link>
+      <pubDate>Sat, 05 Dec 2020 10:22:47 -0600</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/docker-buildx-setup/</guid>
+      <description>Installation instructions for Ubuntu
+To execute docker commands without sudo. We need to add username to the docker group
+ Find current username by typing who Add username to docker group Reboot system  $ who vikaspogu :0 2020-12-05 10:10 (:0) $ sudo usermod -aG docker vikaspogu $ sudo reboot Enable buildx Create a new config.json file under ~.docker folder and enable experimental feature
+$ mkdir ~/.docker $ vim ~/.docker/config.json { &amp;#34;experimental&amp;#34;: &amp;#34;enabled&amp;#34; } Now you should be able to do multi arch builds</description>
+    </item>
+    
+    <item>
+      <title>Boot from USB through grub menu</title>
+      <link>https://vikaspogu.dev/posts/boot-from-usb-through-grub-menu/</link>
+      <pubDate>Tue, 01 Dec 2020 12:07:46 -0600</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/boot-from-usb-through-grub-menu/</guid>
+      <description>First make sure you have secure boot disabled from the firmware settings. Once you are in grub command line type ls to list all partitions
+grub&amp;gt;ls (hd0) (hd0,gpt1) (hd1) (hd1,gpt8) (cd0)) Type ls (cd0) to get UUID of device
+grub&amp;gt;ls (hd0,gpt1) Partition hd0,gpt1: Filesystem type fat - Label `CES_X64FREV`, UUID 4099-DBD9 Partition start-512 Sectors... Note the UUID of you usb drive, shown in above command
+Type the following commands
+insmod part_gpt insmod fat insmod search_fs_uuid insmod chain search --fs-uuid --set=root 409-DBD9 Replace UUID of your device</description>
+    </item>
+    
+    <item>
+      <title>End User Auth and Authz with Openshift Service Mesh and Keycloak</title>
+      <link>https://vikaspogu.dev/posts/servicemesh-jwt-auth-authz-keycloack/</link>
+      <pubDate>Thu, 12 Nov 2020 08:39:50 -0600</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/servicemesh-jwt-auth-authz-keycloack/</guid>
+      <description>In this article, I will share the setup for enabling Authentication and Authorization in Openshift Service Mesh with Keycloak
+Installing Openshift Service Mesh Follow the Installing Red Hat OpenShift Service Mesh guide for setup
+Enable following configuration in your ServiceMeshControlPlane resource
+ Strict mTLS across the mesh Automatic istio route creation  apiVersion: maistra.io/v2 kind: ServiceMeshControlPlane spec: version: v1.1 security: controlPlane: mtls: true gateways: openshiftRoute: enabled: true Keycloak Keycloak is an open-source identity and access management application that uses open protocols and is easily integrated with other providers.</description>
+    </item>
+    
+    <item>
+      <title>Syslog with Loki Promtail</title>
+      <link>https://vikaspogu.dev/posts/loki-rsyslog-k3s/</link>
+      <pubDate>Wed, 04 Nov 2020 10:34:30 -0600</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/loki-rsyslog-k3s/</guid>
+      <description>Loki Promtail Enable syslog, do this on each host and replace target IP (and maybe port) with you syslog externalIP that is in helm values for promtail
+promtail: serviceMonitor: enabled: true extraScrapeConfigs: - job_name: syslog syslog: listen_address: 0.0.0.0:1514 label_structured_data: yes labels: job: &amp;#34;syslog&amp;#34; relabel_configs: - source_labels: [&amp;#34;__syslog_connection_ip_address&amp;#34;] target_label: &amp;#34;ip_address&amp;#34; - source_labels: [&amp;#34;__syslog_message_severity&amp;#34;] target_label: &amp;#34;severity&amp;#34; - source_labels: [&amp;#34;__syslog_message_facility&amp;#34;] target_label: &amp;#34;facility&amp;#34; - source_labels: [&amp;#34;__syslog_message_hostname&amp;#34;] target_label: &amp;#34;host&amp;#34; syslogService: enabled: true type: LoadBalancer port: 1514 externalIPs: - 192.</description>
+    </item>
+    
+    <item>
+      <title>Helm join strings in a named template</title>
+      <link>https://vikaspogu.dev/posts/helm-helper-functions/</link>
+      <pubDate>Thu, 08 Oct 2020 09:17:20 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/helm-helper-functions/</guid>
+      <description>Key benefits of Helm is that it helps reduce the amount of configuration a user needs to provide to deploy applications to Kubernetes. With Helm, we can have a single chart that can deploy all the microservices.
+Problem: Create a unique service account for each microservice, so all microservices don&amp;rsquo;t share same service account. In our example, we will append the release name with the service account name.
+ Using join function  {{ (list .</description>
+    </item>
+    
+    <item>
+      <title>AdGuard on Kubernetes</title>
+      <link>https://vikaspogu.dev/posts/adguardhome-kubernetes/</link>
+      <pubDate>Wed, 19 Aug 2020 08:52:26 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/adguardhome-kubernetes/</guid>
+      <description>AdGuard Home is a network-wide software for blocking ads &amp;amp; tracking
+Adguard is similar to Pi-Hole with more features. Comparison of Adguard to Pi-Hole
+The below configuration has worked for me. I am a big fan of helm charts and I&amp;rsquo;ll be using AdGuard chart
+Configure chart  Pull chart locally  helm repo add billimek https://billimek.com/billimek-charts/ helm fetch billimek/adguard-home  Update deployment to use hostNetwork  #templates/deployment.yaml ... spec: hostNetwork: true securityContext: .</description>
+    </item>
+    
+    <item>
+      <title>OPA Gatekeeper on Openshift</title>
+      <link>https://vikaspogu.dev/posts/opa-gatekeeper-openshift/</link>
+      <pubDate>Tue, 18 Aug 2020 14:47:02 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/opa-gatekeeper-openshift/</guid>
+      <description>Every organization has policies. Some are essential to meet governance and legal requirements. Others help ensure adherence to best practices and institutional conventions. Attempting to ensure compliance manually would be error-prone and frustrating
+OPA lets you specific policy as code using OPA policy language Rego
+In this post, I&amp;rsquo;ll share my experience deploying OPA Gatekeeper on Openshift and creating few policies for demonstartions. This post is not an introduction to OPA, refer to for intro</description>
+    </item>
+    
+    <item>
+      <title>Configure jenkins pipeline job</title>
+      <link>https://vikaspogu.dev/posts/jenkins-seed-job/</link>
+      <pubDate>Tue, 18 Aug 2020 14:45:23 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/jenkins-seed-job/</guid>
+      <description>In one of my previous posts, I have discussed configuring multibranch pipeline seed jobs using Jenkins configuration as code plugin
+This is an example of configuring a declarative pipeline job from bitbucket repo, running at midnight every day
+- script: &amp;gt;pipelineJob(&amp;#39;sample-job&amp;#39;) { definition { cpsScm { scriptPath &amp;#39;job1/Jenkinsfile&amp;#39; ## If jenkins job is in a nested folder scm { git { remote { url &amp;#39;https://github.com/Vikaspogu/sample-repo&amp;#39; credentials &amp;#39;sample-creds&amp;#39; } branch &amp;#39;*/master&amp;#39; extensions {} } } triggers { cron(&amp;#39;@midnight&amp;#39;) } } } } </description>
+    </item>
+    
+    <item>
+      <title>Jenkins pipeline date helper functions</title>
+      <link>https://vikaspogu.dev/posts/jenkins-date-difference/</link>
+      <pubDate>Tue, 07 Jul 2020 09:19:15 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/jenkins-date-difference/</guid>
+      <description>This is how you can calucate days between two dates in Jenkins pipeline. @NonCPS annotation is useful when you have methods which use objects that aren&amp;rsquo;t serializable
+import java.text.SimpleDateFormat stages { stage(&amp;#34;Calucate days&amp;#34;) { steps { script { def daysRemaining = getRemainingDays(&amp;#34;2020-06-25&amp;#34;) } } } } } @NonCPS def getRemainingDays(previousDate){ def currentDate = new Date() String currentTimeFormat= currentDate.format(&amp;#34;yyyy-MM-dd&amp;#34;) def oldDate = new SimpleDateFormat(&amp;#34;yyyy-MM-dd&amp;#34;).parse(previousDate) return currentTimeFormat-oldDate } Calculate if date is greater than 14 days</description>
+    </item>
+    
+    <item>
+      <title>Openshift Jenkins configuration via JCasC plugin</title>
+      <link>https://vikaspogu.dev/posts/jenkins-config-as-code-openshift/</link>
+      <pubDate>Mon, 06 Jul 2020 13:23:05 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/jenkins-config-as-code-openshift/</guid>
+      <description>Deploying Jenkins on Kubernetes provides important benefits over a standard VM-based deployment. For example, gaining the ability to have project-specific Jenkins slaves (agents) on demand, instead of having a pool of VMs idle waiting for a job.
+Jenkins can be easily deployed using Helm, Openshift using jenkins catalog
+As everyone has experienced setting up Jenkins is a complex process, as both Jenkins and its plugins require some tuning and configuration, with dozens of parameters to set within the web UI manage section</description>
+    </item>
+    
+    <item>
+      <title>Raspberry Pi garage door opener using nodejs on k3s cluster</title>
+      <link>https://vikaspogu.dev/posts/pi-garage-k3s/</link>
+      <pubDate>Sun, 05 Jul 2020 16:26:22 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/pi-garage-k3s/</guid>
+      <description>There are many articles out there which demonstartes how to use a raspberry pi as a DIY garage door opener project. Few are outdated and not deployed using containers images. I found couple good solutions on google but i wasn&amp;rsquo;t able to run them on kubernetes cluster either due to older packages or no enough information. I decided to build my own solution from different sources of information i found</description>
+    </item>
+    
+    <item>
+      <title>Slack bot with Nodejs</title>
+      <link>https://vikaspogu.dev/posts/nodejs-slack-bot/</link>
+      <pubDate>Sat, 04 Jul 2020 15:08:54 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/nodejs-slack-bot/</guid>
+      <description>Build your own personal slack bot in few steps. In this post we&amp;rsquo;ll navigate through process of creating the bot.
+Slack setup First create a slack workspace
+ Give your workspace a name  Create a new bot at slack apps
+ Give your new app a name Choose workspace you created before to install the app  Then go to Features &amp;gt; OAuth &amp;amp; Permissions screen to scroll down to Bot Token Scopes to specify the OAuth scopes, select app_mentions and chat_write to enable the bot to send messages.</description>
+    </item>
+    
+    <item>
+      <title>Pi Hole on k3s cluster</title>
+      <link>https://vikaspogu.dev/posts/pi-hole-kubernetes/</link>
+      <pubDate>Sat, 07 Mar 2020 14:31:32 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/pi-hole-kubernetes/</guid>
+      <description>Pi-hole is a fantastic tool that blocks DNS requests to ad servers. That means you can surf the web without having to look at ads on every page.
+PiHole in Kubernetes We are going to deploy modified version of this pihole helm chart
+Let&amp;rsquo;s start by cloning repo
+git clone https://github.com/ChrisPhillips-cminion/pihole-helm.git cd pihole-helm We now need to make few updates to the chart
+ Update ServerIP with container host IP Update image to v5.</description>
+    </item>
+    
+    <item>
+      <title>Jenkins Openshift OAuth SSL</title>
+      <link>https://vikaspogu.dev/posts/openshift-jenkins-oauth-ssl/</link>
+      <pubDate>Mon, 10 Feb 2020 17:24:56 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/openshift-jenkins-oauth-ssl/</guid>
+      <description>Recently, I encountered an issue while authenticating to Openshift Jenkins using Openshift OAuth plugin where trusted certificate provided by CA that aren&amp;rsquo;t included in the default JRE TrustStore.
+Logs from Jenkins pod
+2020-02-10 21:19:07.335+0000 [id=17]	INFO	o.o.j.p.o.OpenShiftOAuth2SecurityRealm#transportToUse: OpenShift OAuth got an SSL error when accessing the issuer&amp;#39;s token endpoint when using the SA certificate2020-02-10 21:19:07.348+0000 [id=17]	INFO	o.o.j.p.o.OpenShiftOAuth2SecurityRealm#transportToUse: OpenShift OAuth provider token endpoint failed unexpectedly using the JVMs default keystore sun.</description>
+    </item>
+    
+    <item>
+      <title>Installing Podman remote client on macOS using vagrant</title>
+      <link>https://vikaspogu.dev/posts/podman-macos/</link>
+      <pubDate>Mon, 06 Jan 2020 14:15:03 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/podman-macos/</guid>
+      <description>Installing podman as a remote client on macOS using vagrant. Vagrant setup is not covered in this post.
+Podman remote client Podman is the tool to start and manage containers. On macOS we have to use a thin remote-client that connects to a real Podman process running on a Linux host.
+Here are the main steps how to configure the remote-client to work with a Linux host:
+ Create a linux machine using Vagrant Set key based ssh as root to the Linux host Install remote-client binary with Homebrew: brew cask install podman  Create a fedora vagrant box.</description>
+    </item>
+    
+    <item>
+      <title>Measure Raspberry Pi temperature using Telegraf, Influxdb, Grafana on k3s</title>
+      <link>https://vikaspogu.dev/posts/raspberry-pi-temp-telegraf/</link>
+      <pubDate>Wed, 01 Jan 2020 16:19:29 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/raspberry-pi-temp-telegraf/</guid>
+      <description>In my previous post, I went through k3s cluster home setup. Now, i&amp;rsquo;ll show how to measure the temperature of those Raspberry Pi&amp;rsquo;s using Telegraf, Influxdb, Grafana and Helm charts.
+Why Telegraf? Telegraf has a plugin called exec, which can execute the commands on host machine at certain interval and parses those metrics from their output in any one of the accepted input data formats.
+First, deploy influxdb time series database chart</description>
+    </item>
+    
+    <item>
+      <title>k3s cluster with Raspberry-Pi, Traefik</title>
+      <link>https://vikaspogu.dev/posts/kubernetes-home-cluster-traefik/</link>
+      <pubDate>Tue, 31 Dec 2019 13:47:10 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/kubernetes-home-cluster-traefik/</guid>
+      <description>In this post, I’ll share my home setup for Rancher&amp;rsquo;s k3s kubernetes cluster.
+Requirements:
+ I wanted the web interface to be accessible outside of my home so I could check and manage devices while away I need to manage dynamic DNS since I don’t have a static IP  Setup  Setting up a master + single node Kubernetes cluster Deploying DNS updater as a Kubernetes CronJob object Deploying Traefik as a Kubernetes Ingress Controller and configuring it to manage SSL with Let’s Encrypt  Setting up a Pi Kubernetes Cluster I followed an excellent guide written by Alex Ellis here to initialize a cluster on the master and then join a single node.</description>
+    </item>
+    
+    <item>
+      <title>Permission denied pushing to Openshift Registry</title>
+      <link>https://vikaspogu.dev/posts/ocp-docker-registry-500-err/</link>
+      <pubDate>Wed, 18 Dec 2019 12:10:07 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/ocp-docker-registry-500-err/</guid>
+      <description>Recently, i ran into a issue where pushing images to the docker registry after a build fails
+Pushing image docker-registry.default.svc:5000/simple-go-build/simple-go:latest ... Registry server Address: Registry server User Name: serviceaccount Registry server Email: serviceaccount@example.org Registry server Password: &amp;lt;&amp;lt;non-empty&amp;gt;&amp;gt; error: build error: Failed to push image: received unexpected HTTP status: 500 Internal Server Error Registry pods logs show permission denied
+err.code=UNKNOWN err.detail=&amp;#34;filesystem: mkdir /registry/docker/registry/v2/repositories/simple-go-build/simple-go/_uploads/c34415b4-c6d8-42ba-9854-aee449efd984: permission denied&amp;#34; One of the Red Hat solutions article suggested to verify the file ownership of the files, directories in the volume and compare it to the uid of the registry</description>
+    </item>
+    
+    <item>
+      <title>Basic Authentication in Go with Gin</title>
+      <link>https://vikaspogu.dev/posts/golang-basicauth-gin/</link>
+      <pubDate>Mon, 16 Dec 2019 15:29:34 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/golang-basicauth-gin/</guid>
+      <description>This is short post on adding basic authentication to go applications. Our sample application uses gin web framework
+Let&amp;rsquo;s start by creating a gin router with default middleware, by default it serves on :8080 unless a PORT environment variable was defined
+func main(){ r := gin.Default() r.GET(&amp;#34;/getAllUsers&amp;#34;, basicAuth, handlers.UsersList) _ = r.Run() } Now that we have our basic route, lets create a method to add authentication logic. Get basic auth credentials from context request and validate them.</description>
+    </item>
+    
+    <item>
+      <title>Create and add NFS storage to RHV</title>
+      <link>https://vikaspogu.dev/posts/create-nfs-server-rhel-rhv/</link>
+      <pubDate>Sat, 02 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/create-nfs-server-rhel-rhv/</guid>
+      <description>Set up NFS shares that will serve as storage domains on a Red Hat Enterprise Linux server.
+Add firewall rule are to rhel server
+firewall-cmd --permanent --add-service nfs firewall-cmd --permanent --add-service mountd firewall-cmd --reload Create and add group kvm; set the ownership of your exported directories to 36:36, which gives vdsm:kvm ownership; change the mode of the directories so that read and write access is granted to the owner
+groupadd kvm -g 36 useradd vdsm -u 36 -g 36 mkdir -pv /home/rhv-data-vol chown -R 36:36 /home/rhv-data-vol chmod 0755 /home/rhv-data-vol Add newly created directory to /etc/exports file which controls file systems are exported to remote hosts and specifies options.</description>
+    </item>
+    
+    <item>
+      <title>Configuring couchbase SSL for dynamic certificates in Openshift</title>
+      <link>https://vikaspogu.dev/posts/couchbase-ssl-openshift/</link>
+      <pubDate>Wed, 28 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/couchbase-ssl-openshift/</guid>
+      <description>If you have followed dynamic creation of java keystores in openshift post and wondered how to use similar concepts for couchbase database and a java application. This post will help you.
+Couchbase setup This is the couchbase documentation for configuring server side certificates, we are interested in last few steps since openshift will generate key and cert by adding annotation to the couchbase service.
+Note: By adding this annotation you can dynamically create certificates service.</description>
+    </item>
+    
+    <item>
+      <title>TektonCD on Openshift</title>
+      <link>https://vikaspogu.dev/posts/intro-tektoncd-ocp/</link>
+      <pubDate>Fri, 09 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/intro-tektoncd-ocp/</guid>
+      <description>Recently I came across tektoncd project, The Tekton Pipelines project provides Kubernetes-style resources for declaring CI/CD-style pipelines caught my attention and started playing with it.
+Basic Concepts In order to create a tekton pipeline, one does the following:
+ Create custom or install existing reusable Tasks Create a Pipeline and PipelineResources to define your application&amp;rsquo;s delivery pipeline Create a PipelineRun to instantiate and invoke the pipeline  Installing Tekton on Openshift Login as a user with cluster-admin privileges</description>
+    </item>
+    
+    <item>
+      <title>Go JWT Authentication with keycloak</title>
+      <link>https://vikaspogu.dev/posts/sso-jwt-golang/</link>
+      <pubDate>Sat, 27 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/sso-jwt-golang/</guid>
+      <description>Recently I was working on a React project with Go backend using Gin web framework. Keycloak was the authentication mechanism for the frontend; I also wanted to secure the backend using JSON Web Tokens which was provided by Keycloak on every login. Setup for jwt verification in Go was easy.
+First, copy RS256 algorithm public key value from Keycloak
+Send the token as Authorization header
+axios .get(BACKEND_URL.concat(&amp;#34;sampleendpoint&amp;#34;), { headers: { Authorization: this.</description>
+    </item>
+    
+    <item>
+      <title>React App with RedHat SSO or keycloak</title>
+      <link>https://vikaspogu.dev/posts/redhat-sso-react/</link>
+      <pubDate>Thu, 25 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/redhat-sso-react/</guid>
+      <description>In this post, I will show you how to secure a React app using RedHat SSO (upstream keycloak). In this case, openid-connect is my identity provider.
+Install the offical keycloak js adapter
+$ npm i keycloak-js --save Setup the client with the host and port; in my case it&amp;rsquo;s localhost:9000
+In App.js add in a JavaScript object with the required configuration; you will find these configurations under Clients-&amp;gt;Installation
+//keycloak init options const initOptions = { url: &amp;#34;https://localhost:8080/auth&amp;#34;, realm: &amp;#34;test&amp;#34;, clientId: &amp;#34;react-app&amp;#34;, onLoad: &amp;#34;login-required&amp;#34; }; By default, to authenticate you need to call the login function.</description>
+    </item>
+    
+    <item>
+      <title>Heketi JWT token expired error</title>
+      <link>https://vikaspogu.dev/posts/heketi-jwt-error/</link>
+      <pubDate>Tue, 16 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/heketi-jwt-error/</guid>
+      <description>Recently I encountered an JWT token expired error on heketi pod in Openshift cluster.
+[jwt] ERROR 2019/07/16 19:17:14 heketi/middleware/jwt.go:66:middleware.(*HeketiJwtClaims).Valid: exp validation failed: Token is expired by 1h48m59s After a lot of google search, I synchronized clocks across the pod running heketi and the masters, which solved the issue
+$ ntpdate -q 0.rhel.pool.ntp.org; systemctl restart ntpd </description>
+    </item>
+    
+    <item>
+      <title>Patternfly setup in React Application</title>
+      <link>https://vikaspogu.dev/posts/patternfly-setup-react/</link>
+      <pubDate>Mon, 01 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/patternfly-setup-react/</guid>
+      <description>To order to integrate Patternfly framework into a ReactJS application, create a new project or use an existing one
+$ npx create-react-app patternfly-setup-react Install patternfly dependencies react-core, react-table and patternfly
+$ npm i --save @patternfly/patternfly \  @patternfly/react-core @patternfly/react-table Note: Import base.css and patternfly.css in your project, or some components may diverge in appearance
+//This imports are must to render css import &amp;#34;@patternfly/react-core/dist/styles/base.css&amp;#34;; import &amp;#34;@patternfly/patternfly/patternfly.css&amp;#34;; To make sure everything is working correctly, update App.</description>
+    </item>
+    
+    <item>
+      <title>Authenticate a Node application with LDAP</title>
+      <link>https://vikaspogu.dev/posts/node-ldap-auth/</link>
+      <pubDate>Wed, 15 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/node-ldap-auth/</guid>
+      <description>This post demonstrates how to authenticate a user against LDAP.
+Let&amp;rsquo;s start by installing basic-auth and ldapauth-fork packages
+npm install ldapauth-fork npm install basic-auth Steps for implementation;
+ Add packages Create a ldap variable with authentication configuration Basic auth should prompt for you username and password. Once user is found, verify the given password by trying to bind the user client with the found LDAP user object and given password.  const auth = require(&amp;#34;basic-auth&amp;#34;); var LdapAuth = require(&amp;#34;ldapauth-fork&amp;#34;); var ldap = new LdapAuth({ url: &amp;#34;ldap://ldap-url:389&amp;#34;, bindDN: &amp;#34;uid=rc,ou=AppAccounts,ou=People,ou=Entsys,dc=example.</description>
+    </item>
+    
+    <item>
+      <title>Deleting a OpenShift project stuck in terminating state</title>
+      <link>https://vikaspogu.dev/posts/project-terminating/</link>
+      <pubDate>Wed, 15 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/project-terminating/</guid>
+      <description>Recently I was faced an issue where one of my project was stuck in terminating state for days. The workaround below fixed the issue.
+Export OpenShift project as an JSON Object
+oc get project delete-me -o json &amp;gt; ns-without-finalizers.json Replace below from
+spec: finalizers: - kubernetes to
+spec: finalizers: [] On one of the master node, execute these commands.
+kubectl proxy &amp;amp; PID=$! curl -X PUT http://localhost:8001/api/v1/namespaces/delete-me/finalize \ -H &amp;#34;Content-Type: application/json&amp;#34; --data-binary @ns-without-finalizers.</description>
+    </item>
+    
+    <item>
+      <title>Spring Boot metrics with Prometheus and Grafana in OpenShift</title>
+      <link>https://vikaspogu.dev/posts/springboot-metrics-grafana/</link>
+      <pubDate>Wed, 15 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/springboot-metrics-grafana/</guid>
+      <description>In this post I&amp;rsquo;ll discuss how to monitor spring boot application metrics using Prometheus and Grafana.
+Prometheus Prometheus is a monitoring system which collects metrics from configured targets at given intervals.
+Grafana Grafana is an open source metric analytics &amp;amp; visualization tool.
+Micrometer Micrometer is a metrics instrumentation library for JVM-based applications.
+Spring Boot Actuator Spring Boot Actuator helps you monitor and manage your application when it’s pushed to production. You can choose to manage and monitor your application using HTTP or JMX endpoints.</description>
+    </item>
+    
+    <item>
+      <title>Debugging a Java application in OpenShift</title>
+      <link>https://vikaspogu.dev/posts/debug-java-container/</link>
+      <pubDate>Tue, 14 May 2019 14:36:27 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/debug-java-container/</guid>
+      <description>This post will discuss debugging a JAVA application running inside a container. First, you must set the JAVA_DEBUG environment variable inside the container to true and configure port forwarding so that you can connect to your application from a remote debugger.
+Note: If you are using tomcat image replace JAVA_DEBUG environment variable to DEBUG
+Using the oc command, list the available deployment configurations:
+$ oc get dc Set the JAVA_DEBUG environment variable in the deployment configuration of your application to true, which configures the JVM to open the port number 5005 for debugging.</description>
+    </item>
+    
+    <item>
+      <title>Debugging a .NET Core application running on OpenShift</title>
+      <link>https://vikaspogu.dev/posts/debug-netcore-openshift/</link>
+      <pubDate>Tue, 14 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/debug-netcore-openshift/</guid>
+      <description>This post is about how to remote debug a ASP.NET Core application on OpenShift using Visual Studio Code. You can use any Microsoft proprietary debugger engine vsdbg with Visual Studio Code.
+First, list the available .Net application pods using oc command.
+$ oc get pod NAME READY STATUS RESTARTS AGE MY_APP_NAME-3-1xrsp 0/1 Running 0 6s $ oc rsh MY_APP_NAME-3-1xrsp sh-4.2$ curl -sSL https://aka.ms/getvsdbgsh | bash /dev/stdin -v latest -l /opt/app-root/vsdbg -r linux-x64 Note: If you&amp;rsquo;re container is running behind a corporate proxy and cannot access internet, you&amp;rsquo;ll have to build base dotnet image with the debugger engine vsdbg installed in it.</description>
+    </item>
+    
+    <item>
+      <title>Profiling a application in OpenShift container</title>
+      <link>https://vikaspogu.dev/posts/javaprofiler-openshift/</link>
+      <pubDate>Tue, 14 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/javaprofiler-openshift/</guid>
+      <description>Sometimes writing code that just runs is not enough. We might want to know what goes on internally such as how memory is allocated, consequences of using one coding approach over another, implications of concurrent executions, areas to improve performance, etc. We can use profilers for this.
+In this post I&amp;rsquo;ll discuss how to use YourKit-JavaProfiler inside a container.
+Since my sample application is built using OpenShift S2I process and pushed into openshift internal registry, I&amp;rsquo;ll have to pull the image locally.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://vikaspogu.dev/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/about/</guid>
+      <description>About Me Hello! My name is Vikas Pogu. I’m a Senior Consultant at Red Hat.
+My Background I have about 8 years of experience in the IT/Techonolgy Industry.
+Stuff I Work On I primarily work with the following:
+ Programming Languages  Java Javascript Basic to Intermediate Golang   Scripting:  Bash   Automation  Ansible   DevOps  CI/CD, Jenkins, TektonCD, Flux, ArgoCD, Helm   Containers  Use docker for almost every container runtime environment Openshift and Kubernetes for Orchestrators   Open Source Knowledge Sharing  Thanks for reading!</description>
+    </item>
+    
+  </channel>
+</rss>

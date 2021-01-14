@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>pipeline-job on vikaspogu</title>
+    <link>https://vikaspogu.dev/tags/pipeline-job/</link>
+    <description>Recent content in pipeline-job on vikaspogu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 18 Aug 2020 14:45:23 -0500</lastBuildDate><atom:link href="https://vikaspogu.dev/tags/pipeline-job/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Configure jenkins pipeline job</title>
+      <link>https://vikaspogu.dev/posts/jenkins-seed-job/</link>
+      <pubDate>Tue, 18 Aug 2020 14:45:23 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/jenkins-seed-job/</guid>
+      <description>In one of my previous posts, I have discussed configuring multibranch pipeline seed jobs using Jenkins configuration as code plugin
+This is an example of configuring a declarative pipeline job from bitbucket repo, running at midnight every day
+- script: &amp;gt;pipelineJob(&amp;#39;sample-job&amp;#39;) { definition { cpsScm { scriptPath &amp;#39;job1/Jenkinsfile&amp;#39; ## If jenkins job is in a nested folder scm { git { remote { url &amp;#39;https://github.com/Vikaspogu/sample-repo&amp;#39; credentials &amp;#39;sample-creds&amp;#39; } branch &amp;#39;*/master&amp;#39; extensions {} } } triggers { cron(&amp;#39;@midnight&amp;#39;) } } } } </description>
+    </item>
+    
+  </channel>
+</rss>

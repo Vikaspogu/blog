@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="google-site-verification" content="5JztMFjgtrbhV0pe_cLh7EH3c0NJBY7sVrnd7x86pMI" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+  <meta name="author" content="Vikas Pogu">
+  
+  <meta name="description" content="Vikas Pogu&#39;s Blog">
+  
+  <meta name="keywords" content="blog,developer">
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Debugging a .NET Core application running on OpenShift"/>
+<meta name="twitter:description" content="This post is about how to remote debug a ASP.NET Core application on OpenShift using Visual Studio Code. You can use any Microsoft proprietary debugger engine vsdbg with Visual Studio Code.
+First, list the available .Net application pods using oc command.
+$ oc get pod NAME READY STATUS RESTARTS AGE MY_APP_NAME-3-1xrsp 0/1 Running 0 6s $ oc rsh MY_APP_NAME-3-1xrsp sh-4.2$ curl -sSL https://aka.ms/getvsdbgsh | bash /dev/stdin -v latest -l /opt/app-root/vsdbg -r linux-x64 Note: If you&rsquo;re container is running behind a corporate proxy and cannot access internet, you&rsquo;ll have to build base dotnet image with the debugger engine vsdbg installed in it."/>
+
+  <meta property="og:title" content="Debugging a .NET Core application running on OpenShift" />
+<meta property="og:description" content="This post is about how to remote debug a ASP.NET Core application on OpenShift using Visual Studio Code. You can use any Microsoft proprietary debugger engine vsdbg with Visual Studio Code.
+First, list the available .Net application pods using oc command.
+$ oc get pod NAME READY STATUS RESTARTS AGE MY_APP_NAME-3-1xrsp 0/1 Running 0 6s $ oc rsh MY_APP_NAME-3-1xrsp sh-4.2$ curl -sSL https://aka.ms/getvsdbgsh | bash /dev/stdin -v latest -l /opt/app-root/vsdbg -r linux-x64 Note: If you&rsquo;re container is running behind a corporate proxy and cannot access internet, you&rsquo;ll have to build base dotnet image with the debugger engine vsdbg installed in it." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://vikaspogu.dev/posts/debug-netcore-openshift/" />
+<meta property="article:published_time" content="2019-05-14T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-05-14T00:00:00+00:00" />
+
+
+  
+  <base href="https://vikaspogu.dev/posts/debug-netcore-openshift/">
+  
+  <title>
+  Debugging a .NET Core application running on OpenShift · vikaspogu
+</title>
+
+  
+  <link rel="canonical" href="https://vikaspogu.dev/posts/debug-netcore-openshift/">
+  
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"
+    integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+  
+  
+  
+  <link rel="stylesheet" href="https://vikaspogu.dev/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw="
+    crossorigin="anonymous" media="screen" />
+  
+
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://vikaspogu.dev/css/coder-dark.min.83a2010dac9f59f943b3004cd6c4f230507ad036da635d3621401d42ec4e2835.css" integrity="sha256-g6IBDayfWflDswBM1sTyMFB60DbaY102IUAdQuxOKDU="
+    crossorigin="anonymous" media="screen" />
+  
+  
+
+  
+
+  
+
+  <link rel="icon" type="image/png" href="https://vikaspogu.dev/images/favicon-32x32.png"
+    sizes="32x32">
+  <link rel="icon" type="image/png" href="https://vikaspogu.dev/images/favicon-16x16.png"
+    sizes="16x16">
+
+  <meta name="generator" content="Hugo 0.80.0" />
+</head>
+
+
+
+
+
+
+<body class="colorscheme-auto">
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://vikaspogu.dev/">
+      vikaspogu
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+      
+      <li class="navigation-item">
+        <a class="navigation-link" href="https://vikaspogu.dev/about/">About</a>
+      </li>
+      
+      <li class="navigation-item">
+        <a class="navigation-link" href="https://vikaspogu.dev/posts/">Blog</a>
+      </li>
+      
+      
+      
+    </ul>
+  </section>
+</nav>
+<script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "https:\/\/vikaspogu.dev"
+        },
+        "articleSection" : "posts",
+        "name" : "Debugging a .NET Core application running on OpenShift",
+        "headline" : "Debugging a .NET Core application running on OpenShift",
+        "description" : "This post is about how to remote debug a ASP.NET Core application on OpenShift using Visual Studio Code. You can use any Microsoft proprietary debugger engine vsdbg with Visual Studio Code.\nFirst, list the available .Net application pods using oc command.\n$ oc get pod NAME READY STATUS RESTARTS AGE MY_APP_NAME-3-1xrsp 0\/1 Running 0 6s $ oc rsh MY_APP_NAME-3-1xrsp sh-4.2$ curl -sSL https:\/\/aka.ms\/getvsdbgsh | bash \/dev\/stdin -v latest -l \/opt\/app-root\/vsdbg -r linux-x64 Note: If you\u0026rsquo;re container is running behind a corporate proxy and cannot access internet, you\u0026rsquo;ll have to build base dotnet image with the debugger engine vsdbg installed in it.",
+        "inLanguage" : "en-US",
+        "author" : "Vikas Pogu",
+        "creator" : "Vikas Pogu",
+        "publisher": "Vikas Pogu",
+        "accountablePerson" : "Vikas Pogu",
+        "copyrightHolder" : "Vikas Pogu",
+        "copyrightYear" : "2019",
+        "datePublished": "2019-05-14 00:00:00 \u002b0000 UTC",
+        "dateModified" : "2019-05-14 00:00:00 \u002b0000 UTC",
+        "url" : "https:\/\/vikaspogu.dev\/posts\/debug-netcore-openshift\/",
+        "wordCount" : "302",
+        "keywords" : [ "OpenShift","dot net","Blog" ]
+    }
+    </script>
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Debugging a .NET Core application running on OpenShift</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2019-05-14T00:00:00Z'>
+                May 14, 2019
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              2 minutes read
+            </span>
+          </div>
+          
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="https://vikaspogu.dev/tags/openshift/">OpenShift</a>
+      <span class="separator">•</span>
+    <a href="https://vikaspogu.dev/tags/dot-net/">dot net</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        <p>This post is about how to remote debug a ASP.NET Core application on OpenShift using Visual Studio Code. You can use any Microsoft proprietary debugger engine <code>vsdbg</code> with Visual Studio Code.</p>
+<p>First, list the available .Net application pods using <code>oc</code> command.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ oc get pod
+    NAME                            READY     STATUS      RESTARTS   AGE
+    MY_APP_NAME-3-1xrsp          0/1       Running     <span style="color:#ff0;font-weight:bold">0</span>          6s
+$ oc rsh MY_APP_NAME-3-1xrsp
+sh-4.2$  curl -sSL https://aka.ms/getvsdbgsh | bash /dev/stdin -v latest -l /opt/app-root/vsdbg -r linux-x64
+</code></pre></div><p><strong>Note:</strong> If you&rsquo;re container is running behind a corporate proxy and cannot access internet, you&rsquo;ll have to build base dotnet image with the debugger engine <code>vsdbg</code> installed in it.</p>
+<p>Create (or open) the <code>.vscode/launch.json</code> file inside the source directory of the application (i.e. at same level as the project folder), then add the following:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="font-weight:bold">&#34;version&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;0.1.0&#34;</span>,
+  <span style="font-weight:bold">&#34;configurations&#34;</span>: [
+    {
+      <span style="font-weight:bold">&#34;name&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;.NET Core OpenShift Pod Remote Attach&#34;</span>,
+      <span style="font-weight:bold">&#34;type&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;coreclr&#34;</span>,
+      <span style="font-weight:bold">&#34;request&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;attach&#34;</span>,
+      <span style="font-weight:bold">&#34;processId&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;1&#34;</span>,
+      <span style="font-weight:bold">&#34;pipeTransport&#34;</span>: {
+        <span style="font-weight:bold">&#34;pipeProgram&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;oc&#34;</span>,
+        <span style="font-weight:bold">&#34;pipeArgs&#34;</span>: [<span style="color:#0ff;font-weight:bold">&#34;exec&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;-it&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;&lt;replace-with-pod-name&gt;&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;--&#34;</span>],
+        <span style="font-weight:bold">&#34;quoteArgs&#34;</span>: <span style="color:#fff;font-weight:bold">false</span>,
+        <span style="font-weight:bold">&#34;debuggerPath&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;/opt/app-root/vsdbg/vsdbg&#34;</span>,
+        <span style="font-weight:bold">&#34;pipeCwd&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;${workspaceRoot}&#34;</span>
+      },
+      <span style="font-weight:bold">&#34;justMyCode&#34;</span>: <span style="color:#fff;font-weight:bold">false</span>,
+      <span style="font-weight:bold">&#34;sourceFileMap&#34;</span>: { <span style="font-weight:bold">&#34;/opt/app-root/src&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;${workspaceRoot}&#34;</span> }
+    }
+  ]
+}
+</code></pre></div><p>In <code>Launch.json</code> replace <code>&lt;replace-with-pod-name&gt;</code> with the name of the pod.</p>
+<p>Confirm the PID of the <code>dotnet</code> process in the container. If different, replace the <code>processId</code> in <code>launch.json</code> with appropriate value. Usually this value is <code>1</code>.</p>
+<p>If the application is built with the <code>Release</code> configuration, which is the default for .NET Core S2I builder images, <code>justMyCode</code> should be <code>false</code>.</p>
+<p>As S2I images build the source code located in the <code>/opt/app-root/src</code> folder, this is the path that should be specified for <code>sourceFileMap</code>.</p>
+<p>Start debugging the .NET Core app by switching to the debug window, then select <code>.NET Core OpenShift Pod Remote Attach</code> as the configuration and click on the green play button (as shown below), or press F5 key.</p>
+<p><img src="https://vikaspogu.dev/images/debug-config.png" alt="alt text" title="Debug .NET CORE"></p>
+<p>Remember to add the breakpoints in the source code to see debugging in action!</p>
+
+      </div>
+
+      <footer>
+        
+
+
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+</body>
+
+</html>

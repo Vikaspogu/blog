@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="google-site-verification" content="5JztMFjgtrbhV0pe_cLh7EH3c0NJBY7sVrnd7x86pMI" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+  <meta name="author" content="Vikas Pogu">
+  
+  <meta name="description" content="Vikas Pogu&#39;s Blog">
+  
+  <meta name="keywords" content="blog,developer">
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="OPA Gatekeeper on Openshift"/>
+<meta name="twitter:description" content="openshift policy management with opa gatekeeper"/>
+
+  <meta property="og:title" content="OPA Gatekeeper on Openshift" />
+<meta property="og:description" content="openshift policy management with opa gatekeeper" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://vikaspogu.dev/posts/opa-gatekeeper-openshift/" />
+<meta property="article:published_time" content="2020-08-18T14:47:02-05:00" />
+<meta property="article:modified_time" content="2020-08-18T14:47:02-05:00" />
+
+
+  
+  <base href="https://vikaspogu.dev/posts/opa-gatekeeper-openshift/">
+  
+  <title>
+  OPA Gatekeeper on Openshift · vikaspogu
+</title>
+
+  
+  <link rel="canonical" href="https://vikaspogu.dev/posts/opa-gatekeeper-openshift/">
+  
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"
+    integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+  
+  
+  
+  <link rel="stylesheet" href="https://vikaspogu.dev/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw="
+    crossorigin="anonymous" media="screen" />
+  
+
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://vikaspogu.dev/css/coder-dark.min.83a2010dac9f59f943b3004cd6c4f230507ad036da635d3621401d42ec4e2835.css" integrity="sha256-g6IBDayfWflDswBM1sTyMFB60DbaY102IUAdQuxOKDU="
+    crossorigin="anonymous" media="screen" />
+  
+  
+
+  
+
+  
+
+  <link rel="icon" type="image/png" href="https://vikaspogu.dev/images/favicon-32x32.png"
+    sizes="32x32">
+  <link rel="icon" type="image/png" href="https://vikaspogu.dev/images/favicon-16x16.png"
+    sizes="16x16">
+
+  <meta name="generator" content="Hugo 0.80.0" />
+</head>
+
+
+
+
+
+
+<body class="colorscheme-auto">
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://vikaspogu.dev/">
+      vikaspogu
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+      
+      <li class="navigation-item">
+        <a class="navigation-link" href="https://vikaspogu.dev/about/">About</a>
+      </li>
+      
+      <li class="navigation-item">
+        <a class="navigation-link" href="https://vikaspogu.dev/posts/">Blog</a>
+      </li>
+      
+      
+      
+    </ul>
+  </section>
+</nav>
+<script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "https:\/\/vikaspogu.dev"
+        },
+        "articleSection" : "posts",
+        "name" : "OPA Gatekeeper on Openshift",
+        "headline" : "OPA Gatekeeper on Openshift",
+        "description" : "openshift policy management with opa gatekeeper",
+        "inLanguage" : "en-US",
+        "author" : "Vikas Pogu",
+        "creator" : "Vikas Pogu",
+        "publisher": "Vikas Pogu",
+        "accountablePerson" : "Vikas Pogu",
+        "copyrightHolder" : "Vikas Pogu",
+        "copyrightYear" : "2020",
+        "datePublished": "2020-08-18 14:47:02 -0500 CDT",
+        "dateModified" : "2020-08-18 14:47:02 -0500 CDT",
+        "url" : "https:\/\/vikaspogu.dev\/posts\/opa-gatekeeper-openshift\/",
+        "wordCount" : "642",
+        "keywords" : [ "openshift","opa","gatekeeper","Blog" ]
+    }
+    </script>
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">OPA Gatekeeper on Openshift</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2020-08-18T14:47:02-05:00'>
+                August 18, 2020
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              4 minutes read
+            </span>
+          </div>
+          
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="https://vikaspogu.dev/tags/openshift/">openshift</a>
+      <span class="separator">•</span>
+    <a href="https://vikaspogu.dev/tags/opa/">opa</a>
+      <span class="separator">•</span>
+    <a href="https://vikaspogu.dev/tags/gatekeeper/">gatekeeper</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        <p>Every organization has policies. Some are essential to meet governance and legal requirements. Others help ensure adherence to best practices and institutional conventions. Attempting to ensure compliance manually would be error-prone and frustrating</p>
+<p>OPA lets you specific policy as code using OPA policy language <a href="https://www.openpolicyagent.org/docs/latest/policy-language/">Rego</a></p>
+<p>In this post, I&rsquo;ll share my experience deploying OPA <a href="https://github.com/open-policy-agent/gatekeeper">Gatekeeper</a> on Openshift and creating few policies for demonstartions. This post is not an introduction to OPA, <a href="https://www.magalix.com/blog/introducing-policy-as-code-the-open-policy-agent-opa">refer to</a> for intro</p>
+<p>Gatekeeper introduces native kubernetes CRDs for instantiating policies</p>
+<h2 id="installation">Installation</h2>
+<p>For installation, make sure you have cluster admin permissions</p>
+<p>Let&rsquo;s start by adding the <code>admission.gatekeeper.sh/ignore</code> label to non-user namespaces, so that all the resources in the labeled project are exempted from admission webhook</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">oc login --token=l4xjpLh0e722B2_i7iWAbPsUNOb6vPDaAXnqhH563oU --server=https://api.cluster-1d4d.sandbox702.opentlc.com:6443
+
+<span style="color:#fff;font-weight:bold">for</span> namespace in <span style="color:#fff;font-weight:bold">$(</span>oc get namespaces -o jsonpath=<span style="color:#0ff;font-weight:bold">&#39;{.items[*].metadata.name}&#39;</span> | xargs<span style="color:#fff;font-weight:bold">)</span>; <span style="color:#fff;font-weight:bold">do</span>
+  <span style="color:#fff;font-weight:bold">if</span> [[ <span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">${</span>namespace<span style="color:#0ff;font-weight:bold">}</span><span style="color:#0ff;font-weight:bold">&#34;</span> =~ openshift.* ]] || [[ <span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">${</span>namespace<span style="color:#0ff;font-weight:bold">}</span><span style="color:#0ff;font-weight:bold">&#34;</span> =~ kube.* ]] || [[ <span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">${</span>namespace<span style="color:#0ff;font-weight:bold">}</span><span style="color:#0ff;font-weight:bold">&#34;</span> =~ default ]]; <span style="color:#fff;font-weight:bold">then</span>
+    oc patch namespace/<span style="color:#0ff;font-weight:bold">${</span>namespace<span style="color:#0ff;font-weight:bold">}</span> -p=<span style="color:#0ff;font-weight:bold">&#39;{&#34;metadata&#34;:{&#34;labels&#34;:{&#34;admission.gatekeeper.sh/ignore&#34;:&#34;true&#34;}}}&#39;</span>
+  <span style="color:#fff;font-weight:bold">else</span>
+    <span style="color:#007f7f"># Probably a users project, so leave it alone</span>
+    <span style="color:#fff;font-weight:bold">echo</span> <span style="color:#0ff;font-weight:bold">&#34;Skipping: </span><span style="color:#0ff;font-weight:bold">${</span>namespace<span style="color:#0ff;font-weight:bold">}</span><span style="color:#0ff;font-weight:bold">&#34;</span>
+  <span style="color:#fff;font-weight:bold">fi</span>
+<span style="color:#fff;font-weight:bold">done</span>
+</code></pre></div><h3 id="deploying-a-release-using-prebuilt-image">Deploying a Release using Prebuilt Image</h3>
+<p>Deploy Gatekeeper with prebuilt image</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">oc apply -f https://raw.githubusercontent.com/open-policy-agent/gatekeeper/master/deploy/gatekeeper.yaml
+</code></pre></div><p>Remove securityContext and annotations from the deployments</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">oc patch Deployment/gatekeeper-audit --type json -p=<span style="color:#0ff;font-weight:bold">&#39;[{&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/metadata/annotations&#34;}]&#39;</span> -n gatekeeper-system
+oc patch Deployment/gatekeeper-controller-manager --type json -p=<span style="color:#0ff;font-weight:bold">&#39;[{&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/metadata/annotations&#34;}]&#39;</span> -n gatekeeper-system
+oc patch Deployment/gatekeeper-audit --type json --patch <span style="color:#0ff;font-weight:bold">&#39;[{ &#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/securityContext&#34; }]&#39;</span> -n gatekeeper-system
+oc patch Deployment/gatekeeper-controller-manager --type json --patch <span style="color:#0ff;font-weight:bold">&#39;[{ &#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/securityContext&#34; }]&#39;</span> -n gatekeeper-system
+</code></pre></div><p>Wait for Gatekeeper to be ready</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">oc get pods -n gatekeeper-system
+NAME                                            READY   STATUS    RESTARTS   AGE
+gatekeeper-audit-7c84869dbf-r5p87               1/1     Running   <span style="color:#ff0;font-weight:bold">0</span>          2m34s
+gatekeeper-controller-manager-ff58b6688-9tbxx   1/1     Running   <span style="color:#ff0;font-weight:bold">0</span>          3m23s
+gatekeeper-controller-manager-ff58b6688-njfnd   1/1     Running   <span style="color:#ff0;font-weight:bold">0</span>          2m54s
+gatekeeper-controller-manager-ff58b6688-vlrsl   1/1     Running   <span style="color:#ff0;font-weight:bold">0</span>          3m11s
+</code></pre></div><p>Gatekeeper uses the <a href="https://github.com/open-policy-agent/frameworks/tree/master/constraint">OPA Constraint Framework</a> to describe and enforce policy</p>
+<h3 id="defining-constraints">Defining constraints</h3>
+<p>Constraints can be defined by creating a CRD (CustomResourceDefinition) with the template of the constraint you want. Let’s look at a template which enforces that only secure routes are created in the cluster</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="font-weight:bold">apiVersion</span>: templates.gatekeeper.sh/v1beta1
+<span style="font-weight:bold">kind</span>: ConstraintTemplate
+<span style="font-weight:bold">metadata</span>:
+  <span style="font-weight:bold">name</span>: k8sallowedroutes
+<span style="font-weight:bold">spec</span>:
+  <span style="font-weight:bold">crd</span>:
+    <span style="font-weight:bold">spec</span>:
+      <span style="font-weight:bold">names</span>:
+        <span style="font-weight:bold">kind</span>: K8sAllowedRoutes
+  <span style="font-weight:bold">targets</span>:
+    - <span style="font-weight:bold">target</span>: admission.k8s.gatekeeper.sh
+      <span style="font-weight:bold">rego</span>: |<span style="color:#0ff;font-weight:bold">
+</span><span style="color:#0ff;font-weight:bold">        package k8sallowedroutes
+</span><span style="color:#0ff;font-weight:bold">
+</span><span style="color:#0ff;font-weight:bold">        violation[{&#34;msg&#34;: msg}] {
+</span><span style="color:#0ff;font-weight:bold">          not input.review.object.spec.tls
+</span><span style="color:#0ff;font-weight:bold">          msg := sprintf(&#34;&#39;%v&#39; route must be a secured route. non secured routes are not permitted&#34;, [input.review.object.metadata.name])
+</span><span style="color:#0ff;font-weight:bold">        }</span>        
+</code></pre></div><p>It will get the route and check if <code>tls</code> object is specified. If this is not true, the violation block continues and the violation is triggered with the corresponding message</p>
+<h3 id="enforcing-constraints">Enforcing constraints</h3>
+<p>These constrains which you defined now need to be enforced. This is done by defining a constraint which will use the template specified earlier.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="font-weight:bold">apiVersion</span>: constraints.gatekeeper.sh/v1beta1
+<span style="font-weight:bold">kind</span>: K8sAllowedRoutes
+<span style="font-weight:bold">metadata</span>:
+  <span style="font-weight:bold">name</span>: secure-route
+<span style="font-weight:bold">spec</span>:
+  <span style="font-weight:bold">match</span>:
+    <span style="font-weight:bold">kinds</span>:
+      - <span style="font-weight:bold">apiGroups</span>: [<span style="color:#0ff;font-weight:bold">&#34;route.openshift.io&#34;</span>]
+        <span style="font-weight:bold">kinds</span>: [<span style="color:#0ff;font-weight:bold">&#34;Route&#34;</span>]
+</code></pre></div><p>This policy will use the CRD “K8sAllowedRoutes” which we had already defined. Matching is done by specifying on which API group it has to be enforced</p>
+<p><img src="https://vikaspogu.dev/images/nonsecure-route.png" alt="nonsecure_route"></p>
+<p>Some constraints are impossible to write without access to more state than just the object under test. For example, it is impossible to know if an route&rsquo;s hostname is unique among all routes unless a rule has access to all other routes. To make such rules possible, we enable syncing of data into OPA.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="font-weight:bold">apiVersion</span>: config.gatekeeper.sh/v1alpha1
+<span style="font-weight:bold">kind</span>: Config
+<span style="font-weight:bold">metadata</span>:
+  <span style="font-weight:bold">name</span>: config
+  <span style="font-weight:bold">namespace</span>: <span style="color:#0ff;font-weight:bold">&#34;gatekeeper-system&#34;</span>
+<span style="font-weight:bold">spec</span>:
+  <span style="font-weight:bold">sync</span>:
+    <span style="font-weight:bold">syncOnly</span>:
+      - <span style="font-weight:bold">group</span>: <span style="color:#0ff;font-weight:bold">&#34;&#34;</span>
+        <span style="font-weight:bold">version</span>: <span style="color:#0ff;font-weight:bold">&#34;v1&#34;</span>
+        <span style="font-weight:bold">kind</span>: <span style="color:#0ff;font-weight:bold">&#34;Namespace&#34;</span>
+      - <span style="font-weight:bold">group</span>: <span style="color:#0ff;font-weight:bold">&#34;route.openshift.io&#34;</span>
+        <span style="font-weight:bold">version</span>: <span style="color:#0ff;font-weight:bold">&#34;v1&#34;</span>
+        <span style="font-weight:bold">kind</span>: <span style="color:#0ff;font-weight:bold">&#34;Route&#34;</span>
+</code></pre></div><p>Let&rsquo;s create another policy which prevents conflicting routes from being created</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="font-weight:bold">apiVersion</span>: templates.gatekeeper.sh/v1beta1
+<span style="font-weight:bold">kind</span>: ConstraintTemplate
+<span style="font-weight:bold">metadata</span>:
+  <span style="font-weight:bold">name</span>: k8suniqueroutehost
+<span style="font-weight:bold">spec</span>:
+  <span style="font-weight:bold">crd</span>:
+    <span style="font-weight:bold">spec</span>:
+      <span style="font-weight:bold">names</span>:
+        <span style="font-weight:bold">kind</span>: K8sUniqueRouteHost
+  <span style="font-weight:bold">targets</span>:
+    - <span style="font-weight:bold">target</span>: admission.k8s.gatekeeper.sh
+      <span style="font-weight:bold">rego</span>: |<span style="color:#0ff;font-weight:bold">
+</span><span style="color:#0ff;font-weight:bold">        package k8suniqueroutehost
+</span><span style="color:#0ff;font-weight:bold">
+</span><span style="color:#0ff;font-weight:bold">        identical(obj, review) {
+</span><span style="color:#0ff;font-weight:bold">          obj.metadata.namespace == review.object.metadata.namespace
+</span><span style="color:#0ff;font-weight:bold">          obj.metadata.name == review.object.metadata.name
+</span><span style="color:#0ff;font-weight:bold">        }
+</span><span style="color:#0ff;font-weight:bold">
+</span><span style="color:#0ff;font-weight:bold">        violation[{&#34;msg&#34;: msg}] {
+</span><span style="color:#0ff;font-weight:bold">          input.review.kind.kind == &#34;Route&#34;
+</span><span style="color:#0ff;font-weight:bold">          re_match(&#34;^(route.openshift.io)$&#34;, input.review.kind.group)
+</span><span style="color:#0ff;font-weight:bold">          host := input.review.object.spec.host
+</span><span style="color:#0ff;font-weight:bold">          other := data.inventory.namespace[ns][otherapiversion][&#34;Route&#34;][name]
+</span><span style="color:#0ff;font-weight:bold">          re_match(&#34;^(route.openshift.io)/.+$&#34;, otherapiversion)
+</span><span style="color:#0ff;font-weight:bold">          other.spec.host == host
+</span><span style="color:#0ff;font-weight:bold">          not identical(other, input.review)
+</span><span style="color:#0ff;font-weight:bold">          msg := sprintf(&#34;Route host conflicts with an existing route &lt;%v&gt;&#34;, [host])
+</span><span style="color:#0ff;font-weight:bold">        }</span>        
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="font-weight:bold">apiVersion</span>: constraints.gatekeeper.sh/v1beta1
+<span style="font-weight:bold">kind</span>: K8sUniqueRouteHost
+<span style="font-weight:bold">metadata</span>:
+  <span style="font-weight:bold">name</span>: unique-route-host
+<span style="font-weight:bold">spec</span>:
+  <span style="font-weight:bold">match</span>:
+    <span style="font-weight:bold">kinds</span>:
+      - <span style="font-weight:bold">apiGroups</span>: [<span style="color:#0ff;font-weight:bold">&#34;route.openshift.io&#34;</span>]
+        <span style="font-weight:bold">kinds</span>: [<span style="color:#0ff;font-weight:bold">&#34;Route&#34;</span>]
+</code></pre></div><h3 id="additional-resources">Additional Resources</h3>
+<ul>
+<li><a href="https://www.openpolicyagent.org/docs/latest/">Open Policy Agent</a></li>
+<li><a href="https://github.com/open-policy-agent/gatekeeper">OPA Gatekeeper</a></li>
+<li><a href="https://github.com/open-policy-agent/conftest">Test framework</a></li>
+</ul>
+
+      </div>
+
+      <footer>
+        
+
+
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+</body>
+
+</html>

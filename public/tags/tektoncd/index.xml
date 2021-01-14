@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tektoncd on vikaspogu</title>
+    <link>https://vikaspogu.dev/tags/tektoncd/</link>
+    <description>Recent content in tektoncd on vikaspogu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 09 Aug 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://vikaspogu.dev/tags/tektoncd/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>TektonCD on Openshift</title>
+      <link>https://vikaspogu.dev/posts/intro-tektoncd-ocp/</link>
+      <pubDate>Fri, 09 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/intro-tektoncd-ocp/</guid>
+      <description>Recently I came across tektoncd project, The Tekton Pipelines project provides Kubernetes-style resources for declaring CI/CD-style pipelines caught my attention and started playing with it.
+Basic Concepts In order to create a tekton pipeline, one does the following:
+ Create custom or install existing reusable Tasks Create a Pipeline and PipelineResources to define your application&amp;rsquo;s delivery pipeline Create a PipelineRun to instantiate and invoke the pipeline  Installing Tekton on Openshift Login as a user with cluster-admin privileges</description>
+    </item>
+    
+  </channel>
+</rss>

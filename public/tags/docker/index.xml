@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>docker on vikaspogu</title>
+    <link>https://vikaspogu.dev/tags/docker/</link>
+    <description>Recent content in docker on vikaspogu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 05 Dec 2020 10:22:47 -0600</lastBuildDate><atom:link href="https://vikaspogu.dev/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Setting up docker buildx on Linux</title>
+      <link>https://vikaspogu.dev/posts/docker-buildx-setup/</link>
+      <pubDate>Sat, 05 Dec 2020 10:22:47 -0600</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/docker-buildx-setup/</guid>
+      <description>Installation instructions for Ubuntu
+To execute docker commands without sudo. We need to add username to the docker group
+ Find current username by typing who Add username to docker group Reboot system  $ who vikaspogu :0 2020-12-05 10:10 (:0) $ sudo usermod -aG docker vikaspogu $ sudo reboot Enable buildx Create a new config.json file under ~.docker folder and enable experimental feature
+$ mkdir ~/.docker $ vim ~/.docker/config.json { &amp;#34;experimental&amp;#34;: &amp;#34;enabled&amp;#34; } Now you should be able to do multi arch builds</description>
+    </item>
+    
+    <item>
+      <title>Raspberry Pi garage door opener using nodejs on k3s cluster</title>
+      <link>https://vikaspogu.dev/posts/pi-garage-k3s/</link>
+      <pubDate>Sun, 05 Jul 2020 16:26:22 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/pi-garage-k3s/</guid>
+      <description>There are many articles out there which demonstartes how to use a raspberry pi as a DIY garage door opener project. Few are outdated and not deployed using containers images. I found couple good solutions on google but i wasn&amp;rsquo;t able to run them on kubernetes cluster either due to older packages or no enough information. I decided to build my own solution from different sources of information i found</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ssl on vikaspogu</title>
+    <link>https://vikaspogu.dev/tags/ssl/</link>
+    <description>Recent content in ssl on vikaspogu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 10 Feb 2020 17:24:56 -0500</lastBuildDate><atom:link href="https://vikaspogu.dev/tags/ssl/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Jenkins Openshift OAuth SSL</title>
+      <link>https://vikaspogu.dev/posts/openshift-jenkins-oauth-ssl/</link>
+      <pubDate>Mon, 10 Feb 2020 17:24:56 -0500</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/openshift-jenkins-oauth-ssl/</guid>
+      <description>Recently, I encountered an issue while authenticating to Openshift Jenkins using Openshift OAuth plugin where trusted certificate provided by CA that aren&amp;rsquo;t included in the default JRE TrustStore.
+Logs from Jenkins pod
+2020-02-10 21:19:07.335+0000 [id=17]	INFO	o.o.j.p.o.OpenShiftOAuth2SecurityRealm#transportToUse: OpenShift OAuth got an SSL error when accessing the issuer&amp;#39;s token endpoint when using the SA certificate2020-02-10 21:19:07.348+0000 [id=17]	INFO	o.o.j.p.o.OpenShiftOAuth2SecurityRealm#transportToUse: OpenShift OAuth provider token endpoint failed unexpectedly using the JVMs default keystore sun.</description>
+    </item>
+    
+    <item>
+      <title>Configuring couchbase SSL for dynamic certificates in Openshift</title>
+      <link>https://vikaspogu.dev/posts/couchbase-ssl-openshift/</link>
+      <pubDate>Wed, 28 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vikaspogu.dev/posts/couchbase-ssl-openshift/</guid>
+      <description>If you have followed dynamic creation of java keystores in openshift post and wondered how to use similar concepts for couchbase database and a java application. This post will help you.
+Couchbase setup This is the couchbase documentation for configuring server side certificates, we are interested in last few steps since openshift will generate key and cert by adding annotation to the couchbase service.
+Note: By adding this annotation you can dynamically create certificates service.</description>
+    </item>
+    
+  </channel>
+</rss>

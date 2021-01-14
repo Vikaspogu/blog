@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="google-site-verification" content="5JztMFjgtrbhV0pe_cLh7EH3c0NJBY7sVrnd7x86pMI" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+  <meta name="author" content="Vikas Pogu">
+  
+  <meta name="description" content="Vikas Pogu&#39;s Blog">
+  
+  <meta name="keywords" content="blog,developer">
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Jenkins Openshift OAuth SSL"/>
+<meta name="twitter:description" content="Add SSL certificates for Openshift Jenkins Authentication using Openshift OAuth plugin"/>
+
+  <meta property="og:title" content="Jenkins Openshift OAuth SSL" />
+<meta property="og:description" content="Add SSL certificates for Openshift Jenkins Authentication using Openshift OAuth plugin" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://vikaspogu.dev/posts/openshift-jenkins-oauth-ssl/" />
+<meta property="article:published_time" content="2020-02-10T17:24:56-05:00" />
+<meta property="article:modified_time" content="2020-02-10T17:24:56-05:00" />
+
+
+  
+  <base href="https://vikaspogu.dev/posts/openshift-jenkins-oauth-ssl/">
+  
+  <title>
+  Jenkins Openshift OAuth SSL · vikaspogu
+</title>
+
+  
+  <link rel="canonical" href="https://vikaspogu.dev/posts/openshift-jenkins-oauth-ssl/">
+  
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"
+    integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+  
+  
+  
+  <link rel="stylesheet" href="https://vikaspogu.dev/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw="
+    crossorigin="anonymous" media="screen" />
+  
+
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://vikaspogu.dev/css/coder-dark.min.83a2010dac9f59f943b3004cd6c4f230507ad036da635d3621401d42ec4e2835.css" integrity="sha256-g6IBDayfWflDswBM1sTyMFB60DbaY102IUAdQuxOKDU="
+    crossorigin="anonymous" media="screen" />
+  
+  
+
+  
+
+  
+
+  <link rel="icon" type="image/png" href="https://vikaspogu.dev/images/favicon-32x32.png"
+    sizes="32x32">
+  <link rel="icon" type="image/png" href="https://vikaspogu.dev/images/favicon-16x16.png"
+    sizes="16x16">
+
+  <meta name="generator" content="Hugo 0.80.0" />
+</head>
+
+
+
+
+
+
+<body class="colorscheme-auto">
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://vikaspogu.dev/">
+      vikaspogu
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+      
+      <li class="navigation-item">
+        <a class="navigation-link" href="https://vikaspogu.dev/about/">About</a>
+      </li>
+      
+      <li class="navigation-item">
+        <a class="navigation-link" href="https://vikaspogu.dev/posts/">Blog</a>
+      </li>
+      
+      
+      
+    </ul>
+  </section>
+</nav>
+<script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "https:\/\/vikaspogu.dev"
+        },
+        "articleSection" : "posts",
+        "name" : "Jenkins Openshift OAuth SSL",
+        "headline" : "Jenkins Openshift OAuth SSL",
+        "description" : "Add SSL certificates for Openshift Jenkins Authentication using Openshift OAuth plugin",
+        "inLanguage" : "en-US",
+        "author" : "Vikas Pogu",
+        "creator" : "Vikas Pogu",
+        "publisher": "Vikas Pogu",
+        "accountablePerson" : "Vikas Pogu",
+        "copyrightHolder" : "Vikas Pogu",
+        "copyrightYear" : "2020",
+        "datePublished": "2020-02-10 17:24:56 -0500 -0500",
+        "dateModified" : "2020-02-10 17:24:56 -0500 -0500",
+        "url" : "https:\/\/vikaspogu.dev\/posts\/openshift-jenkins-oauth-ssl\/",
+        "wordCount" : "525",
+        "keywords" : [ "openshift","jenkins","ssl","Blog" ]
+    }
+    </script>
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Jenkins Openshift OAuth SSL</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2020-02-10T17:24:56-05:00'>
+                February 10, 2020
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              3 minutes read
+            </span>
+          </div>
+          
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="https://vikaspogu.dev/tags/openshift/">openshift</a>
+      <span class="separator">•</span>
+    <a href="https://vikaspogu.dev/tags/jenkins/">jenkins</a>
+      <span class="separator">•</span>
+    <a href="https://vikaspogu.dev/tags/ssl/">ssl</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        <p>Recently, I encountered an issue while authenticating to Openshift Jenkins using Openshift OAuth plugin where trusted certificate provided by CA that aren&rsquo;t included in the default JRE TrustStore.</p>
+<p><img src="https://vikaspogu.dev/images/jenkins-ssl/login-error.png" alt="Jenkins Error"></p>
+<p>Logs from Jenkins pod</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">2020-02-10 21:19:07.335+0000 [id=17]	INFO	o.o.j.p.o.OpenShiftOAuth2SecurityRealm#transportToUse: OpenShift OAuth got an SSL error when accessing the issuer&#39;s token endpoint when using the SA certificate2020-02-10 21:19:07.348+0000 [id=17]	INFO	o.o.j.p.o.OpenShiftOAuth2SecurityRealm#transportToUse: OpenShift OAuth provider token endpoint failed unexpectedly using the JVMs default keystore
+sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+	at java.base/sun.security.provider.certpath.SunCertPathBuilder.build(SunCertPathBuilder.java:141)
+	at java.base/sun.security.provider.certpath.SunCertPathBuilder.engineBuild(SunCertPathBuilder.java:126)
+	at java.base/java.security.cert.CertPathBuilder.build(CertPathBuilder.java:297)
+	at java.base/sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:434)
+Caused: sun.security.validator.ValidatorException: PKIX path building failed
+	at java.base/sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:439)
+	at java.base/sun.security.validator.PKIXValidator.engineValidate(PKIXValidator.java:306)
+	at java.base/sun.security.validator.Validator.validate(Validator.java:264)
+	at java.base/sun.security.ssl.X509TrustManagerImpl.validate(X509TrustManagerImpl.java:313)
+	at java.base/sun.security.ssl.X509TrustManagerImpl.checkTrusted(X509TrustManagerImpl.java:222)
+	at java.base/sun.security.ssl.X509TrustManagerImpl.checkServerTrusted(X509TrustManagerImpl.java:129)
+	at java.base/sun.security.ssl.CertificateMessage$T12CertificateConsumer.checkServerCerts(CertificateMessage.java:629)
+Caused: javax.net.ssl.SSLHandshakeException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+	at java.base/sun.security.ssl.Alert.createSSLException(Alert.java:131)
+	at java.base/sun.security.ssl.TransportContext.fatal(TransportContext.java:320)
+at java.base/sun.security.ssl.TransportContext.fatal(TransportContext.java:263)
+</code></pre></div><h3 id="solution">Solution:</h3>
+<p>By default, Java Applications (as Jenkins) make use of the JVM TrustStore. If a Java Application needs to make use of a custom TrustStore, it needs to be configured to be able to do so.</p>
+<p>First, create a secret with JKS keystore and password.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">oc create secret generic jenkins-https-jks --from-literal=https-jks-password=changeit <span style="color:#0ff;font-weight:bold">\
+</span><span style="color:#0ff;font-weight:bold"></span>--from-file=custom-keystore.jks
+</code></pre></div><p>Mount <code>jenkins-https-jks</code> keystore secret as a volume to <code>/var/jenkins_keystore</code> location.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">...
+        <span style="font-weight:bold">terminationMessagePath</span>: /dev/termination-log
+        <span style="font-weight:bold">terminationMessagePolicy</span>: File
+        <span style="font-weight:bold">volumeMounts</span>:
+        - <span style="font-weight:bold">mountPath</span>: /var/lib/jenkins
+          <span style="font-weight:bold">name</span>: jenkins-data
+        - <span style="font-weight:bold">mountPath</span>: /var/jenkins_keystore
+          <span style="font-weight:bold">name</span>: jenkins-https-keystore
+      <span style="font-weight:bold">serviceAccount</span>: jenkins
+      <span style="font-weight:bold">serviceAccountName</span>: jenkins
+      <span style="font-weight:bold">volumes</span>:
+      - <span style="font-weight:bold">name</span>: jenkins-data
+        <span style="font-weight:bold">persistentVolumeClaim</span>:
+          <span style="font-weight:bold">claimName</span>: jenkins
+      - <span style="font-weight:bold">name</span>: jenkins-https-keystore
+        <span style="font-weight:bold">secret</span>:
+          <span style="font-weight:bold">defaultMode</span>: <span style="color:#ff0;font-weight:bold">420</span>
+          <span style="font-weight:bold">items</span>:
+          - <span style="font-weight:bold">key</span>: custom-keystore.jks
+            <span style="font-weight:bold">path</span>: custom-keystore.jks
+          <span style="font-weight:bold">secretName</span>: jenkins-https-jks
+...
+</code></pre></div><p>Add the certificate to the Jenkins as startup parameters; Jenkins server can be configured to add following JAVA properties to <code>JAVA_TOOL_OPTIONS</code> environment variable.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">-Djavax.net.ssl.trustStore=/var/jenkins_keystore/custom-keystore.jks \
+-Djavax.net.ssl.trustStorePassword=changeit
+</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="font-weight:bold">spec</span>:
+  <span style="font-weight:bold">containers</span>:
+    - <span style="font-weight:bold">env</span>:
+      - <span style="font-weight:bold">name</span>: JENKINS_HTTPS_KEYSTORE_PASSWORD
+        <span style="font-weight:bold">valueFrom</span>:
+          <span style="font-weight:bold">secretKeyRef</span>:
+            <span style="font-weight:bold">key</span>: https-jks-password
+            <span style="font-weight:bold">name</span>: jenkins-https-jks
+      - <span style="font-weight:bold">name</span>: JAVA_TOOL_OPTIONS
+        <span style="font-weight:bold">value</span>: -XX:+UnlockExperimentalVMOptions -Dsun.zip.disableMemoryMapping=true
+            -Djavax.net.ssl.trustStore=/var/jenkins_keystore/custom-keystore.jks -Djavax.net.ssl.trustStorePassword=$(JENKINS_HTTPS_KEYSTORE_PASSWORD)
+</code></pre></div><p>Final deploymentconfig should look like this:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="font-weight:bold">apiVersion</span>: apps.openshift.io/v1
+<span style="font-weight:bold">kind</span>: DeploymentConfig
+<span style="font-weight:bold">metadata</span>:
+  <span style="font-weight:bold">annotations</span>:
+    <span style="font-weight:bold">template.alpha.openshift.io/wait-for-ready</span>: <span style="color:#0ff;font-weight:bold">&#34;true&#34;</span>
+  <span style="font-weight:bold">creationTimestamp</span>: <span style="color:#0ff;font-weight:bold">&#34;2020-02-10T17:49:20Z&#34;</span>
+  <span style="font-weight:bold">generation</span>: <span style="color:#ff0;font-weight:bold">10</span>
+  <span style="font-weight:bold">labels</span>:
+    <span style="font-weight:bold">app</span>: jenkins-persistent
+  <span style="font-weight:bold">name</span>: jenkins
+<span style="font-weight:bold">spec</span>:
+  <span style="font-weight:bold">replicas</span>: <span style="color:#ff0;font-weight:bold">1</span>
+  <span style="font-weight:bold">revisionHistoryLimit</span>: <span style="color:#ff0;font-weight:bold">10</span>
+  <span style="font-weight:bold">selector</span>:
+    <span style="font-weight:bold">name</span>: jenkins
+  <span style="font-weight:bold">strategy</span>:
+    <span style="font-weight:bold">activeDeadlineSeconds</span>: <span style="color:#ff0;font-weight:bold">21600</span>
+    <span style="font-weight:bold">recreateParams</span>:
+      <span style="font-weight:bold">timeoutSeconds</span>: <span style="color:#ff0;font-weight:bold">600</span>
+    <span style="font-weight:bold">resources</span>: {}
+    <span style="font-weight:bold">type</span>: Recreate
+  <span style="font-weight:bold">template</span>:
+    <span style="font-weight:bold">metadata</span>:
+      <span style="font-weight:bold">creationTimestamp</span>: <span style="color:#fff;font-weight:bold">null</span>
+      <span style="font-weight:bold">labels</span>:
+        <span style="font-weight:bold">name</span>: jenkins
+    <span style="font-weight:bold">spec</span>:
+      <span style="font-weight:bold">containers</span>:
+      - <span style="font-weight:bold">env</span>:
+        - <span style="font-weight:bold">name</span>: OPENSHIFT_ENABLE_OAUTH
+          <span style="font-weight:bold">value</span>: <span style="color:#0ff;font-weight:bold">&#34;true&#34;</span>
+        - <span style="font-weight:bold">name</span>: OPENSHIFT_ENABLE_REDIRECT_PROMPT
+          <span style="font-weight:bold">value</span>: <span style="color:#0ff;font-weight:bold">&#34;true&#34;</span>
+        - <span style="font-weight:bold">name</span>: DISABLE_ADMINISTRATIVE_MONITORS
+          <span style="font-weight:bold">value</span>: <span style="color:#0ff;font-weight:bold">&#34;false&#34;</span>
+        - <span style="font-weight:bold">name</span>: KUBERNETES_MASTER
+          <span style="font-weight:bold">value</span>: https://kubernetes.default:443
+        - <span style="font-weight:bold">name</span>: KUBERNETES_TRUST_CERTIFICATES
+          <span style="font-weight:bold">value</span>: <span style="color:#0ff;font-weight:bold">&#34;true&#34;</span>
+        - <span style="font-weight:bold">name</span>: JENKINS_SERVICE_NAME
+          <span style="font-weight:bold">value</span>: jenkins
+        - <span style="font-weight:bold">name</span>: JNLP_SERVICE_NAME
+          <span style="font-weight:bold">value</span>: jenkins-jnlp
+        - <span style="font-weight:bold">name</span>: ENABLE_FATAL_ERROR_LOG_FILE
+          <span style="font-weight:bold">value</span>: <span style="color:#0ff;font-weight:bold">&#34;false&#34;</span>
+        - <span style="font-weight:bold">name</span>: JENKINS_UC_INSECURE
+          <span style="font-weight:bold">value</span>: <span style="color:#0ff;font-weight:bold">&#34;false&#34;</span>
+        - <span style="font-weight:bold">name</span>: JENKINS_HTTPS_KEYSTORE_PASSWORD
+          <span style="font-weight:bold">valueFrom</span>:
+            <span style="font-weight:bold">secretKeyRef</span>:
+              <span style="font-weight:bold">key</span>: https-jks-password
+              <span style="font-weight:bold">name</span>: jenkins-https-jks
+        - <span style="font-weight:bold">name</span>: JAVA_TOOL_OPTIONS
+          <span style="font-weight:bold">value</span>: -XX:+UnlockExperimentalVMOptions -Dsun.zip.disableMemoryMapping=true
+            -Djavax.net.ssl.trustStore=/var/jenkins_keystore/custom-keystore.jks -Djavax.net.ssl.trustStorePassword=$(JENKINS_HTTPS_KEYSTORE_PASSWORD)
+        <span style="font-weight:bold">image</span>: image-registry.openshift-image-registry.svc:5000/openshift/jenkins@sha256:dd5f1c5d14a8a72aa4ca51224c26a661c2e4f19ea3e5f9b7d8343f4952de5f0d
+        <span style="font-weight:bold">imagePullPolicy</span>: IfNotPresent
+        <span style="font-weight:bold">livenessProbe</span>:
+          <span style="font-weight:bold">failureThreshold</span>: <span style="color:#ff0;font-weight:bold">2</span>
+          <span style="font-weight:bold">httpGet</span>:
+            <span style="font-weight:bold">path</span>: /login
+            <span style="font-weight:bold">port</span>: <span style="color:#ff0;font-weight:bold">8080</span>
+            <span style="font-weight:bold">scheme</span>: HTTP
+          <span style="font-weight:bold">initialDelaySeconds</span>: <span style="color:#ff0;font-weight:bold">420</span>
+          <span style="font-weight:bold">periodSeconds</span>: <span style="color:#ff0;font-weight:bold">360</span>
+          <span style="font-weight:bold">successThreshold</span>: <span style="color:#ff0;font-weight:bold">1</span>
+          <span style="font-weight:bold">timeoutSeconds</span>: <span style="color:#ff0;font-weight:bold">240</span>
+        <span style="font-weight:bold">name</span>: jenkins
+        <span style="font-weight:bold">readinessProbe</span>:
+          <span style="font-weight:bold">failureThreshold</span>: <span style="color:#ff0;font-weight:bold">3</span>
+          <span style="font-weight:bold">httpGet</span>:
+            <span style="font-weight:bold">path</span>: /login
+            <span style="font-weight:bold">port</span>: <span style="color:#ff0;font-weight:bold">8080</span>
+            <span style="font-weight:bold">scheme</span>: HTTP
+          <span style="font-weight:bold">initialDelaySeconds</span>: <span style="color:#ff0;font-weight:bold">3</span>
+          <span style="font-weight:bold">periodSeconds</span>: <span style="color:#ff0;font-weight:bold">10</span>
+          <span style="font-weight:bold">successThreshold</span>: <span style="color:#ff0;font-weight:bold">1</span>
+          <span style="font-weight:bold">timeoutSeconds</span>: <span style="color:#ff0;font-weight:bold">240</span>
+        <span style="font-weight:bold">resources</span>:
+          <span style="font-weight:bold">limits</span>:
+            <span style="font-weight:bold">memory</span>: 1Gi
+        <span style="font-weight:bold">securityContext</span>:
+          <span style="font-weight:bold">capabilities</span>: {}
+          <span style="font-weight:bold">privileged</span>: <span style="color:#fff;font-weight:bold">false</span>
+        <span style="font-weight:bold">terminationMessagePath</span>: /dev/termination-log
+        <span style="font-weight:bold">terminationMessagePolicy</span>: File
+        <span style="font-weight:bold">volumeMounts</span>:
+        - <span style="font-weight:bold">mountPath</span>: /var/lib/jenkins
+          <span style="font-weight:bold">name</span>: jenkins-data
+        - <span style="font-weight:bold">mountPath</span>: /var/jenkins_keystore
+          <span style="font-weight:bold">name</span>: jenkins-https-keystore
+      <span style="font-weight:bold">dnsPolicy</span>: ClusterFirst
+      <span style="font-weight:bold">restartPolicy</span>: Always
+      <span style="font-weight:bold">schedulerName</span>: default-scheduler
+      <span style="font-weight:bold">securityContext</span>: {}
+      <span style="font-weight:bold">serviceAccount</span>: jenkins
+      <span style="font-weight:bold">serviceAccountName</span>: jenkins
+      <span style="font-weight:bold">terminationGracePeriodSeconds</span>: <span style="color:#ff0;font-weight:bold">30</span>
+      <span style="font-weight:bold">volumes</span>:
+      - <span style="font-weight:bold">name</span>: jenkins-data
+        <span style="font-weight:bold">persistentVolumeClaim</span>:
+          <span style="font-weight:bold">claimName</span>: jenkins
+      - <span style="font-weight:bold">name</span>: jenkins-https-keystore
+        <span style="font-weight:bold">secret</span>:
+          <span style="font-weight:bold">defaultMode</span>: <span style="color:#ff0;font-weight:bold">420</span>
+          <span style="font-weight:bold">items</span>:
+          - <span style="font-weight:bold">key</span>: custom-keystore.jks
+            <span style="font-weight:bold">path</span>: custom-keystore.jks
+          <span style="font-weight:bold">secretName</span>: jenkins-https-jks
+  <span style="font-weight:bold">test</span>: <span style="color:#fff;font-weight:bold">false</span>
+  <span style="font-weight:bold">triggers</span>: []
+<span style="font-weight:bold">status</span>: {}
+</code></pre></div><p>Start a new deployment.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">oc rollout latest jenkins
+</code></pre></div><p>Once new pods are in running state, login will redirect to Jenkins home page.</p>
+
+      </div>
+
+      <footer>
+        
+
+
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+</body>
+
+</html>

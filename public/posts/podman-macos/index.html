@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="google-site-verification" content="5JztMFjgtrbhV0pe_cLh7EH3c0NJBY7sVrnd7x86pMI" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+  <meta name="author" content="Vikas Pogu">
+  
+  <meta name="description" content="Vikas Pogu&#39;s Blog">
+  
+  <meta name="keywords" content="blog,developer">
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Installing Podman remote client on macOS using vagrant"/>
+<meta name="twitter:description" content="Installing Podman remote client on macOS using vagrant"/>
+
+  <meta property="og:title" content="Installing Podman remote client on macOS using vagrant" />
+<meta property="og:description" content="Installing Podman remote client on macOS using vagrant" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://vikaspogu.dev/posts/podman-macos/" />
+<meta property="article:published_time" content="2020-01-06T14:15:03-05:00" />
+<meta property="article:modified_time" content="2020-01-06T14:15:03-05:00" />
+
+
+  
+  <base href="https://vikaspogu.dev/posts/podman-macos/">
+  
+  <title>
+  Installing Podman remote client on macOS using vagrant · vikaspogu
+</title>
+
+  
+  <link rel="canonical" href="https://vikaspogu.dev/posts/podman-macos/">
+  
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"
+    integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+  
+  
+  
+  <link rel="stylesheet" href="https://vikaspogu.dev/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw="
+    crossorigin="anonymous" media="screen" />
+  
+
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://vikaspogu.dev/css/coder-dark.min.83a2010dac9f59f943b3004cd6c4f230507ad036da635d3621401d42ec4e2835.css" integrity="sha256-g6IBDayfWflDswBM1sTyMFB60DbaY102IUAdQuxOKDU="
+    crossorigin="anonymous" media="screen" />
+  
+  
+
+  
+
+  
+
+  <link rel="icon" type="image/png" href="https://vikaspogu.dev/images/favicon-32x32.png"
+    sizes="32x32">
+  <link rel="icon" type="image/png" href="https://vikaspogu.dev/images/favicon-16x16.png"
+    sizes="16x16">
+
+  <meta name="generator" content="Hugo 0.80.0" />
+</head>
+
+
+
+
+
+
+<body class="colorscheme-auto">
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://vikaspogu.dev/">
+      vikaspogu
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+      
+      <li class="navigation-item">
+        <a class="navigation-link" href="https://vikaspogu.dev/about/">About</a>
+      </li>
+      
+      <li class="navigation-item">
+        <a class="navigation-link" href="https://vikaspogu.dev/posts/">Blog</a>
+      </li>
+      
+      
+      
+    </ul>
+  </section>
+</nav>
+<script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "https:\/\/vikaspogu.dev"
+        },
+        "articleSection" : "posts",
+        "name" : "Installing Podman remote client on macOS using vagrant",
+        "headline" : "Installing Podman remote client on macOS using vagrant",
+        "description" : "Installing Podman remote client on macOS using vagrant",
+        "inLanguage" : "en-US",
+        "author" : "Vikas Pogu",
+        "creator" : "Vikas Pogu",
+        "publisher": "Vikas Pogu",
+        "accountablePerson" : "Vikas Pogu",
+        "copyrightHolder" : "Vikas Pogu",
+        "copyrightYear" : "2020",
+        "datePublished": "2020-01-06 14:15:03 -0500 -0500",
+        "dateModified" : "2020-01-06 14:15:03 -0500 -0500",
+        "url" : "https:\/\/vikaspogu.dev\/posts\/podman-macos\/",
+        "wordCount" : "314",
+        "keywords" : [ "podman","macos","vagrant","Blog" ]
+    }
+    </script>
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Installing Podman remote client on macOS using vagrant</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2020-01-06T14:15:03-05:00'>
+                January 6, 2020
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              2 minutes read
+            </span>
+          </div>
+          
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="https://vikaspogu.dev/tags/podman/">podman</a>
+      <span class="separator">•</span>
+    <a href="https://vikaspogu.dev/tags/macos/">macos</a>
+      <span class="separator">•</span>
+    <a href="https://vikaspogu.dev/tags/vagrant/">vagrant</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        <p>Installing podman as a remote client on macOS using vagrant. Vagrant setup is not covered in this post.</p>
+<h4 id="podman-remote-client">Podman remote client</h4>
+<p>Podman is the tool to start and manage containers. On macOS we have to use a thin remote-client that connects to a real Podman process running on a Linux host.</p>
+<p>Here are the main steps how to configure the remote-client to work with a Linux host:</p>
+<ul>
+<li>Create a linux machine using Vagrant</li>
+<li>Set key based ssh as root to the Linux host</li>
+<li>Install remote-client binary with Homebrew: brew cask install podman</li>
+</ul>
+<p>Create a fedora vagrant box.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ mkdir fedora-box &amp;&amp; <span style="color:#fff;font-weight:bold">cd</span> fedora-box
+$ <span style="color:#fff;font-weight:bold">echo</span> <span style="color:#0ff;font-weight:bold">&#34;Vagrant.configure(&#34;</span>2<span style="color:#0ff;font-weight:bold">&#34;) do |config|
+</span><span style="color:#0ff;font-weight:bold">  config.vm.box = &#34;</span>generic/fedora30<span style="color:#0ff;font-weight:bold">&#34;
+</span><span style="color:#0ff;font-weight:bold">  config.vm.hostname = &#34;</span>fedora30<span style="color:#0ff;font-weight:bold">&#34;
+</span><span style="color:#0ff;font-weight:bold">  config.vm.provider &#34;</span>virtualbox<span style="color:#0ff;font-weight:bold">&#34; do |v|
+</span><span style="color:#0ff;font-weight:bold">    v.memory = 1024
+</span><span style="color:#0ff;font-weight:bold">    v.cpus = 1
+</span><span style="color:#0ff;font-weight:bold">  end
+</span><span style="color:#0ff;font-weight:bold">end&#34;</span> &gt;&gt; Vagrantfile
+$ vagrant up &amp;&amp; vagrant ssh
+</code></pre></div><p>On macOS create new <code>ssh</code> keys and copy newly generated public key.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ssh-keygen
+$ cat ~/.ssh/id_rsa.pub
+ssh-rsa AAAAB3...
+</code></pre></div><p>Add ssh keys copied earlier on linux host to <code>.ssh/authorized_keys</code>.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#fff;font-weight:bold">echo</span> <span style="color:#0ff;font-weight:bold">&#34;ssh-rsa AAAAB3...&#34;</span> &gt;&gt; /root/.ssh/authorized_keys
+</code></pre></div><p>On linux host install Podman and varlink socket. This is used by the remote-client to execute commands calling Podman’s API.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo dnf --enablerepo=updates-testing install podman libvarlink-util libvarlink
+</code></pre></div><p>Install podman on macOS using homebrew</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ brew cask install podman
+</code></pre></div><p>Once podman is installed, create a connection parameters in <code>$HOME/.config/containers/podman-remote.conf</code></p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cat <span style="color:#0ff;font-weight:bold">&lt;&lt;EOF &gt;$HOME/.config/containers/podman-remote.conf
+</span><span style="color:#0ff;font-weight:bold">[connections]
+</span><span style="color:#0ff;font-weight:bold">    [connections.host1]
+</span><span style="color:#0ff;font-weight:bold">    destination = &#34;127.0.0.1&#34;
+</span><span style="color:#0ff;font-weight:bold">    username = &#34;root&#34;
+</span><span style="color:#0ff;font-weight:bold">    default = true
+</span><span style="color:#0ff;font-weight:bold">    port = 2222
+</span><span style="color:#0ff;font-weight:bold">EOF</span>
+
+<span style="color:#007f7f"># With the remoting file configured we can run podman simply as:</span>
+$ podman images
+REPOSITORY   TAG   IMAGE ID   CREATED   SIZE
+</code></pre></div><p>Verify running a container:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">podman run --name tomcat -d docker.io/tomcat
+Trying to pull docker.io/tomcat...
+....
+d2e6db3c7....
+</code></pre></div><p>Building images:</p>
+<p><strong>Note:</strong> The podman-remote.conf file seems to be ignored by the podman build command, so we have to add <code>--remote-host 127.0.0.1 --username root --port 2222</code> to each command</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ podman --remote-host 127.0.0.1 --username root --port <span style="color:#ff0;font-weight:bold">2222</span> build --tag mytag .
+</code></pre></div>
+      </div>
+
+      <footer>
+        
+
+
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    
+    
+    
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+</body>
+
+</html>
