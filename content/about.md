@@ -5,7 +5,7 @@ slug = "about"
 
 ## About Me
 
-Hello! My name is Vikas Pogu. I’m a Senior Application Development Consultant at Red Hat.
+Hello! My name is Vikas Pogu. I’m a Senior Consultant at Red Hat.
 
 ## My Background
 
@@ -22,8 +22,9 @@ I primarily work with the following:
   * Scripting:
     * Bash
   * Automation
-    * CI/CD, Jenkins, Ansible, Bash
+    * Ansible
   * DevOps
+    * CI/CD, Jenkins, TektonCD, Flux, ArgoCD, Helm
   * Containers
     * Use docker for almost every container runtime environment
     * Openshift and Kubernetes for Orchestrators
