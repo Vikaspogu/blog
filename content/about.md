@@ -9,7 +9,7 @@ Hello! My name is Vikas Pogu. I’m a Senior Consultant at Red Hat.
 
 ## My Background
 
-I have about 8 years of experience in the IT/Techonolgy Industry.
+I have about 8 years of experience in the Software Industry.
 
 ## Stuff I Work On
 
