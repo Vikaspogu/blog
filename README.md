@@ -21,12 +21,13 @@ _Below are the tools in use in this repo_
 ### Cloning repo
 
 ```
-git clone https://github.com/Vikaspogu/blog.git
-cd blog
+git clone https://github.com/Vikaspogu/blog.git && cd blog
+hugo server -D
+rm -rf public
 git rm --cached public -fr
 git submodule add --force -b master git@github.com:vikaspogu/vikaspogu.github.io.git public
 hugo
-./deploy.sh "<commit message>"
+task push COMMIT_MSG="<commit message>"
 ```
 
 ### Update submodule
