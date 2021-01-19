@@ -250,3 +250,21 @@ You will now need to configure GitHub webHook to Tekton Event Listener to start 
     ![alt webhooks](/images/gitops-tekton-argocd/gittrigger.png)
 
 3. Once pipeline is finished. Use Openshift route to verify app
+
+## Workspace PVC
+
+To use same PVC wit multiple pipelines, a `ReadWriteMany` pvc has to be created
+
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: tekton-workspace-pvc
+  namespace: default
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 2Gi
+```
