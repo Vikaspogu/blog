@@ -4,7 +4,19 @@ date= 2019-05-14T14:36:27-05:00
 tags=["OpenShift", "Java"]
 +++
 
-This post will discuss debugging a JAVA application running inside a container. First, you must set the `JAVA_DEBUG` environment variable inside the container to `true` and configure port forwarding so that you can connect to your application from a remote debugger.
+This post will discuss debugging a JAVA application running inside a container. 
+
+When you bootstrap your JVM, you should have a way to enable JVM debug. For example Red Hat S2I images allows you to control classpath and debugging via environment variables.
+
+```bash
+# Set debug options if required
+if [ x"${JAVA_DEBUG}" != x ] && [ "${JAVA_DEBUG}" != "false" ]; then
+    java_debug_args="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=${JAVA_DEBUG_PORT:-5005}"
+fi
+```
+
+1. Setting the `JAVA_DEBUG` environment variable inside the container to `true` will add debug args to JVM startup command
+2. Configure port forwarding so that you can connect to your application from a remote debugger
 
 **Note:** If you are using `tomcat` image replace `JAVA_DEBUG` environment variable to `DEBUG`
 
@@ -58,4 +70,23 @@ When you are done debugging, unset the `JAVA_DEBUG` environment variable in your
 
 ```bash
 $ oc set env dc/MY_APP_NAME JAVA_DEBUG-
+```
+
+## Non Red Hat container images
+
+If you are using `openjdk` image to build application, update `ENTRYPOINT` as below to pass options to the JVM through `$JAVA_OPTS` environment variable
+
+```
+FROM openjdk:11.0.3-jdk-slim
+RUN mkdir /usr/myapp
+COPY target/java-kubernetes.jar /usr/myapp/app.jar
+WORKDIR /usr/myapp
+EXPOSE 8080
+ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -jar app.jar" ]
+```
+
+And then set deployments `JAVA_OPTS` environment variable
+
+```bash
+$ oc set env deployment MY_APP_NAME JAVA_OPTS=-agentlib:jdwp=transport=dt_socket,address=*:5005,server=y,suspend=n
 ```
