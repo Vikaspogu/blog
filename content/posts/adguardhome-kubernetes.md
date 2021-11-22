@@ -1,5 +1,5 @@
 +++ 
-date = 2020-08-19T08:52:26-05:00
+date = 2020-08-19
 title = "AdGuard on Kubernetes"
 description = "Deploying adguard home on kubernetes"
 slug = "" 
@@ -9,6 +9,8 @@ externalLink = ""
 series = []
 +++
 
+## AdGuard
+
 [AdGuard Home](https://github.com/AdguardTeam/AdGuardHome/) is a network-wide software for blocking ads & tracking
 
 Adguard is similar to Pi-Hole with more features. Comparison of [Adguard to Pi-Hole](https://github.com/AdguardTeam/AdGuardHome#how-does-adguard-home-compare-to-pi-hole)
@@ -17,14 +19,14 @@ The below configuration has worked for me. I am a big fan of helm charts and I'l
 
 ### Configure chart
 
-- Pull chart locally
+Pull chart locally
 
 ```bash
 helm repo add billimek https://billimek.com/billimek-charts/
 helm fetch billimek/adguard-home
 ```
 
-- Update `deployment` to use `hostNetwork`
+Update `deployment` to use `hostNetwork`
 
 ```yaml
 #templates/deployment.yaml
@@ -35,7 +37,7 @@ helm fetch billimek/adguard-home
 ...
 ```
 
-- Enable `configAsCode`, update `bind_host` to Kubernetes host IP in `values.yaml`
+Enable `configAsCode`, update `bind_host` to Kubernetes host IP in `values.yaml`
 
 ```yaml
 # values.yaml
@@ -48,7 +50,7 @@ configAsCode:
       bind_host: 192.168.0.101
 ```
 
-- Update `securityContext` to run as a `privileged` pod, drop all capabilities and add `NET_BIND_SERVICE`
+Update `securityContext` to run as a `privileged` pod, drop all capabilities and add `NET_BIND_SERVICE`
 
 ```yaml
 # values.yaml
@@ -61,7 +63,7 @@ securityContext:
       - NET_BIND_SERVICE
 ```
 
-- Add `nodeSelector` to assign pod to that node
+Add `nodeSelector` to assign pod to that node
 
 ```yaml
 # values.yaml
@@ -69,13 +71,13 @@ nodeSelector:
   kubernetes.io/hostname: node3
 ```
 
-- Deploy helm chart
+Deploy helm chart
 
 ```bash
 helm install adguard-home
 ```
 
-- Wait for AdGuard
+Wait for AdGuard pods
 
 ```bash
 kubectl get pods

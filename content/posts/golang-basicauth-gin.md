@@ -1,5 +1,5 @@
 +++ 
-date = 2019-12-16T15:29:34-05:00
+date = 2019-12-16
 title = "Basic Authentication in Go with Gin"
 description = "Basic user authentication with gin web framework in Golang"
 tags = ["golang", "basicauth","gin"]

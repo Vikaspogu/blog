@@ -1,5 +1,5 @@
 +++ 
-date = 2020-08-18T14:45:23-05:00
+date = 2020-08-18
 title = "Configure jenkins pipeline job"
 description = "Configure bitbucket pipeline job using jenkins config as code"
 slug = "" 

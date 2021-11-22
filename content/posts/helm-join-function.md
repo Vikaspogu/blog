@@ -1,5 +1,5 @@
 +++ 
-date = 2020-10-08T09:17:20-05:00
+date = 2020-10-08
 title = "Helm join strings in a named template"
 description = "How to join strings in a named template"
 slug = "" 
@@ -11,17 +11,17 @@ series = []
 
 Key benefits of Helm is that it helps reduce the amount of configuration a user needs to provide to deploy applications to Kubernetes. With Helm, we can have a single chart that can deploy all the microservices.
 
-### Problem
+## Unique ServiceAccount
 
-Create a unique service account for each microservice, so all microservices don't share same service account. In our example, we will append the release name with the service account name.
+Recently we wanted to create a unique service account for each microservice, so all microservices don't share same service account using helm template. In our example, we will append the release name with the service account name.
 
-* Using join function
+### Using join function
 
 ```yaml
 {{ (list .Values.serviceAccount.name (include "openjdk.fullname" .) | join "-") }} 
 ```
 
-* Adding fail condition
+### Adding fail condition
 
 ```yaml
 {{- if .Values.serviceAccount.name -}} 

@@ -1,5 +1,5 @@
 +++ 
-date = 2021-01-19T09:46:00-06:00
+date = 2021-01-19
 title = "Build multi arch docker image using Tekton"
 description = "multi arch builds in tekton using docker buildx"
 slug = "" 

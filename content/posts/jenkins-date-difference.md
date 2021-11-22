@@ -1,5 +1,5 @@
 +++ 
-date = 2020-07-07T09:19:15-05:00
+date = 2020-07-07
 title = "Jenkins pipeline date helper functions"
 description = "Jenkins pipeline function to get days between dates"
 slug = "" 

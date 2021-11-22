@@ -1,5 +1,5 @@
 +++ 
-date = 2021-01-19T13:42:07-06:00
+date = 2021-01-19
 title = "Tekton triggers and Interceptors"
 description = ""
 slug = "" 

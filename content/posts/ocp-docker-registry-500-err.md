@@ -1,5 +1,5 @@
 +++ 
-date = 2019-12-18T12:10:07-05:00
+date = 2019-12-18
 title = "Permission denied pushing to Openshift Registry"
 description = "Permission denied on pushing build images into openshift internal registry"
 slug = "" 

@@ -1,5 +1,5 @@
 +++ 
-date = 2020-12-05T10:22:47-06:00
+date = 2020-12-05
 title = "Setting up docker buildx on Linux"
 description = "Docker buildx setup on linux"
 slug = "" 
@@ -9,6 +9,8 @@ externalLink = ""
 series = []
 +++
 
+## Docker buildx on Linux
+
 Installation instructions for [Ubuntu](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)
 
 To execute docker commands without `sudo`. We need to add username to the `docker` group
@@ -17,7 +19,7 @@ To execute docker commands without `sudo`. We need to add username to the `docke
 - Add username to `docker` group
 - Reboot system
 
-```
+```bash
 $ who
 vikaspogu :0           2020-12-05 10:10 (:0)
 $ sudo usermod -aG docker vikaspogu
@@ -28,7 +30,7 @@ $ sudo reboot
 
 Create a new `config.json` file under `~.docker` folder and enable experimental feature
 
-```
+```bash
 $ mkdir ~/.docker
 $ vim ~/.docker/config.json
 {
@@ -38,26 +40,27 @@ $ vim ~/.docker/config.json
 
 Now you should be able to do multi arch builds
 
-```
-$ docker buildx build -t vikaspogu/test:v0.0.1 . --push --platform linux/arm64
+```bash
+docker buildx build -t vikaspogu/test:v0.0.1 . --push --platform linux/arm64
 ```
 
 If you encounter below error when trying to build image using `buildx`. You need to create new build instance
 
-```
+```bash
 failed to solve: rpc error: code = Unknown desc = failed to solve with frontend dockerfile.v0: failed to load LLB: runtime execution on platform linux/arm64 not supported
 ```
 
-### Create new build instance for arm64
+### Create build instance
 
-- List existing buildx platforms
-- Create new build instance named `arm64`
-- Inspect build instance to verify `arm64` platform exists
-- Set builder instance
-- Build multi platform image
+The following steps are used to create new build instance for arm64
 
+1. List existing buildx platforms
+2. Create new build instance named `arm64`
+3. Inspect build instance to verify `arm64` platform exists
+4. Set builder instance
+5. Build multi platform image
 
-```
+```bash
 $ docker buildx ls
 NAME/NODE DRIVER/ENDPOINT             STATUS   PLATFORMS
 default   docker                               
@@ -86,6 +89,6 @@ $ docker buildx build -t vikaspogu/test:v0.0.1 . --push --platform linux/arm64
 
 > If you encounter `/bin/sh: Invalid ELF image for this architecture` error. Run following docker image and then build
 
-```
+```bash
 $ docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 ```

@@ -1,5 +1,5 @@
 +++ 
-date = 2021-07-08T07:58:06-05:00
+date = 2021-07-08
 title = "Helm alternative for multiple If-Else conditions"
 description = "Helm function alternative for multiple if-else conditions"
 slug = "" 

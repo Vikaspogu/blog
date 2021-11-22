@@ -1,5 +1,5 @@
 +++ 
-date = 2020-12-01T12:07:46-06:00
+date = 2020-12-01
 title = "Boot from USB through grub menu"
 description = "Boot OS from grub menu"
 slug = "" 

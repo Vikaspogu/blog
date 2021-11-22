@@ -1,5 +1,5 @@
 +++ 
-date = 2020-01-06T14:15:03-05:00
+date = 2020-01-06
 title = "Installing Podman remote client on macOS using vagrant"
 description = "Installing Podman remote client on macOS using vagrant"
 slug = "" 
@@ -11,7 +11,7 @@ series = []
 
 Installing podman as a remote client on macOS using vagrant. Vagrant setup is not covered in this post.
 
-#### Podman remote client
+## Podman remote client
 
 Podman is the tool to start and manage containers. On macOS we have to use a thin remote-client that connects to a real Podman process running on a Linux host.
 
@@ -24,8 +24,8 @@ Here are the main steps how to configure the remote-client to work with a Linux 
 Create a fedora vagrant box.
 
 ```bash
-$ mkdir fedora-box && cd fedora-box
-$ echo "Vagrant.configure("2") do |config|
+mkdir fedora-box && cd fedora-box
+echo "Vagrant.configure("2") do |config|
   config.vm.box = "generic/fedora30"
   config.vm.hostname = "fedora30"
   config.vm.provider "virtualbox" do |v|
@@ -33,14 +33,14 @@ $ echo "Vagrant.configure("2") do |config|
     v.cpus = 1
   end
 end" >> Vagrantfile
-$ vagrant up && vagrant ssh
+vagrant up && vagrant ssh
 ```
 
 On macOS create new `ssh` keys and copy newly generated public key.
 
 ```bash
-$ ssh-keygen
-$ cat ~/.ssh/id_rsa.pub
+ssh-keygen
+cat ~/.ssh/id_rsa.pub
 ssh-rsa AAAAB3...
 ```
 
@@ -53,19 +53,19 @@ echo "ssh-rsa AAAAB3..." >> /root/.ssh/authorized_keys
 On linux host install Podman and varlink socket. This is used by the remote-client to execute commands calling Podman’s API.
 
 ```bash
-$ sudo dnf --enablerepo=updates-testing install podman libvarlink-util libvarlink
+sudo dnf --enablerepo=updates-testing install podman libvarlink-util libvarlink
 ```
 
 Install podman on macOS using homebrew
 
 ```bash
-$ brew cask install podman
+brew cask install podman
 ```
 
 Once podman is installed, create a connection parameters in `$HOME/.config/containers/podman-remote.conf`
 
 ```bash
-$ cat <<EOF >$HOME/.config/containers/podman-remote.conf
+cat <<EOF >$HOME/.config/containers/podman-remote.conf
 [connections]
     [connections.host1]
     destination = "127.0.0.1"
@@ -75,7 +75,7 @@ $ cat <<EOF >$HOME/.config/containers/podman-remote.conf
 EOF
 
 # With the remoting file configured we can run podman simply as:
-$ podman images
+podman images
 REPOSITORY   TAG   IMAGE ID   CREATED   SIZE
 ```
 
@@ -93,5 +93,5 @@ Building images:
 **Note:** The podman-remote.conf file seems to be ignored by the podman build command, so we have to add `--remote-host 127.0.0.1 --username root --port 2222` to each command
 
 ```bash
-$ podman --remote-host 127.0.0.1 --username root --port 2222 build --tag mytag .
+podman --remote-host 127.0.0.1 --username root --port 2222 build --tag mytag .
 ```

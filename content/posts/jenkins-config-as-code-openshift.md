@@ -1,5 +1,5 @@
 +++ 
-date = 2020-07-06T13:23:05-05:00
+date = 2020-07-06
 title = "Openshift Jenkins configuration via JCasC plugin"
 description = "Configuring openshift jenkins via jenkins configuration as code plugin"
 slug = "" 
@@ -15,9 +15,11 @@ Jenkins can be easily deployed using Helm, Openshift using jenkins catalog
 
 As everyone has experienced setting up Jenkins is a complex process, as both Jenkins and its plugins require some tuning and configuration, with dozens of parameters to set within the web UI manage section
 
+## Jenkins Config as code
+
 [Configuration as code](https://github.com/jenkinsci/configuration-as-code-plugin) gives you an _opinionated_ way to configure jenkins based on `yaml` files
 
-This post will cover jenkins configuration code on Openshift
+In this post will cover jenkins configuration code on Openshift
 
 - Mount jenkins config as a configmap and load configuration
 - Updated configuration file to automate creation of
@@ -25,6 +27,8 @@ This post will cover jenkins configuration code on Openshift
   - script approval signatures
   - shared libraries
   - multibranch pipeline seed jobs
+
+### Install Plugin
 
 First, lets install `configuration-as-code` plugins in jenkins. In Openshift you can easily install plugins by adding `INSTALL_PLUGINS` environment variable to deploymentconfig
 
@@ -34,6 +38,8 @@ env:
   - name: INSTALL_PLUGINS
     value: "configuration-as-code:1.35,configuration-as-code-support:1.18,configuration-as-code-groovy:1.1
 ```
+
+### Create ConfigMap
 
 Create a configmap from jenkins-config yaml and mount it as a volume at `/var/jenkins_config` location. Configuration can be now loaded from `/var/jenkins_config/jenkins-config.yaml` path
 
@@ -54,6 +60,8 @@ volumes:
       name: jenkins-config
 ```
 
+### Mount Secret
+
 Since we can have jenkins config in git repo we don't want to hardcode the secrets as it is a security risk. The easiest way to automate credential in jenkins configuration is to create a openshift secret, add that secret as a environment variable to deployment config
 
 ```bash
@@ -61,7 +69,7 @@ oc create secret generic github-ssh --from-file=ssh-privatekey=github-ssh/
 oc create secret generic jenkins-credentials --from-literal=OCP_SA="qwerty26sds99ie9kcsd"  --from-literal=GITHUB_PASSWORD="dummypassword"
 ```
 
-Add secrets to container
+Mount secrets into the container
 
 ```yaml
 ....
@@ -113,7 +121,9 @@ credentials:
               username: "github-user"
 ```
 
-- Security script approval
+### Example Configs
+
+#### Security script approval
 
 ```yaml
 security:
@@ -122,7 +132,7 @@ security:
       - "method java.text.DateFormat parse java.lang.String"
 ```
 
-- Global shared library
+#### Global shared library
 
 ```yaml
 unclassified:
@@ -139,7 +149,9 @@ unclassified:
                 remote: "git@github.com:Vikaspogu/jenkins-shared.git"
 ```
 
-- Multibranch seed job with periodic polling, traits for branch discovery
+#### Multibranch job
+
+Multibranch seed job with periodic polling, traits for branch discovery
 
 ```yaml
 jobs:

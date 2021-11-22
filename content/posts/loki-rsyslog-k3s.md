@@ -1,5 +1,5 @@
 +++ 
-date = 2020-11-04T10:34:30-06:00
+date = 2020-11-04
 title = "Syslog with Loki Promtail"
 description = "Setup rsyslog in k3s with promtail chart"
 slug = "" 

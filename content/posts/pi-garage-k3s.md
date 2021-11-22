@@ -1,5 +1,5 @@
 +++ 
-date = 2020-07-05T16:26:22-05:00
+date = 2020-07-05
 title = "Raspberry Pi garage door opener using nodejs on k3s cluster"
 description = "Raspberry Pi Garage door opener on kubernetes cluster using nodejs"
 slug = "" 
@@ -8,6 +8,8 @@ categories = []
 externalLink = ""
 series = []
 +++
+
+## Pi Garage Door Opener
 
 There are many articles out there which demonstartes how to use a raspberry pi as a DIY garage door opener project. Few are outdated and not deployed using containers images. I found couple good solutions on google but i wasn't able to run them on kubernetes cluster either due to older packages or no enough information. I decided to build my own solution from different sources of information i found
 
@@ -273,7 +275,7 @@ app.get("/", function (req, res) {
 });
 ```
 
-### Twilio Integration
+### Twilio Integration (Optional)
 
 Install `dotenv`, `twilio` and `node-schedule` packages
 
