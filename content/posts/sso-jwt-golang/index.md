@@ -26,7 +26,7 @@ axios
 Now Go-backend setup; let's install the `jwt-go`, `gin-cors` libraries:
 
 ```bash
-$ go get -u github.com/dgrijalva/jwt-go
+go get -u github.com/dgrijalva/jwt-go
 $ go get -u github.com/gin-contrib/cors
 ```
 
@@ -36,7 +36,7 @@ Add cors config to the router to allow `authorization` header
 router.Use(cors.New(cors.Config{
   AllowOrigins:     []string{"*"},
   AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD"},
-  AllowHeaders:     []string{"Origin", "ontent-type", "accept", "authorization"},
+  AllowHeaders:     []string{"Origin", "content-type", "accept", "authorization"},
   ExposeHeaders:    []string{"Content-Length"},
   AllowCredentials: true,
   MaxAge:           12 * time.Hour,

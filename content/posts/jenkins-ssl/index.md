@@ -1,9 +1,9 @@
 +++ 
 date = 2020-02-10
-title = "Jenkins Openshift OAuth SSL"
-description = "Add SSL certificates for Openshift Jenkins Authentication using Openshift OAuth plugin"
-slug = "openshift-jenkins-oauth-ssl" 
-tags = ["openshift", "jenkins", "ssl"]
+title = "Jenkins OpenShift OAuth SSL"
+description = "Add SSL certificates for OpenShift Jenkins Authentication using OpenShift OAuth plugin"
+slug = "OpenShift-jenkins-oauth-ssl" 
+tags = ["OpenShift", "jenkins", "ssl"]
 categories = []
 externalLink = ""
 series = []
@@ -13,7 +13,7 @@ series = []
 
 ### Problem
 
-Recently, I encountered an issue while authenticating to Openshift Jenkins using Openshift OAuth plugin where trusted certificate provided by CA that aren't included in the default JRE TrustStore.
+Recently, I encountered an issue while authenticating to OpenShift Jenkins using OpenShift OAuth plugin where trusted certificate provided by CA that aren't included in the default JRE TrustStore.
 
 ![Jenkins Error](login-error.png)
 
@@ -102,11 +102,11 @@ spec:
 Final deploymentconfig should look like this:
 
 ```yaml
-apiVersion: apps.openshift.io/v1
+apiVersion: apps.OpenShift.io/v1
 kind: DeploymentConfig
 metadata:
   annotations:
-    template.alpha.openshift.io/wait-for-ready: "true"
+    template.alpha.OpenShift.io/wait-for-ready: "true"
   creationTimestamp: "2020-02-10T17:49:20Z"
   generation: 10
   labels:
@@ -131,9 +131,9 @@ spec:
     spec:
       containers:
       - env:
-        - name: OPENSHIFT_ENABLE_OAUTH
+        - name: OpenShift_ENABLE_OAUTH
           value: "true"
-        - name: OPENSHIFT_ENABLE_REDIRECT_PROMPT
+        - name: OpenShift_ENABLE_REDIRECT_PROMPT
           value: "true"
         - name: DISABLE_ADMINISTRATIVE_MONITORS
           value: "false"
@@ -157,7 +157,7 @@ spec:
         - name: JAVA_TOOL_OPTIONS
           value: -XX:+UnlockExperimentalVMOptions -Dsun.zip.disableMemoryMapping=true
             -Djavax.net.ssl.trustStore=/var/jenkins_keystore/custom-keystore.jks -Djavax.net.ssl.trustStorePassword=$(JENKINS_HTTPS_KEYSTORE_PASSWORD)
-        image: image-registry.openshift-image-registry.svc:5000/openshift/jenkins@sha256:dd5f1c5d14a8a72aa4ca51224c26a661c2e4f19ea3e5f9b7d8343f4952de5f0d
+        image: image-registry.OpenShift-image-registry.svc:5000/OpenShift/jenkins@sha256:dd5f1c5d14a8a72aa4ca51224c26a661c2e4f19ea3e5f9b7d8343f4952de5f0d
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 2

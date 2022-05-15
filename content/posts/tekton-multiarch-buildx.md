@@ -10,6 +10,7 @@ series = []
 +++
 
 There are three different strategies to build multi-platform images that are supported by Buildx and Dockerfiles:
+
 - Using the QEMU emulation support in the kernel
 - Building on multiple native nodes using the same builder instance
 - Using a stage in Dockerfile to cross-compile to different architectures
@@ -22,7 +23,7 @@ docker buildx build --platform linux/amd64,linux/arm64 .
 
 ## Setup
 
-This differs from platform to platform but one thing we all have in common is pipelines, so I’ve constructed a basic buildx setup for TektonCD task. 
+This differs from platform to platform but one thing we all have in common is pipelines, so I’ve constructed a basic buildx setup for TektonCD task.
 
 ## Pipeline
 

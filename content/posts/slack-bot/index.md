@@ -59,7 +59,7 @@ Create a `.env` file and add `SLACK_SIGNING_SECRET`, `SLACK_BOT_TOKEN`
 
 ```env
 SLACK_BOT_TOKEN= #token goes here
-SLACK_SIGNING_SECRET= #sigining secret goes here
+SLACK_SIGNING_SECRET= #signing secret goes here
 ```
 
 In your index.js file, require the Bolt package, and initialize an app with credentials
@@ -131,7 +131,7 @@ bot.event("app_mention", async ({ context, event }) => {
 
 Okay, let's try the app!
 
-Add app to a channel and mention the app. You should see a reponse from bot!
+Add app to a channel and mention the app. You should see a response from bot!
 
 ### Troubleshooting
 

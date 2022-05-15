@@ -9,10 +9,10 @@ In this post, I will show you how to secure a React app using RedHat SSO (upstre
 
 ![sso_setup](sso-openid.png)
 
-Install the offical keycloak js adapter
+Install the official keycloak js adapter
 
 ```bash
-$ npm i keycloak-js --save
+npm i keycloak-js --save
 ```
 
 Setup the client with the host and port; in my case it's `localhost:9000`
@@ -38,7 +38,7 @@ By default, to authenticate you need to call the login function. However, there 
 ```javascript
 componentDidMount() {
     let keycloak = Keycloak(initOptions);
-    keycloak.init({ onLoad: initOptions.onLoad }).succes(authenticated => {});
+    keycloak.init({ onLoad: initOptions.onLoad }).success(authenticated => {});
 }
 ```
 

@@ -41,11 +41,11 @@ func basicAuth(c *gin.Context) {
 Run application
 
 ```bash
-$ go run main.go
+go run main.go
 ```
 
 Verify if authentication works
 
 ```bash
-$ curl -X GET "http://testuser:testpass@localhost:8080/getAllUsers"
+curl -X GET "http://testuser:testpass@localhost:8080/getAllUsers"
 ```

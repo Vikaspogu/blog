@@ -130,7 +130,7 @@ console.log("Running on http://localhost:" + PORT);
 - Install necessary python package for `rpio`
 - Build docker image
 - Publish docker image to your repo in [docker hub](https://hub.docker.com/)
-- Creata new kubernetes deployment and service
+- Create new kubernetes deployment and service
 
 ```Dockerfile
 # Fetch node_modules for backend, nothing here except

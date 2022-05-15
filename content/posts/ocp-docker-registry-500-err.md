@@ -1,9 +1,9 @@
 +++ 
 date = 2019-12-18
-title = "Permission denied pushing to Openshift Registry"
-description = "Permission denied on pushing build images into openshift internal registry"
+title = "Permission denied pushing to OpenShift Registry"
+description = "Permission denied on pushing build images into OpenShift internal registry"
 slug = "" 
-tags = ["Openshift"]
+tags = ["OpenShift"]
 categories = []
 externalLink = ""
 series = []

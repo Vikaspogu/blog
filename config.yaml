@@ -2,7 +2,7 @@ baseurl: "https://vikaspogu.dev"
 languageCode: en-us
 theme: hugo-theme-stack
 paginate: 8
-title: Vikas Pogu's Blog
+title: My approach...
 
 # Change it to your Disqus shortname before using
 disqusShortname: hugo-theme-stack
@@ -19,198 +19,198 @@ DefaultContentLanguage: en
 hasCJKLanguage: false
 
 permalinks:
-    post: /p/:slug/
-    page: /:slug/
+  post: /p/:slug/
+  page: /:slug/
 
 params:
-    mainSections:
-        - posts
-    featuredImageField: image
-    rssFullContent: true
-    favicon:
+  mainSections:
+    - posts
+  featuredImageField: image
+  rssFullContent: true
+  favicon:
 
-    footer:
-        since: 2020
-        customText:
+  footer:
+    since: 2020
+    customText:
 
-    dateFormat:
-        published: Jan 02, 2006
-        lastUpdated: Jan 02, 2006 15:04 MST
+  dateFormat:
+    published: Jan 02, 2006
+    lastUpdated: Jan 02, 2006 15:04 MST
 
-    sidebar:
-        emoji: 🍥
-        subtitle: OpenShift, Kubernetes, Docker and more
-        avatar:
-            enabled: true
-            local: true
-            src: img/myAvatar.png
+  sidebar:
+    emoji: 🍥
+    subtitle: OpenShift, Kubernetes, Docker and more
+    avatar:
+      enabled: true
+      local: true
+      src: img/myAvatar.png
 
-    article:
-        math: false
-        toc: true
-        readingTime: true
-        license:
-            enabled: false
-            default: Licensed under CC BY-NC-SA 4.0
+  article:
+    math: false
+    toc: true
+    readingTime: true
+    license:
+      enabled: false
+      default: Licensed under CC BY-NC-SA 4.0
 
-    comments:
-        enabled: false
-        provider: disqus
+  comments:
+    enabled: false
+    provider: disqus
 
-        disqusjs:
-            shortname:
-            apiUrl:
-            apiKey:
-            admin:
-            adminLabel:
+    disqusjs:
+      shortname:
+      apiUrl:
+      apiKey:
+      admin:
+      adminLabel:
 
-        utterances:
-            repo:
-            issueTerm: pathname
-            label:
+    utterances:
+      repo:
+      issueTerm: pathname
+      label:
 
-        remark42:
-            host:
-            site:
-            locale:
+    remark42:
+      host:
+      site:
+      locale:
 
-        vssue:
-            platform:
-            owner:
-            repo:
-            clientId:
-            clientSecret:
-            autoCreateIssue: false
+    vssue:
+      platform:
+      owner:
+      repo:
+      clientId:
+      clientSecret:
+      autoCreateIssue: false
 
-        # Waline client configuration see: https://waline.js.org/en/reference/client.html
-        waline:
-            serverURL:
-            lang:
-            visitor:
-            avatar:
-            emoji:
-                - https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo
-            requiredMeta:
-                - name
-                - email
-                - url
-            placeholder:
-            locale:
-                admin: Admin
+    # Waline client configuration see: https://waline.js.org/en/reference/client.html
+    waline:
+      serverURL:
+      lang:
+      visitor:
+      avatar:
+      emoji:
+        - https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo
+      requiredMeta:
+        - name
+        - email
+        - url
+      placeholder:
+      locale:
+        admin: Admin
 
-        twikoo:
-            envId:
-            region:
-            path:
-            lang:
+    twikoo:
+      envId:
+      region:
+      path:
+      lang:
 
-        giscus:
-            repo:
-            repoID:
-            category:
-            categoryID:
-            mapping:
-            lightTheme:
-            darkTheme:
-            reactionsEnabled: 1
-            emitMetadata: 0
+    giscus:
+      repo:
+      repoID:
+      category:
+      categoryID:
+      mapping:
+      lightTheme:
+      darkTheme:
+      reactionsEnabled: 1
+      emitMetadata: 0
 
-        gitalk:
-            owner: 
-            admin:  
-            repo: 
-            clientID: 
-            clientSecret: 
-        
-        cusdis:
-            host: 
-            id: 
+    gitalk:
+      owner:
+      admin:
+      repo:
+      clientID:
+      clientSecret:
 
-    widgets:
-        enabled:
-            - search
-            - archives
-            - tag-cloud
+    cusdis:
+      host:
+      id:
 
-        archives:
-            limit: 5
+  widgets:
+    enabled:
+      - search
+      - archives
+      - tag-cloud
 
-        tagCloud:
-            limit: 10
+    archives:
+      limit: 5
 
+    tagCloud:
+      limit: 10
+
+  opengraph:
+    twitter:
+      # Your Twitter username
+      site:
+
+      # Available values: summary, summary_large_image
+      card: summary_large_image
+
+  defaultImage:
     opengraph:
-        twitter:
-            # Your Twitter username
-            site:
+      enabled: false
+      local: false
+      src:
 
-            # Available values: summary, summary_large_image
-            card: summary_large_image
+  colorScheme:
+    # Display toggle
+    toggle: true
 
-    defaultImage:
-        opengraph:
-            enabled: false
-            local: false
-            src:
+    # Available values: auto, light, dark
+    default: auto
 
-    colorScheme:
-        # Display toggle
-        toggle: true
-
-        # Available values: auto, light, dark
-        default: auto
-
-    imageProcessing:
-        cover:
-            enabled: true
-        content:
-            enabled: true
+  imageProcessing:
+    cover:
+      enabled: true
+    content:
+      enabled: true
 
 ### Custom menu
 ### See https://docs.stack.jimmycai.com/configuration/custom-menu.html
 ### To remove about, archive and search page menu item, remove `menu` field from their FrontMatter
 menu:
-    main:
-        - identifier: home
-          name: Home
-          url: /
-          weight: -100
-          params:
-              ### For demonstration purpose, the home link will be open in a new tab
-              newTab: true
-              icon: home
-    
-    social:
-        - identifier: github
-          name: GitHub
-          url: https://github.com/vikaspogu
-          params:
-            icon: brand-github
-            
-        - identifier: linkedin
-          name: Linkedin
-          url: https://www.linkedin.com/in/vikaspogu/
-          params:
-            icon: brand-linkedin
+  main:
+    - identifier: home
+      name: Home
+      url: /
+      weight: -100
+      params:
+        ### For demonstration purpose, the home link will be open in a new tab
+        newTab: true
+        icon: home
+
+  social:
+    - identifier: github
+      name: GitHub
+      url: https://github.com/vikaspogu
+      params:
+        icon: brand-github
+
+    - identifier: linkedin
+      name: Linkedin
+      url: https://www.linkedin.com/in/vikaspogu/
+      params:
+        icon: brand-linkedin
 
 related:
-    includeNewer: true
-    threshold: 60
-    toLower: false
-    indices:
-        - name: tags
-          weight: 100
+  includeNewer: true
+  threshold: 60
+  toLower: false
+  indices:
+    - name: tags
+      weight: 100
 
-        - name: categories
-          weight: 200
+    - name: categories
+      weight: 200
 
 markup:
-    goldmark:
-        renderer:
-            ## Set to true if you have HTML content inside Markdown
-            unsafe: false
-    tableOfContents:
-        endLevel: 4
-        ordered: true
-        startLevel: 2
-    highlight:
-        noClasses: false
+  goldmark:
+    renderer:
+      ## Set to true if you have HTML content inside Markdown
+      unsafe: false
+  tableOfContents:
+    endLevel: 4
+    ordered: true
+    startLevel: 2
+  highlight:
+    noClasses: false

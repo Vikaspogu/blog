@@ -1,9 +1,9 @@
 +++ 
 date = 2020-07-06
-title = "Openshift Jenkins configuration via JCasC plugin"
-description = "Configuring openshift jenkins via jenkins configuration as code plugin"
+title = "OpenShift Jenkins configuration via JCasC plugin"
+description = "Configuring OpenShift jenkins via jenkins configuration as code plugin"
 slug = "" 
-tags = ["jenkins","openshift","jcasc"]
+tags = ["jenkins","OpenShift","jcasc"]
 categories = []
 externalLink = ""
 series = []
@@ -11,7 +11,7 @@ series = []
 
 Deploying Jenkins on Kubernetes provides important benefits over a standard VM-based deployment. For example, gaining the ability to have project-specific Jenkins slaves (agents) on demand, instead of having a pool of VMs idle waiting for a job.
 
-Jenkins can be easily deployed using Helm, Openshift using jenkins catalog
+Jenkins can be easily deployed using Helm, OpenShift using jenkins catalog
 
 As everyone has experienced setting up Jenkins is a complex process, as both Jenkins and its plugins require some tuning and configuration, with dozens of parameters to set within the web UI manage section
 
@@ -19,7 +19,7 @@ As everyone has experienced setting up Jenkins is a complex process, as both Jen
 
 [Configuration as code](https://github.com/jenkinsci/configuration-as-code-plugin) gives you an _opinionated_ way to configure jenkins based on `yaml` files
 
-In this post will cover jenkins configuration code on Openshift
+In this post will cover jenkins configuration code on OpenShift
 
 - Mount jenkins config as a configmap and load configuration
 - Updated configuration file to automate creation of
@@ -30,7 +30,7 @@ In this post will cover jenkins configuration code on Openshift
 
 ### Install Plugin
 
-First, lets install `configuration-as-code` plugins in jenkins. In Openshift you can easily install plugins by adding `INSTALL_PLUGINS` environment variable to deploymentconfig
+First, lets install `configuration-as-code` plugins in jenkins. In OpenShift you can easily install plugins by adding `INSTALL_PLUGINS` environment variable to deploymentconfig
 
 ```yaml
 ....
@@ -62,7 +62,7 @@ volumes:
 
 ### Mount Secret
 
-Since we can have jenkins config in git repo we don't want to hardcode the secrets as it is a security risk. The easiest way to automate credential in jenkins configuration is to create a openshift secret, add that secret as a environment variable to deployment config
+Since we can have jenkins config in git repo we don't want to hardcode the secrets as it is a security risk. The easiest way to automate credential in jenkins configuration is to create a OpenShift secret, add that secret as a environment variable to deployment config
 
 ```bash
 oc create secret generic github-ssh --from-file=ssh-privatekey=github-ssh/
@@ -109,7 +109,7 @@ credentials:
                   privateKey: ${GITHUB_SSH}
               scope: GLOBAL
               username: "github-user"
-          - openShiftToken:
+          - OpenShiftToken:
               id: "jenkins-ocp-token"
               scope: GLOBAL
               secret: ${OCP_SA}
@@ -146,7 +146,7 @@ unclassified:
               git:
                 credentialsId: "github-ssh"
                 id: "shared-pipeline"
-                remote: "git@github.com:Vikaspogu/jenkins-shared.git"
+                remote: "git@github.com:vikaspogu/jenkins-shared.git"
 ```
 
 #### Multibranch job

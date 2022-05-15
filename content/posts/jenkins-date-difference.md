@@ -9,13 +9,13 @@ externalLink = ""
 series = []
 +++
 
-This is how you can calucate days between two dates in Jenkins pipeline. `@NonCPS` annotation is useful when you have methods which use objects that aren't `serializable`
+This is how you can calculate days between two dates in Jenkins pipeline. `@NonCPS` annotation is useful when you have methods which use objects that aren't `serializable`
 
 ```groovy
 import java.text.SimpleDateFormat
 
 stages {
-    stage("Calucate days") {
+    stage("Calculate days") {
       steps {
         script {
           def daysRemaining = getRemainingDays("2020-06-25")

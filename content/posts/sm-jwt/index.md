@@ -1,7 +1,7 @@
 +++ 
 date = 2020-11-12
-title = "End User Auth and Authz with Openshift Service Mesh and Keycloak"
-description = "End User Authentication and Authorization with Openshift Service Mesh and Keycloak"
+title = "End User Auth and Authz with OpenShift Service Mesh and Keycloak"
+description = "End User Authentication and Authorization with OpenShift Service Mesh and Keycloak"
 slug = "servicemesh-jwt-auth-authz-keycloack" 
 tags = ["istio", "service mesh", "keycloak", "jwt", "authentication", "authorization"]
 categories = []
@@ -9,11 +9,11 @@ externalLink = ""
 series = []
 +++
 
-In this article, I will share the setup for enabling Authentication and Authorization in Openshift Service Mesh with Keycloak
+In this article, I will share the setup for enabling Authentication and Authorization in OpenShift Service Mesh with Keycloak
 
-## Installing Openshift Service Mesh
+## Installing OpenShift Service Mesh
 
-Follow the [Installing Red Hat OpenShift Service Mesh](https://docs.openshift.com/container-platform/4.6/service_mesh/v1x/installing-ossm.html) guide for setup
+Follow the [Installing Red Hat OpenShift Service Mesh](https://docs.OpenShift.com/container-platform/4.6/service_mesh/v1x/installing-ossm.html) guide for setup
 
 Enable following configuration in your `ServiceMeshControlPlane` resource
 
@@ -29,7 +29,7 @@ spec:
     controlPlane:
       mtls: true
   gateways:
-    openshiftRoute:
+    OpenShiftRoute:
       enabled: true
 ```
 

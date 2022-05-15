@@ -13,7 +13,7 @@ series = []
 
 ## Pi-Hole in Kubernetes
 
-We are going to deploy modified version of this [pihole helm chart](https://github.com/ChrisPhillips-cminion/pihole-helm) 
+We are going to deploy modified version of this [pihole helm chart](https://github.com/ChrisPhillips-cminion/pihole-helm)
 
 Let's start by cloning repo
 
@@ -99,7 +99,7 @@ pi-hole-pihole-5bb56b5bd-b2wl7   1/1     Running   0          61m
 
 ### DNS Server
 
-Configure `Verzion FiOS` router to use Pi Hole as the DNS server:
+Configure `Verizon FiOS` router to use Pi Hole as the DNS server:
 
 - On the top navigation menu
 

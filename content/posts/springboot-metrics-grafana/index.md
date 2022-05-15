@@ -68,12 +68,12 @@ MeterRegistryCustomizer<MeterRegistry> metricsCommonTags() {
 }
 ```
 
-Create a new project; deploy the application and prometheus in Openshift.
+Create a new project; deploy the application and prometheus in OpenShift.
 
 ```bash
 $ oc project myproject
-$ oc new-app redhat-openjdk18-openshift~<git_repo_URL> -n sample-app
-$ oc new-app prom/prometheus -n prometheus
+$ oc new-app redhat-openjdk18-OpenShift~<git_repo_URL> -n sample-app
+oc new-app prom/prometheus -n prometheus
 ```
 
 In order to keep the prometheus image and configuration decoupled, use the `ConfigMap` object to inject our the Prometheus deployment with the appropriate configuration data
@@ -116,7 +116,7 @@ Add new volume and volume mount
 Use an OpenShift Template to run Grafana with persistent storage.
 
 ```bash
-$ oc process -f https://gist.githubusercontent.com/Vikaspogu/4a67495acf8dba5dc94837e031129fde/raw/e88f42515c6ed101c9554c7c2425794e80e10a64/openshift-grafana.yaml | oc apply -f-
+$ oc process -f https://gist.githubusercontent.com/Vikaspogu/4a67495acf8dba5dc94837e031129fde/raw/e88f42515c6ed101c9554c7c2425794e80e10a64/OpenShift-grafana.yaml | oc apply -f-
 ```
 
 Once deployed, log-in to Grafana using the Route provided in the Template and using default account admin with password admin (it maybe a good idea to change the password after this).

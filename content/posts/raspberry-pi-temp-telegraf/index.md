@@ -77,6 +77,6 @@ Once influxdb and telegraf pods are in ready state, add influxdb datasource in g
 
 ### Grafana
 
-For Grafana visualisation, import [this](https://gist.github.com/Vikaspogu/b2d2f04e3102d65deb1ce6913f126e57) dashboard.
+For Grafana visualization, import [this](https://gist.github.com/Vikaspogu/b2d2f04e3102d65deb1ce6913f126e57) dashboard.
 
 ![Traefik UI](pi-temp-grafana.png)

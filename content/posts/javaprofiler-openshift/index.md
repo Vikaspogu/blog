@@ -2,14 +2,14 @@
 title="Profiling a application in OpenShift container"
 date="2019-05-14"
 tags=["OpenShift", "Java", "YourKit-JavaProfiler"]
-slug="javaprofiler-openshift"
+slug="javaprofiler-OpenShift"
 +++
 
 Sometimes writing code that just runs is not enough. We might want to know what goes on internally such as how memory is allocated, consequences of using one coding approach over another, implications of concurrent executions, areas to improve performance, etc. We can use profilers for this.
 
 In this post I'll discuss how to use [YourKit-JavaProfiler](https://www.yourkit.com/) inside a container.
 
-Since my sample application is built using OpenShift S2I process and pushed into openshift internal registry, I'll have to pull the image locally.
+Since my sample application is built using OpenShift S2I process and pushed into OpenShift internal registry, I'll have to pull the image locally.
 
 ```bash
 docker login -p $(oc whoami --show-token) -u admin docker-registry.example.com
@@ -41,7 +41,7 @@ Load the agent into the JVM by adding a `JAVA_TOOL_OPTIONS` environment variable
 
 ```bash
 $ oc set env dc/MY_APP_NAME JAVA_TOOL_OPTIONS=-agentpath:/usr/local/YourKit-JavaProfiler-2019.01/bin/linux-x86-64/libyjpagent.so=port=10001,listen=all
-$ oc rollout latest dc/MY_APP_NAME
+oc rollout latest dc/MY_APP_NAME
 ```
 
 Once deployment is finished, do a oc port forwarding from your local machine to the application pod.

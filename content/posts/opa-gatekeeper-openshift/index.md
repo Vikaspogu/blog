@@ -1,9 +1,9 @@
 +++ 
 date = 2020-08-18
-title = "OPA Gatekeeper on Openshift"
-description = "openshift policy management with opa gatekeeper"
-slug = "opa-gatekeeper-openshift" 
-tags = ["openshift", "opa", "gatekeeper"]
+title = "OPA Gatekeeper on OpenShift"
+description = "OpenShift policy management with opa gatekeeper"
+slug = "opa-gatekeeper-OpenShift" 
+tags = ["OpenShift", "opa", "gatekeeper"]
 categories = []
 externalLink = ""
 series = []
@@ -13,7 +13,7 @@ Every organization has policies. Some are essential to meet governance and legal
 
 OPA lets you specific policy as code using OPA policy language [Rego](https://www.openpolicyagent.org/docs/latest/policy-language/)
 
-In this post, I'll share my experience deploying OPA [Gatekeeper](https://github.com/open-policy-agent/gatekeeper) on Openshift and creating few policies for demonstartions. This post is not an introduction to OPA, [refer to](https://www.magalix.com/blog/introducing-policy-as-code-the-open-policy-agent-opa) for intro
+In this post, I'll share my experience deploying OPA [Gatekeeper](https://github.com/open-policy-agent/gatekeeper) on OpenShift and creating few policies for demonstartions. This post is not an introduction to OPA, [refer to](https://www.magalix.com/blog/introducing-policy-as-code-the-open-policy-agent-opa) for intro
 
 Gatekeeper introduces native kubernetes CRDs for instantiating policies
 
@@ -27,7 +27,7 @@ Let's start by adding the `admission.gatekeeper.sh/ignore` label to non-user nam
 oc login --token=l4xjpLh0e722B2_i7iWAbPsUNOb6vPDaAXnqhH563oU --server=https://api.cluster-1d4d.sandbox702.opentlc.com:6443
 
 for namespace in $(oc get namespaces -o jsonpath='{.items[*].metadata.name}' | xargs); do
-  if [[ "${namespace}" =~ openshift.* ]] || [[ "${namespace}" =~ kube.* ]] || [[ "${namespace}" =~ default ]]; then
+  if [[ "${namespace}" =~ OpenShift.* ]] || [[ "${namespace}" =~ kube.* ]] || [[ "${namespace}" =~ default ]]; then
     oc patch namespace/${namespace} -p='{"metadata":{"labels":{"admission.gatekeeper.sh/ignore":"true"}}}'
   else
     # Probably a users project, so leave it alone
@@ -105,7 +105,7 @@ metadata:
 spec:
   match:
     kinds:
-      - apiGroups: ["route.openshift.io"]
+      - apiGroups: ["route.OpenShift.io"]
         kinds: ["Route"]
 ```
 
@@ -127,7 +127,7 @@ spec:
       - group: ""
         version: "v1"
         kind: "Namespace"
-      - group: "route.openshift.io"
+      - group: "route.OpenShift.io"
         version: "v1"
         kind: "Route"
 ```
@@ -156,10 +156,10 @@ spec:
 
         violation[{"msg": msg}] {
           input.review.kind.kind == "Route"
-          re_match("^(route.openshift.io)$", input.review.kind.group)
+          re_match("^(route.OpenShift.io)$", input.review.kind.group)
           host := input.review.object.spec.host
           other := data.inventory.namespace[ns][otherapiversion]["Route"][name]
-          re_match("^(route.openshift.io)/.+$", otherapiversion)
+          re_match("^(route.OpenShift.io)/.+$", otherapiversion)
           other.spec.host == host
           not identical(other, input.review)
           msg := sprintf("Route host conflicts with an existing route <%v>", [host])
@@ -174,7 +174,7 @@ metadata:
 spec:
   match:
     kinds:
-      - apiGroups: ["route.openshift.io"]
+      - apiGroups: ["route.OpenShift.io"]
         kinds: ["Route"]
 ```
 

@@ -9,12 +9,12 @@ externalLink = ""
 series = []
 +++
 
-In this post, I’ll share my home setup for [Rancher's k3s](https://k3s.io/) kubernetes cluster.
+In this post, I’ll share my home lab setup for [Rancher's k3s](https://k3s.io/) kubernetes cluster.
 
-Requirements:
+Use-case:
 
-- I wanted the web interface to be accessible outside of my home so I could check and manage devices while away
-- I need to manage dynamic DNS since I don’t have a static IP
+- A web interface to be accessible outside of my home so I could check and manage devices while away
+- Way to manage dynamic DNS since I don’t have a static IP
 
 ### Setup
 
@@ -27,7 +27,7 @@ Requirements:
 I followed an excellent guide written by Alex Ellis [here](https://blog.alexellis.io/test-drive-k3s-on-raspberry-pi/) to initialize a cluster on the master and then join a single node.
 
 ```bash
-$ k3s kubectl get nodes
+k3s kubectl get nodes
 NAME        STATUS   ROLES    AGE    VERSION
 pi-node1    Ready    <none>   3d     v1.16.3-k3s.2
 pi-master   Ready    master   3d     v1.16.3-k3s.2
@@ -137,12 +137,12 @@ With a functioning cluster and the networking setup complete, the next task is t
 
 In Kubernetes we can deploy an Ingress Controller to achieve this. An Ingress Controller is an implementation of a reverse proxy which listens for changes to KubernetesIngress resources and updates it’s configuration accordingly.
 
-Traefik provides an detailed [instructions](https://docs.traefik.io/v1.7/user-guide/kubernetes/) on kubernetes implementation but I customised it slightly to get things working with my setup.
+Traefik provides an detailed [instructions](https://docs.traefik.io/v1.7/user-guide/kubernetes/) on kubernetes implementation but I customized it slightly to get things working with my setup.
 
 First create RoleBinding's.
 
 ```bash
-$ k3s kubectl apply -f https://raw.githubusercontent.com/containous/traefik/v1.7/examples/k8s/traefik-rbac.yaml
+k3s kubectl apply -f https://raw.githubusercontent.com/containous/traefik/v1.7/examples/k8s/traefik-rbac.yaml
 ```
 
 Configure Let’s Encrypt to support HTTPS endpoint and automatically fetch certificates. I used Cloudflare as the DNS provider which configures Traefik to use DNS records for domain validation.

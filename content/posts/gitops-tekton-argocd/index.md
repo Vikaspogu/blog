@@ -3,13 +3,14 @@ date = 2021-01-14
 title = "GitOps with Tekton and ArgoCD"
 description = "build and release pipeline with tekton, argocd in gitops fashion"
 slug = "tekton-argocd-gitops" 
-tags = ["argocd", "tekton", "gitops", "openshift-pipelines"]
+tags = ["argocd", "tekton", "gitops", "OpenShift-pipelines"]
 categories = []
 externalLink = ""
 series = []
 +++
 
 In this post, I will:
+
 - Use Tekton to build and publish image to docker registry
 - Trigger a Tekton pipeline from GitHub
 - Use Argo to deploy application
@@ -18,8 +19,9 @@ In this post, I will:
 
 ## Getting Started
 
-_**Assumptions:**_ 
-- You have a running Openshift 4 cluster with ArgoCD, and Openshift Pipelines installed. If not, you follow instructions to [Openshift Pipelines](https://docs.openshift.com/container-platform/4.6/pipelines/installing-pipelines.html) and [ArgoCD Operator](https://argocd-operator.readthedocs.io/en/latest/install/openshift/)
+_**Assumptions:**_
+
+- You have a running OpenShift 4 cluster with ArgoCD, and OpenShift Pipelines installed. If not, you follow instructions to [OpenShift Pipelines](https://docs.OpenShift.com/container-platform/4.6/pipelines/installing-pipelines.html) and [ArgoCD Operator](https://argocd-operator.readthedocs.io/en/latest/install/OpenShift/)
 - Understand of basic argocd and tekton concepts
 
 Create an OpenShift project called node-web-project
@@ -77,7 +79,8 @@ secrets:
 A Pipeline is a collection of Tasks that you want to run as part of your workflow. Each Task in a Pipeline is executed in a pod and by default they run in parallel. However, you can specify the order by using `runAfter`
 
 There are 3 Tasks in below pipeline
-- Clone source code 
+
+- Clone source code
 - Build and push image using `Buildah` cluster task
 - Syncing argo deployment
 
@@ -135,6 +138,7 @@ spec:
 ### Triggers
 
 Now that the pipeline is setup, we need to setup webhook from GitHub to trigger pipeline. We need to create following resources:
+
 - A `TriggerTemplate` act as a blueprint for pipeline resources. It can also be used to define parameters that can then be substituted anywhere within the resource template(s) being defined
 
   ```yaml
@@ -170,6 +174,7 @@ Now that the pipeline is setup, we need to setup webhook from GitHub to trigger 
               persistentVolumeClaim:
               claimName: tekton-workspace-pvc
   ```
+
 - A `TriggerBinding` binds the incoming event data to the template (i.e. git url, repo name, revision, etc....)
 
   ```yaml
@@ -189,6 +194,7 @@ Now that the pipeline is setup, we need to setup webhook from GitHub to trigger 
       - name: image-name
         value: docker.io/vikaspogu/$(body.repository.name):$(body.head_commit.id)
   ```
+
 - An `EventListener` that will create a pod application bringing together a binding and a template
 
   ```yaml
@@ -215,9 +221,9 @@ Now that the pipeline is setup, we need to setup webhook from GitHub to trigger 
   http://el-node-web-app-node-web-project.apps.cluster-7d51.sandbox659.opentlc.com
   ```
 
-You can learn about [Tekton Triggers](https://tekton.dev/docs/triggers/) and [OpenShift Pipleines](https://docs.openshift.com/container-platform/4.6/pipelines/understanding-openshift-pipelines.html)
+You can learn about [Tekton Triggers](https://tekton.dev/docs/triggers/) and [OpenShift Pipelines](https://docs.OpenShift.com/container-platform/4.6/pipelines/understanding-OpenShift-pipelines.html)
 
-### Create ArgoCD App for Web App Resources 
+### Create ArgoCD App for Web App Resources
 
 [Create an ArgoCD application via the GUI or command line](https://argoproj.github.io/argo-cd/getting_started/)
 
@@ -227,17 +233,17 @@ You can learn about [Tekton Triggers](https://tekton.dev/docs/triggers/) and [Op
 - cluster: (URL Of your OpenShift Cluster)
 - namespace should be the name of your OpenShift Project
 - repo url: git repo
-- Targer Revision: Head
+- Target Revision: Head
 - PATH: deployment
 - AutoSync Disabled
 
-### Configure Webhooks 
+### Configure Webhooks
 
 You will now need to configure GitHub webHook to Tekton Event Listener to start a tekton build from git push
 
 ![alt webhooks](tekton-webhook.png)
 
-### Make a code change and commit, look at build.   
+### Make a code change and commit, look at build
 
 1. Push an empty commit to repo
 
@@ -245,11 +251,11 @@ You will now need to configure GitHub webHook to Tekton Event Listener to start 
     git commit -m "empty-commit" --allow-empty && git push
     ```
 
-2. In OpenShift Console you should see a pipleine run
+2. In OpenShift Console you should see a pipeline run
 
     ![alt webhooks](gittrigger.png)
 
-3. Once pipeline is finished. Use Openshift route to verify app
+3. Once pipeline is finished. Use OpenShift route to verify app
 
 ## Workspace PVC
 

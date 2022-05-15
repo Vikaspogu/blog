@@ -1,7 +1,7 @@
 +++
-title= "TektonCD on Openshift"
+title= "TektonCD on OpenShift"
 date= "2019-08-09"
-tags= ["Openshift", "tektoncd"]
+tags= ["OpenShift", "tektoncd"]
 slug="intro-tektoncd-ocp"
 +++
 
@@ -17,7 +17,7 @@ In order to create a tekton pipeline, one does the following:
 - Create a Pipeline and PipelineResources to define your application's delivery pipeline
 - Create a PipelineRun to instantiate and invoke the pipeline
 
-### Installing Tekton on Openshift
+### Installing Tekton on OpenShift
 
 Login as a user with `cluster-admin` privileges
 
@@ -65,18 +65,18 @@ oc adm policy add-scc-to-user privileged -z pipeline
 oc adm policy add-role-to-user edit -z pipeline
 ```
 
-Optionally, create openshift objects(i.e DeploymentConfig, ImageStream, Service, Route)
+Optionally, create OpenShift objects(i.e DeploymentConfig, ImageStream, Service, Route)
 
 ```yaml
 ---
-apiVersion: image.openshift.io/v1
+apiVersion: image.OpenShift.io/v1
 kind: ImageStream
 metadata:
   labels:
     app: go-sample
   name: go-sample
 ---
-apiVersion: apps.openshift.io/v1
+apiVersion: apps.OpenShift.io/v1
 kind: DeploymentConfig
 metadata:
   labels:
@@ -169,7 +169,7 @@ spec:
   sessionAffinity: None
   type: ClusterIP
 ---
-apiVersion: route.openshift.io/v1
+apiVersion: route.OpenShift.io/v1
 kind: Route
 metadata:
   labels:
@@ -192,13 +192,13 @@ Deployment will not complete since there are no container image for `go-sample` 
 
 ![App template](temp.png)
 
-Create a `s2i-go`, `openshift-cli` task. You can find more examples of reusable `task`s in the [Tekton Catalog](https://github.com/tektoncd/catalog) and [OpenShift Catalog](https://github.com/openshift/pipelines-catalog) repositories.
+Create a `s2i-go`, `OpenShift-cli` task. You can find more examples of reusable `task`s in the [Tekton Catalog](https://github.com/tektoncd/catalog) and [OpenShift Catalog](https://github.com/OpenShift/pipelines-catalog) repositories.
 
 **Note:** Tasks consist of a number of steps that are executed sequentially. Each task is executed in a separate container within the same pod
 
 ```bash
-oc apply -f https://raw.githubusercontent.com/openshift/pipelines-catalog/master/s2i-go/s2i-go-task.yaml
-oc create -f https://raw.githubusercontent.com/tektoncd/catalog/master/openshift-client/openshift-client-task.yaml
+oc apply -f https://raw.githubusercontent.com/OpenShift/pipelines-catalog/master/s2i-go/s2i-go-task.yaml
+oc create -f https://raw.githubusercontent.com/tektoncd/catalog/master/OpenShift-client/OpenShift-client-task.yaml
 ```
 
 Create pipeline resources
@@ -213,7 +213,7 @@ spec:
   type: image
   params:
     - name: url
-      value: image-registry.openshift-image-registry.svc:5000/tektontutorial/go-sample
+      value: image-registry.OpenShift-image-registry.svc:5000/tektontutorial/go-sample
 ---
 apiVersion: tekton.dev/v1alpha1
 kind: PipelineResource
@@ -232,7 +232,7 @@ oc apply -f resources.yml
 
 ![Pipeline resources](resource.png)
 
-Create pipeline, pipelines has two tasks here `build`, `deploy`. Build uses `s2i-go` task to create image from source and deploy uses `openshift-client` task to rollout latest deployment of `go-sample`
+Create pipeline, pipelines has two tasks here `build`, `deploy`. Build uses `s2i-go` task to create image from source and deploy uses `OpenShift-client` task to rollout latest deployment of `go-sample`
 
 ```yaml
 apiVersion: tekton.dev/v1alpha1
@@ -262,7 +262,7 @@ spec:
             resource: app-image
     - name: deploy
       taskRef:
-        name: openshift-client
+        name: OpenShift-client
         kind: ClusterTask
       runAfter:
         - build

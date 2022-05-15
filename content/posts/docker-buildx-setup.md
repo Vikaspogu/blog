@@ -15,7 +15,7 @@ Installation instructions for [Ubuntu](https://docs.docker.com/engine/install/ub
 
 To execute docker commands without `sudo`. We need to add username to the `docker` group
 
-- Find current username by typing `who` 
+- Find current username by typing `who`
 - Add username to `docker` group
 - Reboot system
 
@@ -90,5 +90,5 @@ $ docker buildx build -t vikaspogu/test:v0.0.1 . --push --platform linux/arm64
 > If you encounter `/bin/sh: Invalid ELF image for this architecture` error. Run following docker image and then build
 
 ```bash
-$ docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 ```

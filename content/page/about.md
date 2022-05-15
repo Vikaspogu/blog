@@ -34,7 +34,7 @@ I primarily work with the following:
   * CI/CD, Jenkins, TektonCD, Flux, ArgoCD, Helm
 * Containers
   * Use docker for almost every container runtime environment
-  * Openshift and Kubernetes for Orchestrators
+  * OpenShift and Kubernetes for Orchestrators
 * Open Source
 * Knowledge Sharing
 
