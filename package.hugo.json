@@ -1,0 +1,64 @@
+{
+  "name": "hugo-theme-gruvbox",
+  "version": "1.0.0",
+  "description": "A retro-looking Hugo theme inspired by gruvbox. The pastel colors are high contrast, easily distinguishable, pleasing to the eye, and feature light and dark color palettes.",
+  "author": {
+    "name": "Michael Schnerring",
+    "email": "3743342+schnerring@users.noreply.github.com",
+    "url": "https://schnerring.net"
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "homepage": "https://github.com/schnerring/hugo-theme-gruvbox#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/schnerring/hugo-theme-gruvbox.git"
+  },
+  "bugs": {
+    "url": "https://github.com/schnerring/hugo-theme-gruvbox/issues"
+  },
+  "keywords": ["hugo", "gruvbox", "theme"],
+  "scripts": {
+    "lint:css": "stylelint --fix **/*.css",
+    "lint:js": "eslint --fix --ext js .",
+    "lint:md": "markdownlint --fix **/*.md",
+    "lint": "npm run lint:css && npm run lint:js && npm run lint:md",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix",
+    "*.css": "stylelint --fix --allow-empty-input",
+    "*.md": "markdownlint --fix"
+  },
+  "dependencies": {
+    "@tabler/icons": "^1.74.0",
+    "flexsearch": "^0.7.21",
+    "normalize.css": "^8.0.1",
+    "prism-themes": "^1.9.0",
+    "prismjs": "^1.28.0",
+    "typeface-fira-code": "^1.1.13",
+    "typeface-roboto-slab": "^1.1.13"
+  },
+  "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^4.1.3",
+    "cssnano": "^5.1.12",
+    "eslint": "^8.19.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "markdownlint-cli": "^0.31.1",
+    "postcss": "^8.4.14",
+    "postcss-cli": "^10.0.0",
+    "postcss-custom-media": "^8.0.2",
+    "postcss-import": "^14.1.0",
+    "postcss-nesting": "^10.1.10",
+    "postcss-preset-env": "^7.7.2",
+    "postcss-url": "^10.1.3",
+    "prettier": "^2.7.1",
+    "prettier-plugin-go-template": "^0.0.13",
+    "stylelint": "^14.9.1",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-prettier": "^2.0.0"
+  }
+}

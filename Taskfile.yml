@@ -6,7 +6,7 @@ tasks:
     desc: Push changes to github io and blog repo
     cmds:
       - hugo
-      # - task: push-github-io
+      - task: push-github-io
       - task: push-blog
   push-github-io:
     desc: Deploy updates to github io repo

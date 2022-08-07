@@ -1,0 +1,20 @@
+<div class="sidebar">
+  {{ if .Params.toc }}
+    {{ with .TableOfContents }}
+      <aside class="toc">
+        <nav>
+          <p class="sidebar__heading">Table Of Contents</p>
+          {{ . }}
+        </nav>
+      </aside>
+      <hr />
+    {{ end }}
+  {{ end }}
+
+  {{ $cv := index $.Site.Data.json_resume $.Site.Language.Lang }}
+  {{ if $cv.basics }}
+    <aside class="bio">
+      {{ partial "json-resume/basics.html" . }}
+    </aside>
+  {{ end }}
+</div>

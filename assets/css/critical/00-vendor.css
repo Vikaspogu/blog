@@ -1,0 +1,15 @@
+/*
+  Critical CSS for above-the-fold content, delivered inline to increase first
+  paint performance
+*/
+
+/*! purgecss start ignore */
+
+/* Typefaces */
+@import "typeface-roboto-slab";
+@import "typeface-fira-code";
+
+/* Normalize */
+@import "normalize.css/normalize.css";
+
+/*! purgecss end ignore */

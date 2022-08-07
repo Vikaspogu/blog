@@ -1,0 +1,167 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": {
+    "name": "Vikas Pogu",
+    "label": "Senior Consultant",
+    "image": "https://raw.githubusercontent.com/Vikaspogu/blog/master/static/images/myAvatar.png",
+    "email": "vikaspoguadf@gmail.com",
+    "summary": "Currently working as a Senior Consultant@Red Hat. Focusing on cloud technologies primarily OpenShift and kubernetes.",
+    "location": {
+      "city": "Rochester, Minnesota"
+    },
+    "profiles": [
+      {
+        "network": "GitHub",
+        "username": "vikaspogu",
+        "url": "https://github.com/Vikaspogu"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "Red Hat",
+      "location": "Remote(Rochester, MN)",
+      "description": "Cloud Technology company",
+      "position": "Senior Consultant",
+      "url": "http://redhat.com",
+      "startDate": "2017-07",
+      "highlights": [
+        "Microservice application development (Java, Go, Node.js)",
+        "Containerize applications, while implementing a microservice architecture",
+        "Develop and enable best practices for CI/CD using Jenkins and other build and delivery tools",
+        "Developing CI/CD roadmap and implementing in the project",
+        "Configuration management with Ansible",
+        "Routine presentations including topics such as microservices architecture, Istio, Knative, feature flags, DevOps, time-series metrics"
+      ]
+    },
+    {
+      "name": "Food and Drug Administration",
+      "location": "Rockville, MD",
+      "position": "Java/Full-stack Developer",
+      "startDate": "2016-03",
+      "endDate": "2017-07",
+      "highlights": [
+        "Full-stack application development",
+        "Javascript, JQuery, HTML5",
+        "Implementation of MVC architectural pattern using Spring Framework",
+        "REST-based services, NoSQL database for retrieving data"
+      ]
+    },
+    {
+      "name": "U.S. Securities and Exchange Commission",
+      "location": "Washington, DC",
+      "position": "Oracle ADF Developer",
+      "startDate": "2015-01",
+      "endDate": "2016-02",
+      "highlights": [
+        "Enterprise Java development (Oracle ADF Framework)",
+        "PL/SQL scripting on Oracle",
+        "CI/CD using Jenkins, custom java rules for Sonarqube code analysis"
+      ]
+    },
+    {
+      "name": "Blue Cross Blue Shield of Florida",
+      "location": "Jacksonville, FL",
+      "description": "Health Insurance Company",
+      "position": "ADF Developer",
+      "startDate": "2013-07",
+      "endDate": "2014-11",
+      "highlights": [
+        "Enterprise Java development (Oracle ADF Framework)",
+        "Modernizing and rearchitecting legacy application",
+        "Oracle UCM server for content management"
+      ]
+    }
+  ],
+  "certificates": [
+    {
+      "name": "Red Hat Certified Specialist in Enterprise Application Server Administration(JBoss Enterprise Application Platform 7.0)",
+      "date": "2017-09-21",
+      "url": "https://rhtapps.redhat.com/verify?certId=170-214-639"
+    },
+    {
+      "name": "Red Hat Certificate of Expertise in Business Process Design(Red Hat JBoss BPM Suite 6.3)",
+      "date": "2017-10-17",
+      "url": "https://rhtapps.redhat.com/verify?certId=170-214-639"
+    },
+    {
+      "name": "Red Hat Certificate of Expertise in Containerized Application Development(Linux Atomic Host 7)",
+      "date": "2017-12-01",
+      "url": "https://rhtapps.redhat.com/verify?certId=170-214-639"
+    },
+    {
+      "name": "Red Hat Certified Specialist in OpenShift Administration(OpenShift Container Platform 3.5)",
+      "date": "2017-12-08",
+      "url": "https://rhtapps.redhat.com/verify?certId=170-214-639"
+    },
+    {
+      "name": "Red Hat Certified System Administrator(Linux 7)",
+      "date": "2018-01-10",
+      "url": "https://rhtapps.redhat.com/verify?certId=170-214-639"
+    },
+    {
+      "name": "Red Hat Certificate of Expertise in Fast-Cache Application Development(JBoss Data Grid 6.4)",
+      "date": "2018-01-15",
+      "url": "https://rhtapps.redhat.com/verify?certId=170-214-639"
+    }
+  ],
+  "education": [
+    {
+      "institution": "Gannon University",
+      "url": "https://www.gannon.edu/",
+      "area": "Mechanical Engineering",
+      "studyType": "Master's",
+      "startDate": "2010-06",
+      "endDate": "2013-01"
+    },
+    {
+      "institution": "Jawaharlal Nehru University",
+      "url": "http://www.jnu.ac.in/",
+      "area": "Mechanical Engineering",
+      "studyType": "Bachelor's",
+      "startDate": "2006-06",
+      "endDate": "2010-05"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Programming Languages",
+      "level": "Master",
+      "keywords": ["Java", "Javascript", "GoLang"]
+    },
+    {
+      "name": "Containers",
+      "level": "Master",
+      "keywords": ["OpenShift", "Kubernetes", "Docker"]
+    },
+    {
+      "name": "Web Development",
+      "level": "Master",
+      "keywords": ["HTML", "CSS", "Javascript"]
+    },
+    {
+      "name": "Automation",
+      "level": "Master",
+      "keywords": ["Ansible", "Bash"]
+    },
+    {
+      "name": "DevOps",
+      "level": "Master",
+      "keywords": ["CI/CD", "Jenkins", "TektonCD", "Flux", "ArgoCD", "Helm"]
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "fluency": "Fluent"
+    },
+    {
+      "language": "Hindi",
+      "fluency": "Fluent"
+    },
+    {
+      "language": "Telugu",
+      "fluency": "Native speaker"
+    }
+  ]
+}
