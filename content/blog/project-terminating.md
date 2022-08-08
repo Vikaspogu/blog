@@ -2,6 +2,7 @@
 title= "Deleting a OpenShift project stuck in terminating state"
 date= "2019-05-15"
 tags= ["OpenShift"]
+socialShare=true
 +++
 
 Recently I was faced an issue where one of my project was stuck in terminating state for days. The workaround below fixed the issue.

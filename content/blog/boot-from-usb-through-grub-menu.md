@@ -7,6 +7,7 @@ tags = ["boot", "grub"]
 categories = []
 externalLink = ""
 series = []
+socialShare=true
 +++
 
 First make sure you have secure boot disabled from the firmware settings. Once you are in grub command line type `ls` to list all partitions

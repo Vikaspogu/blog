@@ -3,6 +3,7 @@ title= "Configuring couchbase SSL for dynamic certificates in OpenShift"
 date= "2019-08-28"
 tags= ["OpenShift", "couchbase", "ssl"]
 slug="couchbase-ssl-OpenShift"
+socialShare=true
 +++
 
 ## Couchbase SSL

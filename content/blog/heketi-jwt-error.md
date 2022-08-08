@@ -2,6 +2,7 @@
 title= "Heketi JWT token expired error"
 date= "2019-07-16"
 tags= ["Heketi", "Gluster"]
+socialShare=true
 +++
 
 Recently I encountered an `JWT token expired` error on heketi pod in OpenShift cluster.

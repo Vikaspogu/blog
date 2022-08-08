@@ -7,6 +7,7 @@ tags = ["k3s","traefik","raspberry-pi"]
 categories = []
 externalLink = ""
 series = []
+socialShare=true
 +++
 
 In this post, I’ll share my home lab setup for [Rancher's k3s](https://k3s.io/) kubernetes cluster.

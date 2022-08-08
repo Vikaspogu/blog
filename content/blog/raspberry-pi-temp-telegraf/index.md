@@ -7,6 +7,7 @@ tags = ["k3s","grafana","influxdb","telegraf"]
 categories = []
 externalLink = ""
 series = []
+socialShare=true
 +++
 
 In my previous post, I went through k3s cluster home setup. Now, i'll show how to measure the temperature of those Raspberry Pi's using Telegraf, Influxdb, Grafana and Helm charts.

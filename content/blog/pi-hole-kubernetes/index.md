@@ -7,6 +7,7 @@ tags = ["pi-hole","k3s"]
 categories = []
 externalLink = ""
 series = []
+socialShare=true
 +++
 
 [Pi-hole](https://pi-hole.net/) is a fantastic tool that blocks DNS requests to ad servers. That means you can surf the web without having to look at ads on every page.

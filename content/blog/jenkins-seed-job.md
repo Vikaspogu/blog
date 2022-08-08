@@ -7,6 +7,7 @@ tags = ["jenkins", "configuration-as-code-plugin", "pipeline-job"]
 categories = []
 externalLink = ""
 series = []
+socialShare=true
 +++
 
 In one of my previous posts, I have discussed configuring multibranch pipeline seed jobs using Jenkins configuration as code [plugin](https://github.com/jenkinsci/configuration-as-code-plugin)

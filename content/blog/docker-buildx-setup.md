@@ -7,6 +7,7 @@ tags = ["docker","buildx","linux"]
 categories = []
 externalLink = ""
 series = []
+socialShare=true
 +++
 
 ## Docker buildx on Linux

@@ -6,6 +6,7 @@ tags = ["golang", "basicauth","gin"]
 categories = []
 externalLink = ""
 series = []
+socialShare=true
 +++
 
 This is short post on adding basic authentication to go applications. Our sample application uses gin web framework

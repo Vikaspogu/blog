@@ -7,9 +7,8 @@ tags = ["loki", "rsyslog"]
 categories = []
 externalLink = ""
 series = []
+socialShare=true
 +++
-
-# Loki Promtail
 
 Enable syslog, do this on each host and replace `target` IP (and maybe `port`) with you syslog `externalIP` that is in helm values for [promtail](https://github.com/grafana/loki/tree/master/production/helm/promtail)
 

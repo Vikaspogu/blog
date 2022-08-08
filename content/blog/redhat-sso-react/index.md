@@ -3,6 +3,7 @@ title= "React App with RedHat SSO or keycloak"
 date= "2019-07-25"
 tags= ["RedHat SSO", "React", "keycloak"]
 slug="redhat-sso-react"
+socialShare=true
 +++
 
 In this post, I will show you how to secure a React app using RedHat SSO (upstream keycloak). In this case, `openid-connect` is my identity provider.

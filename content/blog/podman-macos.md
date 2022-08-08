@@ -7,6 +7,7 @@ tags = ["podman","macos","vagrant"]
 categories = []
 externalLink = ""
 series = []
+socialShare=true
 +++
 
 Installing podman as a remote client on macOS using vagrant. Vagrant setup is not covered in this post.

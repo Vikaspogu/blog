@@ -7,6 +7,7 @@ tags = ["slack-bot", "nodejs"]
 categories = []
 externalLink = ""
 series = []
+socialShare=true
 +++
 
 Build your own personal slack bot in few steps. In this post we'll navigate through process of creating the bot.

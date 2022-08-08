@@ -3,6 +3,7 @@ title= "Patternfly setup in React Application"
 date= "2019-07-01"
 tags= ["Patternfly", "ReactJS"]
 slug="patternfly-setup-react"
+socialShare=true
 +++
 
 To order to integrate [Patternfly](https://www.patternfly.org/v4/) framework into a ReactJS application, create a new project or use an existing one

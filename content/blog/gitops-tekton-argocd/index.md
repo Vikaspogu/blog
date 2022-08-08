@@ -7,6 +7,7 @@ tags = ["argocd", "tekton", "gitops", "OpenShift-pipelines"]
 categories = []
 externalLink = ""
 series = []
+socialShare=true
 +++
 
 In this post, I will:

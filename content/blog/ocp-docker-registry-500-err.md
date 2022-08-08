@@ -7,6 +7,7 @@ tags = ["OpenShift"]
 categories = []
 externalLink = ""
 series = []
+socialShare=true
 +++
 
 Recently, i ran into a issue where pushing images to the docker registry after a build fails

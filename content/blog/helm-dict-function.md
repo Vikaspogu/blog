@@ -7,6 +7,7 @@ tags = []
 categories = ["helm", "dict"]
 externalLink = ""
 series = []
+socialShare=true
 +++
 
 Recently I was in a situation where I ended up writing multiple if-else statements in the helm template. Code block didn't look clean and, I begin to explore alternative ways to achieve a clean and concise way to achieve the same behavior.

@@ -3,6 +3,7 @@ title= "Go JWT Authentication with keycloak"
 date= "2019-07-27"
 tags= ["RedHat SSO", "Golang", "keycloak", "JWT"]
 slug="sso-jwt-golang"
+socialShare=true
 +++
 
 Recently I was working on a React project with Go backend using Gin web framework. Keycloak was the authentication mechanism for the frontend; I also wanted to secure the backend using JSON Web Tokens which was provided by Keycloak on every login. Setup for jwt verification in Go was easy.

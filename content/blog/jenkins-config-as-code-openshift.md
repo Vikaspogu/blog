@@ -7,6 +7,7 @@ tags = ["jenkins","OpenShift","jcasc"]
 categories = []
 externalLink = ""
 series = []
+socialShare=true
 +++
 
 Deploying Jenkins on Kubernetes provides important benefits over a standard VM-based deployment. For example, gaining the ability to have project-specific Jenkins slaves (agents) on demand, instead of having a pool of VMs idle waiting for a job.

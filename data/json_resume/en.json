@@ -2,10 +2,9 @@
   "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
   "basics": {
     "name": "Vikas Pogu",
-    "label": "Senior Consultant",
+    "label": "Senior Consultant at Red Hat",
     "image": "https://raw.githubusercontent.com/Vikaspogu/blog/master/static/images/myAvatar.png",
     "email": "vikaspoguadf@gmail.com",
-    "summary": "Currently working as a Senior Consultant@Red Hat. Focusing on cloud technologies primarily OpenShift and kubernetes.",
     "location": {
       "city": "Rochester, Minnesota"
     },

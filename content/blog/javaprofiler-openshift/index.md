@@ -3,6 +3,7 @@ title="Profiling a application in OpenShift container"
 date="2019-05-14"
 tags=["OpenShift", "Java", "YourKit-JavaProfiler"]
 slug="javaprofiler-OpenShift"
+socialShare=true
 +++
 
 Sometimes writing code that just runs is not enough. We might want to know what goes on internally such as how memory is allocated, consequences of using one coding approach over another, implications of concurrent executions, areas to improve performance, etc. We can use profilers for this.

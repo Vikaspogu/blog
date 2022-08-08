@@ -7,6 +7,7 @@ tags = ["jenkins","groovy","date"]
 categories = []
 externalLink = ""
 series = []
+socialShare=true
 +++
 
 This is how you can calculate days between two dates in Jenkins pipeline. `@NonCPS` annotation is useful when you have methods which use objects that aren't `serializable`

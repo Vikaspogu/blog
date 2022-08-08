@@ -3,6 +3,7 @@ title= "TektonCD on OpenShift"
 date= "2019-08-09"
 tags= ["OpenShift", "tektoncd"]
 slug="intro-tektoncd-ocp"
+socialShare=true
 +++
 
 Recently I came across [tektoncd](https://tekton.dev/) project, **_The Tekton Pipelines project provides Kubernetes-style resources for declaring CI/CD-style pipelines_** caught my attention and started playing with it.

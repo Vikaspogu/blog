@@ -7,6 +7,7 @@ tags = ["tekton", "multi-arch", "buildx"]
 categories = []
 externalLink = ""
 series = []
+socialShare=true
 +++
 
 There are three different strategies to build multi-platform images that are supported by Buildx and Dockerfiles:

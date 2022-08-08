@@ -7,6 +7,7 @@ tags = ["OpenShift", "opa", "gatekeeper"]
 categories = []
 externalLink = ""
 series = []
+socialShare=true
 +++
 
 Every organization has policies. Some are essential to meet governance and legal requirements. Others help ensure adherence to best practices and institutional conventions. Attempting to ensure compliance manually would be error-prone and frustrating

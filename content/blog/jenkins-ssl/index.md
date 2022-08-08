@@ -7,6 +7,7 @@ tags = ["OpenShift", "jenkins", "ssl"]
 categories = []
 externalLink = ""
 series = []
+socialShare=true
 +++
 
 ## Jenkins SSL

@@ -3,6 +3,7 @@ title="Debugging a Java application in OpenShift"
 date= 2019-05-14
 tags=["OpenShift", "Java"]
 slug="debug-java-container"
+socialShare=true
 +++
 
 This post will discuss debugging a JAVA application running inside a container.

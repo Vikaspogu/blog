@@ -7,6 +7,7 @@ tags = ["adguard", "kubernetes", "ad-blocker"]
 categories = []
 externalLink = ""
 series = []
+socialShare=true
 +++
 
 ## AdGuard

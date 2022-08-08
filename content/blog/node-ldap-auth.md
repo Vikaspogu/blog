@@ -2,6 +2,7 @@
 title= "Authenticate a Node application with LDAP"
 date= "2019-05-15"
 tags= ["NodeJS", "LDAP"]
+socialShare=true
 +++
 
 This post demonstrates how to authenticate a user against LDAP.

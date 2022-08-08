@@ -7,6 +7,7 @@ tags = ["tekton", "triggers", "cel"]
 categories = []
 externalLink = ""
 series = []
+socialShare=true
 +++
 
 Tekton [Triggers](https://tekton.dev/docs/triggers/) work by having EventListeners receive incoming webhook notifications, processing them using an Interceptor, and creating Kubernetes resources from templates if the interceptor allows it, with extraction of fields from the body of the webhook

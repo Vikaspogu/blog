@@ -7,6 +7,7 @@ tags = ["istio", "service mesh", "keycloak", "jwt", "authentication", "authoriza
 categories = []
 externalLink = ""
 series = []
+socialShare=true
 +++
 
 In this article, I will share the setup for enabling Authentication and Authorization in OpenShift Service Mesh with Keycloak
