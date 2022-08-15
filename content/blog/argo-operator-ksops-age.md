@@ -3,6 +3,7 @@ title: "ArgoCD with Kustomize and ksops using Age encryption"
 date: "2022-08-10T16:31:43-05:00"
 comments: false
 socialShare: true
+draft: true
 toc: false
 tags: ["ArgoCD", "gitops", "sops"]
 ---
@@ -17,7 +18,7 @@ KSOPS, or kustomize-SOPS, is a kustomize plugin for managing SOPS encrypted reso
 
 ### Setup
 
-I am setting up this integration for my OpenShift cluster and I am using [ArgoCD Operator](https://argocd-operator.readthedocs.io/en/latest/) to be specific [openshift-gitops-operator](https://docs.openshift.com/container-platform/4.11/cicd/gitops/understanding-openshift-gitops.html). For encryption I'll be using [Age encryption](https://github.com/FiloSottile/age) as it is recommended over PGP by SOPS.
+I am setting up this integration on my OpenShift cluster and deploying ArgoCD via [Operator](https://argocd-operator.readthedocs.io/en/latest/). For file encryption I'll be using [Age encryption](https://github.com/FiloSottile/age) tool which is recommended over PGP by SOPS documentation.
 
 #### Step 1: Install and Generate the age key
 
@@ -76,4 +77,4 @@ repo:
       subPath: keys.txt
 ```
 
-Here's Step-By-Step [guide](https://github.com/viaduct-ai/kustomize-sops#3-configure-sops-via-sopsyaml) for create the resources
+Step-By-Step [guide](https://github.com/viaduct-ai/kustomize-sops#3-configure-sops-via-sopsyaml) for create and testing the resources
