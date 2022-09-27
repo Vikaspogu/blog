@@ -10,9 +10,9 @@ series = []
 socialShare=true
 +++
 
-Tekton [Triggers](https://tekton.dev/docs/triggers/) work by having EventListeners receive incoming webhook notifications, processing them using an Interceptor, and creating Kubernetes resources from templates if the interceptor allows it, with extraction of fields from the body of the webhook
+Tekton [Triggers](https://tekton.dev/docs/triggers/) work by having EventListeners receive incoming webhook notifications, processing them using an Interceptor, and creating Kubernetes resources from templates if the interceptor allows it, with the extraction of fields from the body of the webhook
 
-[CEL Interceptors](https://tekton.dev/docs/triggers/eventlisteners/#cel-interceptors) can be used to filter or modify incoming events. for example if you want to truncate commit id from the webhook body
+[CEL Interceptors](https://tekton.dev/docs/triggers/eventlisteners/#cel-interceptors) can filter or modify incoming events. For example, you can truncate the commit id from the webhook body.
 
 ```yaml
 apiVersion: triggers.tekton.dev/v1alpha1
@@ -35,7 +35,7 @@ spec:
         ref: pipeline-template
 ```
 
-Applied overlay can be extracted using a extensions body in the binding. In below example `$(extensions.<overlay_key>)`
+The applied overlay uses an extension body in the binding. As shown in below example as `$(extensions.<overlay_key>)`
 
 ```yaml
 apiVersion: triggers.tekton.dev/v1alpha1

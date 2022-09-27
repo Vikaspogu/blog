@@ -1,37 +1,37 @@
 +++ 
 date = 2020-07-05
 title = "Raspberry Pi garage opener on k3s cluster"
-description = "Raspberry Pi Garage door opener on kubernetes cluster using nodejs"
+description = "Raspberry Pi Garage door opener on Kubernetes cluster using NodeJS"
 slug = "" 
-tags = ["raspberry-pi","garage-door","kubernetes","docker", "nodejs"]
+tags = ["raspberry-pi","garage-door","Kubernetes","docker", "NodeJS"]
 categories = []
 externalLink = ""
 series = []
 socialShare=true
 +++
 
-There are many articles out there which demonstartes how to use a raspberry pi as a DIY garage door opener project. Few are outdated and not deployed using containers images. I found couple good solutions on google but i wasn't able to run them on kubernetes cluster either due to older packages or no enough information. I decided to build my own solution from different sources of information i found
+Many articles are out there which demonstrate how to use a raspberry pi as a DIY garage door opener project. Few are outdated and not deployed using container images. I found a few reasonable solutions on google, but I couldn't run them on the Kubernetes cluster due to older packages or insufficient information. I decided to build my solution from different sources of information I found
 
 What we'll cover in this post
 
 - setup nodejs project to simulate a button
 - create a container from nodejs application
-- deploy container on kubernetes cluster
+- deploy the container on the Kubernetes cluster
 
-Kudos! to author for this awesome [article](https://gyandeeps.com/garage-operations-raspberrypi/) on showing us how to connect relay and magentic switch to raspberry pi for our purpose.
+Kudos! to the author for this excellent [article](https://gyandeeps.com/garage-operations-raspberrypi/) for showing us how to connect the relay and magnetic switch to raspberry pi for our purpose.
 
-Once you are done wiring up all components. Let's start setting up our Nodejs application
+Once finished wiring up all components. Let's start setting up our Nodejs application.
 
 ### Application setup
 
-Create a npm project
+Create an npm project
 
 ```bash
 mkdir garage-pi && cd garage-pi
 npm init -y
 ```
 
-We'll be using [node-rpio](https://github.com/jperkin/node-rpio) package which provides access to the Raspberry Pi GPIO interface
+We'll be using [node-rpio](https://github.com/jperkin/node-rpio) package, which provides access to the Raspberry Pi GPIO interface
 
 Install `node-rpio` and `express` packages
 
@@ -39,7 +39,7 @@ Install `node-rpio` and `express` packages
 npm i rpio express -S
 ```
 
-Create an express app which starts on port `8080` in `server.js` file
+Create an express app that starts on port `8080` in `server.js` file
 
 ```javascript
 "use strict";
@@ -55,7 +55,7 @@ app.listen(PORT);
 console.log("Running on http://localhost:" + PORT);
 ```
 
-Below code let's you simulate a button press; In our case pin number is `19`. First, we want to output to low and set the pin to high after 1000ms. Please refer to `rpio` [repo](https://github.com/jperkin/node-rpio) for more explaination
+The below code lets you simulate a button press; In our case, PIN is `19`. First, we want to output to low and set the pin to high after 1000ms. Please refer to `rpio` [repo](https://github.com/jperkin/node-rpio) for more explanation
 
 ```javascript
 const openPin = process.env.OPEN_PIN || 19;
@@ -71,7 +71,7 @@ app.get("/relay", function (req, res) {
 });
 ```
 
-To get the state of pin
+To get the state of pin.
 
 ```javascript
 function getState() {
@@ -126,13 +126,13 @@ console.log("Running on http://localhost:" + PORT);
 ### Container image
 
 - Create a dockerfile with [multi-stage](https://docs.docker.com/develop/develop-images/multistage-build/) builds using [nodejs arm image](https://hub.docker.com/r/arm32v7/node/)
-- Install necessary python package for `rpio`
+- Install the necessary python package for `rpio`
 - Build docker image
-- Publish docker image to your repo in [docker hub](https://hub.docker.com/)
-- Create new kubernetes deployment and service
+- Publish the docker image to your repo in [docker hub](https://hub.docker.com/)
+- Create new Kubernetes deployment and service
 
 ```Dockerfile
-# Fetch node_modules for backend, nothing here except
+# Fetch node_modules for backend; nothing here except
 # the node_modules dir ends up in the final image
 FROM arm32v7/node:12.18-alpine as builder
 RUN mkdir /app
@@ -144,7 +144,7 @@ RUN apk add --no-cache make gcc g++ python && \
     apk del make gcc g++ python
 RUN npm install
 
-# Add the files to arm image
+# Add the files to the arm image
 FROM arm32v7/node:12.18-alpine
 RUN mkdir /app
 WORKDIR /app
@@ -162,14 +162,14 @@ EXPOSE 8080
 CMD [ "npm", "start" ]
 ```
 
-Docker [buildx](https://docs.docker.com/buildx/working-with-buildx/) feature lets you build arm based images on mac or windows system
+Docker [buildx](https://docs.docker.com/buildx/working-with-buildx/) feature lets you build arm-based images on mac or windows system
 
 ```bash
 docker buildx build --platform linux/arm64 -t <docker-username>/garage-pi .
 docker push <docker-username>/garage-pi
 ```
 
-Create a new deployment named `garage-pi` that runs earlier published image.
+Create a new deployment named `garage-pi` that runs the earlier published image.
 
 ```bash
 kind: Deployment
@@ -223,17 +223,17 @@ spec:
       restartPolicy: Always
 ```
 
-Create a service for an `garage-pi` deployment, which serves on port `8080` and connects to the containers on port `8080`.
+Create a service for a `garage-pi` deployment, which serves on port `8080` and connects to the containers on port `8080`.
 
 ```bash
 kubectl expose deployment nginx --port=8080 --target-port=8080
 ```
 
-That's it, you should be able to hit endpoint and simulate button click!
+That's it; you should be able to hit the endpoint and simulate button click!
 
 ### Frontend
 
-For frontend of application we'll use [pugjs](https://pugjs.org/api/getting-started.html) templating engine
+For frontend of application, we'll use [pugjs](https://pugjs.org/api/getting-started.html) templating engine
 
 Install `pug` package
 
@@ -241,7 +241,7 @@ Install `pug` package
 npm i pug -S
 ```
 
-1. add `views` folder in root directory and create a new `index.pug` file in views folder
+1. add the `views` folder in the root directory and create a new `index.pug` file in the views folder
 2. wire up templating engine with application
 3. render index page on root `/` endpoint
 4. integrate button with `/relay` endpoint, which will open/closed garage door
@@ -282,7 +282,7 @@ Install `dotenv`, `twilio` and `node-schedule` packages
 npm i dotenv node-schedule twilio -S
 ```
 
-Create a `.env` file at root of the project and add your twilio auth key, account sid and phone number
+Create a `.env` file at the root of the project and add your Twilio auth key, account sid, and phone number
 
 ```env
 TWILIO_ACCOUNT_SID=
@@ -290,7 +290,7 @@ TWILIO_AUTH_TOKEN=
 TWILIO_PHONE_NUMBER=
 ```
 
-Create a `twilio.js` file, add below code
+Create a `twilio.js` file, add the below code
 
 ```javascript
 require("dotenv").config();
@@ -312,7 +312,7 @@ const sendSms = (phone, message) => {
 module.exports = sendSms;
 ```
 
-Schedule a job for every 15mins to check state of garage door, if door is open we'll send a message
+Schedule a job for every 15mins to check the state of the garage door. If the door is open, we'll send a message
 
 ```javascript
 const sendSms = require("./twilio");

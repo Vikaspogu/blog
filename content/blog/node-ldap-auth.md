@@ -17,8 +17,8 @@ npm install basic-auth
 Steps for implementation;
 
 1. Add packages
-2. Create a `ldap` variable with authentication configuration
-3. Basic auth should prompt for you username and password. Once user is found, verify the given password by trying to bind the user client with the found LDAP user object and given password.
+2. Create an `LDAP` variable with authentication configuration
+3. Basic auth should prompt for your username and password. Once the user is found, verify the given password by trying to bind the user client with the found LDAP user object and the given password.
 
 ```javascript
 const auth = require("basic-auth");
@@ -33,10 +33,10 @@ var ldap = new LdapAuth({
   reconnect: true
 });
 
-app.use("/api/admin/", (req, res, next) => {
+app.use("/API/admin/", (req, res, next) => {
   const credentials = auth(req);
   if (credentials) {
-    ldap.authenticate(credentials.name, credentials.pass, function(err, user) {
+    LDAP.authenticate(credentials.name, credentials.pass, function(err, user) {
       if (err) {
         console.log(err.message);
         return res

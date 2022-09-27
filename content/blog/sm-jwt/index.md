@@ -10,13 +10,13 @@ series = []
 socialShare=true
 +++
 
-In this article, I will share the setup for enabling Authentication and Authorization in OpenShift Service Mesh with Keycloak
+In this article, I will share the setup for enabling Authentication and Authorization in OpenShift Service Mesh with Keycloak.
 
 ## Installing OpenShift Service Mesh
 
 Follow the [Installing Red Hat OpenShift Service Mesh](https://docs.OpenShift.com/container-platform/4.6/service_mesh/v1x/installing-ossm.html) guide for setup
 
-Enable following configuration in your `ServiceMeshControlPlane` resource
+Enable the following configuration in your `ServiceMeshControlPlane` resource
 
 - Strict mTLS across the mesh
 - Automatic istio route creation
@@ -40,11 +40,11 @@ Keycloak is an open-source identity and access management application that uses 
 
 ### Deploying Red Hat Single Sign-on
 
-The easiest way to deploy SSO is from the operator hub
+The easiest way to deploy SSO is from the operator hub.
 
 ![sso-operator](sso-operator.png)
 
-Follow the [Keycloak identity provider](https://labs.consol.de/development/2020/05/07/istio-and-keycloak.html) article for adding new secuity realm, client, role, user
+Follow the [Keycloak identity provider](https://labs.consol.de/development/2020/05/07/istio-and-keycloak.html) article for adding a new security realm, client, role, user
 
 ### Deploying Bookinfo example application
 
@@ -54,7 +54,7 @@ Create a new namespace
 oc new-project bookinfo
 ```
 
-Edit the default Service Mesh Member Roll YAML and add bookinfo to the members list
+Edit the default Service Mesh Member Roll YAML and add bookinfo to the member's list
 
 ```yaml
 apiVersion: maistra.io/v1
@@ -95,7 +95,7 @@ oc apply -n bookinfo -f https://raw.githubusercontent.com/Maistra/istio/maistra-
 
 Verifying the Bookinfo installation
 
-Run this command to confirm that Bookinfo is deployed
+Run the following command to confirm that the Bookinfo application is up and running
 
 ```bash
 curl -o /dev/null -s -w "%{http_code}\n" http://$GATEWAY_URL/productpage
@@ -105,16 +105,16 @@ curl -o /dev/null -s -w "%{http_code}\n" http://$GATEWAY_URL/productpage
 
 ### Enabling User-End Authentication
 
-Now it is time to enable end-user authentication
+Now it is time to enable end-user authentication.
 
-The first thing you need to do is validate that it is possible to communicate between all services without authentication
+The first thing you need to do is validate that it is possible to communicate between all services without authentication.
 
 ```bash
 curl -k -o /dev/null -w "%{http_code}" http://$GATEWAY_URL/productpage
 200
 ```
 
-You can create the end-user authentication policy
+You can create the end-user authentication policy.
 
 ```bash
 cat <<EOF | oc apply -n bookinfo -f -
@@ -141,9 +141,9 @@ spec:
 EOF
 ```
 
-**NOTE**: If you see `Origin authentication failed.` after passing right access token and url. Verify your istio-pilot pods for any `x509: certificate signed by unknown authority` if thats the case follow this [workaround](https://labs.consol.de/development/2020/05/07/debugging-istio.html)
+**NOTE**: If you see `Origin authentication failed.` after passing the correct access token and URL. Verify your istio-pilot pods for any `x509: certificate signed by unknown authority`; if that is the case, follow this [workaround](https://labs.consol.de/development/2020/05/07/debugging-istio.html)
 
-Then let’s run the curl again
+Then let’s rerun the curl.
 
 ```bash
 curl -k http://$GATEWAY_URL/productpage
@@ -161,7 +161,7 @@ Set the value for the `TOKEN` parameter from keyclock
 export TOKEN=$(curl -sk --data "username=demo&password=demo&grant_type=password&client_id=istio" https://keycloak-sso.apps.amp01.lab.amp.aapaws/auth/realms/istio/protocol/openid-connect/token | jq ".access_token")
 ```
 
-Then let’s run the curl again, this time with the token
+Then let’s rerun the curl, this time with the token.
 
 ```bash
 curl -k -o /dev/null -w "%{http_code}" -H "Authorization: Bearer $TOKEN" http://$GATEWAY_URL/productpage
@@ -170,7 +170,7 @@ curl -k -o /dev/null -w "%{http_code}" -H "Authorization: Bearer $TOKEN" http://
 
 ## Authorization
 
-Create a deny-all policy in the namespace. The policy doesn’t have a selector field, which applies the policy to every workload in the namespace. The spec: field of the policy has the empty value {}. The empty value means that no traffic is permitted, effectively denying all requests
+Create a deny-all policy in the namespace. The policy doesn’t have a selector field, which applies to every workload in the namespace. The `spec: field` in the policy has the empty value {}, this means that no traffic is permitted, effectively denying all requests
 
 ```bash
 $ cat <<EOF | oc apply -n bookinfo -f -
@@ -183,14 +183,14 @@ spec:
 EOF
 ```
 
-Once the policy takes effect, verify that mesh rejected the curl connection to the workload
+Once the policy takes effect, verify that mesh rejected the curl connection to the workload.
 
 ```bash
 $ curl -k -H "Authorization: Bearer $TOKEN" http://$GATEWAY_URL/productpage
 RBAC: access denied
 ```
 
-To give read access to the productpage workload, create the policy that applies to workload with label app: productpage and allows users with roles customer to access it with all method
+To give read access to the product page workload, create the policy that applies to the workload with label app: product page and allows users with roles customer to access it with all method.
 
 ```bash
 $ cat <<EOF | oc apply -n bookinfo -f -
@@ -213,21 +213,21 @@ spec:
 EOF
 ```
 
-Wait for the newly defined policy to take effect
+Wait for the newly defined policy to take effect.
 
-After the policy takes effect, verify the connection to the httpbin workload succeeds
+After the policy takes effect, verify the connection to the httpbin workload succeeds.
 
 ```bash
 curl -k  -o /dev/null -w "%{http_code}" -H "Authorization: Bearer $TOKEN" http://$GATEWAY_URL/productpage
 200
 ```
 
-However, you can see the following errors on the page
+However, you can see the following errors on the page.
 
 - Error fetching product details
 - Error fetching product reviews on the page
 
-Run the following command to create the details-viewer policy to allow the productpage workload, which issues requests using the `cluster.local/ns/bookinfo/sa/bookinfo-productpage` service account, to access the details workload through GET methods
+Run the following command to create the details-viewer policy to allow the productpage workload, which issues requests using the `cluster.local/ns/bookinfo/sa/bookinfo-productpage` service account, to access the details workload via GET methods.
 
 ```bash
 oc apply -f - <<EOF
@@ -273,11 +273,11 @@ spec:
 EOF
 ```
 
-Point your browser at the Bookinfo productpage (http://$GATEWAY_URL/productpage). Now, you should see the “Bookinfo Sample” page with “Book Details” on the lower left part, and “Book Reviews” on the lower right part. However, in the “Book Reviews” section, there is an error Ratings service currently unavailable
+Point your browser at the Bookinfo productpage (http://$GATEWAY_URL/productpage). Now, you should see the “Bookinfo Sample” page with “Book Details” on the lower left part and “Book Reviews” on the lower right part.
 
-This is because the reviews workload doesn’t have permission to access the ratings workload. To fix this issue, you need to grant the reviews workload access to the ratings workload. Next, we configure a policy to grant the reviews workload that access
+However, in the “Book Reviews” section, you'll see an error Rating service is currently unavailable. This error is because the reviews workload doesn’t permit access to the ratings workload. To fix this issue, you need to grant the reviews workload access to the ratings workload. Next, configure a policy to grant access to the reviews workload.
 
-Run the following command to create the ratings-viewer policy to allow the reviews workload, which issues requests using the `cluster.local/ns/bookinfo/sa/bookinfo-reviews` service account, to access the ratings workload through GET methods
+Run the following command to create the ratings-viewer policy to allow the reviews workload, which issues requests using the `cluster.local/ns/bookinfo/sa/bookinfo-reviews` service account,  to access the ratings workload through GET methods
 
 ```bash
 oc apply -f - <<EOF
@@ -300,4 +300,4 @@ spec:
 EOF
 ```
 
-Point your browser at the Bookinfo productpage (http://$GATEWAY_URL/productpage). You should see the “black” and “red” ratings in the “Book Reviews” section
+Point your browser at the Bookinfo productpage (http://$GATEWAY_URL/productpage). You should see the “black” and “red” ratings in the “Book Reviews” section.

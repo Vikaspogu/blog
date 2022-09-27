@@ -22,7 +22,7 @@ npm i --save @patternfly/patternfly \
 **Note:** Import `base.css` and `patternfly.css` in your project, or some components may diverge in appearance
 
 ```javascript
-//This imports are must to render css
+//These imports are a must to render CSS
 import "@patternfly/react-core/dist/styles/base.css";
 import "@patternfly/patternfly/patternfly.css";
 ```
@@ -44,7 +44,7 @@ import spacingStyles from "@patternfly/react-styles/css/utilities/Spacing/spacin
 import { css } from "@patternfly/react-styles";
 import { BellIcon, CogIcon } from "@patternfly/react-icons";
 
-//This imports are must to render css
+//These imports are a must to render CSS
 import "@patternfly/react-core/dist/styles/base.css";
 import "@patternfly/patternfly/patternfly.css";
 
@@ -64,7 +64,7 @@ class App extends React.Component {
               <Text component="h1">Main Title</Text>
               <Text component="p">
                 Body text should be Overpass Regular at 16px. It should have leading of 24px because <br />
-                of it’s relative line height of 1.5.
+                of its relative line height of 1.5.
               </Text>
             </TextContent>
           </PageSection>
@@ -93,6 +93,6 @@ Start the application
 npm start
 ```
 
-You should see patternfly design like this!
+You should see a patternfly design like this!
 
 ![intellij-debug](patternfly-react.png)

@@ -10,7 +10,7 @@ series = []
 socialShare=true
 +++
 
-Enable syslog, do this on each host and replace `target` IP (and maybe `port`) with you syslog `externalIP` that is in helm values for [promtail](https://github.com/grafana/loki/tree/master/production/helm/promtail)
+Enable Syslog, do this on each host, and replace `target` IP (and maybe `port`) with your Syslog `externalIP` that is in helm values for [promtail](https://github.com/grafana/loki/tree/master/production/helm/promtail)
 
 ```yaml
 promtail:
@@ -56,4 +56,4 @@ sudo systemctl restart rsyslog
 sudo systemctl status rsyslog
 ```
 
-In Grafana, on the explore tab, you should now be able to view you hosts logs, e.g. this query `{host="k3s-master"}`
+In Grafana, on the explore tab, you should now be able to view your host's logs, e.g., this query `{host="k3s-master"}`.

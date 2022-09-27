@@ -10,21 +10,21 @@ series = []
 socialShare=true
 +++
 
-First make sure you have secure boot disabled from the firmware settings. Once you are in grub command line type `ls` to list all partitions
+First, make sure you have secure boot disabled from the firmware settings. Once you are in the grub command line, type `ls` to list all partitions
 
 ```bash
 grub>ls 
 (hd0) (hd0,gpt1) (hd1) (hd1,gpt8) (cd0))
 ```
 
-Type `ls (cd0)` to get UUID of device
+Type `ls (cd0)` to get the UUID of the device.
 
 ```bash
 grub>ls (hd0,gpt1) 
 Partition hd0,gpt1: Filesystem type fat - Label `CES_X64FREV`, UUID 4099-DBD9 Partition start-512 Sectors...
 ```
 
-Note the UUID of you usb drive, shown in above command
+Note the UUID of your USB drive, shown in the above command
 
 Type the following commands
 
@@ -36,13 +36,13 @@ insmod chain
 search --fs-uuid --set=root 409-DBD9
 ```
 
-Replace `UUID` of your device
+Replace the `UUID` of your device
 
-Now we select the efi file to boot from
+Now we select the EFI file to boot from
 
 ```bash
 chainloader /efi/boot/bootx64.efi
 boot
 ```
 
-That's it, That should boot the usb drive
+That's it; that should boot the USB drive.

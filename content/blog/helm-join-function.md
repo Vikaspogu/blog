@@ -10,11 +10,11 @@ series = []
 socialShare=true
 +++
 
-Key benefits of Helm is that it helps reduce the amount of configuration a user needs to provide to deploy applications to Kubernetes. With Helm, we can have a single chart that can deploy all the microservices.
+The key benefit of Helm is that it helps reduce the configuration a user needs to provide to deploy applications to Kubernetes. With Helm, we can have a single chart that can deploy all the microservices.
 
 ## Unique ServiceAccount
 
-Recently we wanted to create a unique service account for each microservice, so all microservices don't share same service account using helm template. In our example, we will append the release name with the service account name.
+Recently we wanted to create a unique service account for each microservice, so all microservices don't share the same service account using the helm template. In our example, we will append the release name with the service account name.
 
 ### Using join function
 

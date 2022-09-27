@@ -1,9 +1,9 @@
 +++ 
 date = 2020-08-19
 title = "AdGuard on Kubernetes"
-description = "Deploying adguard home on kubernetes"
+description = "Deploying AdGuard home on Kubernetes"
 slug = "" 
-tags = ["adguard", "kubernetes", "ad-blocker"]
+tags = ["AdGuard", "Kubernetes", "ad-blocker"]
 categories = []
 externalLink = ""
 series = []
@@ -16,7 +16,7 @@ socialShare=true
 
 Adguard is similar to Pi-Hole with more features. Comparison of [Adguard to Pi-Hole](https://github.com/AdguardTeam/AdGuardHome#how-does-adguard-home-compare-to-pi-hole)
 
-The below configuration has worked for me. I am a big fan of helm charts and I'll be using [AdGuard chart](https://github.com/billimek/billimek-charts/tree/master/charts/adguard-home)
+The below configuration has worked for me. I am a big fan of helm charts, and I'll be using [AdGuard chart](https://github.com/billimek/billimek-charts/tree/master/charts/adguard-home)
 
 ### Configure chart
 
@@ -64,7 +64,7 @@ securityContext:
       - NET_BIND_SERVICE
 ```
 
-Add `nodeSelector` to assign pod to that node
+Add `nodeSelector` to assign a pod to that node.
 
 ```yaml
 # values.yaml
@@ -78,7 +78,7 @@ Deploy helm chart
 helm install adguard-home
 ```
 
-Wait for AdGuard pods
+Wait for AdGuard pods.
 
 ```bash
 kubectl get pods
@@ -88,4 +88,4 @@ adguard-adguard-home-67975f7768-v6bg9   1/1     Running   0          43h
 
 ### Configure your devices to use your AdGuard Home
 
-Now, once we've established that AdGuard Home is deployed, you can use it on other computers in your network by changing their system DNS settings to use Kubernetes node's IP address (which is 192.168.0.101 in our case).
+Once we've established that AdGuard Home has deployed, you can use it on other computers in your network by changing their system DNS settings to use the Kubernetes node's IP address (which is 192.168.0.101 in our case).

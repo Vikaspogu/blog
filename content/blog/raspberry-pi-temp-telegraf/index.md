@@ -1,7 +1,7 @@
 +++ 
 date = 2020-01-01
 title = "Measure Raspberry Pi temperature using Telegraf, Influxdb, Grafana on k3s"
-description = "Measure Raspberry Pi temperature using Telegraf, Influxdb, Grafana on k3s"
+description = "Measure Raspberry Pi temperature using Telegraf, Influxdb, Grafana on k3s."
 slug = "raspberry-pi-temp-telegraf" 
 tags = ["k3s","grafana","influxdb","telegraf"]
 categories = []
@@ -10,13 +10,13 @@ series = []
 socialShare=true
 +++
 
-In my previous post, I went through k3s cluster home setup. Now, i'll show how to measure the temperature of those Raspberry Pi's using Telegraf, Influxdb, Grafana and Helm charts.
+In my previous post, I went through the k3s cluster home setup. Now, I'll show how to measure the temperature of those Raspberry Pi's using Telegraf, Influxdb, Grafana, and Helm charts.
 
 ## Why Telegraf?
 
-Telegraf has a plugin called [exec](https://github.com/influxdata/telegraf/tree/master/plugins/inputs/exec), which can execute the commands on host machine at certain interval and parses those metrics from their output in any one of the accepted input data formats.
+Telegraf has a plugin called [exec](https://github.com/influxdata/telegraf/tree/master/plugins/inputs/exec), which can execute the commands on the host machine at a specific interval and parses those metrics from their output in any one of the accepted input data formats.
 
-First, deploy `influxdb` time series database chart
+First, deploy the `influxdb` time series database chart.
 
 ```yaml
 apiVersion: helm.cattle.io/v1
@@ -31,7 +31,7 @@ spec:
 
 ### Get Pi temperature
 
-I found this one liner `/sys/class/thermal/thermal_zone0/temp` which returns the temperature of the Pi; divide the output by 1000 to get a result in °C and use awk in order to have a float value.
+I found this one-liner `/sys/class/thermal/thermal_zone0/temp`, which returns the temperature of the Pi; divide the output by 1000 to get a result in °C and use `awk` to have a float value.
 
 ```bash
 awk '{print $1/1000}' /sys/class/thermal/thermal_zone0/temp
@@ -39,7 +39,7 @@ awk '{print $1/1000}' /sys/class/thermal/thermal_zone0/temp
 
 ### Update Chart values
 
-Update chart values, add `[inputs.exec]` to config and deploy it
+Update chart values, add `[inputs.exec]` to config, and deploy it
 
 ```yaml
 apiVersion: helm.cattle.io/v1
@@ -72,7 +72,7 @@ spec:
 
 ### Add Datasource
 
-Once influxdb and telegraf pods are in ready state, add influxdb datasource in grafana.
+Once influxdb and telegraf pods are ready, add influxdb Datasource in grafana.
 
 ![Traefik UI](influxdb.png)
 

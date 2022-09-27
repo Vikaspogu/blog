@@ -8,27 +8,27 @@ socialShare=true
 
 ## Spring Boot Metrics
 
-In this post I'll discuss how to monitor spring boot application metrics using Prometheus and Grafana.
+This post will discuss how to monitor spring boot application metrics using Prometheus and Grafana.
 
 ### [Prometheus](https://prometheus.io/)
 
-Prometheus is a monitoring system which collects metrics from configured targets at given intervals.
+Prometheus is a monitoring system that collects metrics from configured targets at intervals.
 
 ### [Grafana](https://grafana.com/docs/)
 
-Grafana is an open source metric analytics & visualization tool.
+Grafana is an open-source metric analytics & visualization tool.
 
 ### [Micrometer](https://micrometer.io/)
 
-Micrometer is a metrics instrumentation library for JVM-based applications.
+The micrometer is a metrics instrumentation library for JVM-based applications.
 
 ### [Spring Boot Actuator](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html)
 
-Spring Boot Actuator helps you monitor and manage your application when it’s pushed to production. You can choose to manage and monitor your application using HTTP or JMX endpoints.
+Spring Boot Actuator helps you monitor and manage your application when it’s pushed to production. You can control and monitor your application using HTTP or JMX endpoints.
 
 ### Setup
 
-Enable prometheus metrics by adding dependencies in `pom.xml`
+Enable Prometheus metrics by adding dependencies in `pom.xml`
 
 ```xml
 <dependency>
@@ -47,7 +47,7 @@ Enable prometheus metrics by adding dependencies in `pom.xml`
 </dependency>
 ```
 
-By default `prometheus` endpoint is not available and must be enabled in `application.properties`. More configurations can be found at spring-boot [docs](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#production-ready-metrics)
+By default `Prometheus` endpoint is not available and must be enabled in `application.properties`. You can find more configurations at spring-boot [docs](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#production-ready-metrics)
 
 ```properties
 #Metrics related configurations
@@ -60,7 +60,7 @@ management.metrics.distribution.sla.http.server.requests=1ms,5ms
 management.metrics.distribution.percentiles.http.server.requests=0.5,0.9,0.95,0.99,0.999
 ```
 
-Optionally register any number of `MeterRegistryCustomizer` to further configure the registry (such as applying common tags) before any meters are registered with the registry.
+Optionally you can configure any number with the `MeterRegistryCustomizer` registry (such as applying common tags).
 
 ```java
 @Bean
@@ -69,7 +69,7 @@ MeterRegistryCustomizer<MeterRegistry> metricsCommonTags() {
 }
 ```
 
-Create a new project; deploy the application and prometheus in OpenShift.
+Create a new project; deploy the application and Prometheus in OpenShift.
 
 ```bash
 $ oc project myproject
@@ -77,7 +77,7 @@ $ oc new-app redhat-openjdk18-OpenShift~<git_repo_URL> -n sample-app
 oc new-app prom/prometheus -n prometheus
 ```
 
-In order to keep the prometheus image and configuration decoupled, use the `ConfigMap` object to inject our the Prometheus deployment with the appropriate configuration data
+To keep the Prometheus image and configuration decoupled, use the `ConfigMap` object to inject the Prometheus deployment with the appropriate configuration data.
 
 ```bash
 cat <<'EOF' > prometheus.yml
@@ -102,7 +102,7 @@ Next, edit the deployment configuration for Prometheus to include this ConfigMap
 oc edit dc/prometheus
 ```
 
-Add new volume and volume mount
+Add new volume and volume mount.
 
 ```bash
 - name: prom-config-example-volume
@@ -120,17 +120,17 @@ Use an OpenShift Template to run Grafana with persistent storage.
 $ oc process -f https://gist.githubusercontent.com/Vikaspogu/4a67495acf8dba5dc94837e031129fde/raw/e88f42515c6ed101c9554c7c2425794e80e10a64/OpenShift-grafana.yaml | oc apply -f-
 ```
 
-Once deployed, log-in to Grafana using the Route provided in the Template and using default account admin with password admin (it maybe a good idea to change the password after this).
+Once deployed, log in to Grafana using the Route provided in the Template and using the default account admin with password admin (it may be a good idea to change the password after this).
 
 ### Grafana Data Source
 
-1. The Grafana template automatically provisions a Prometheus data source `App-Prometheus` which connects to `http://prometheus:9090` via proxy connection.
+1. The Grafana template automatically provisions a Prometheus data source, `App-Prometheus`, which connects to `http://prometheus:9090` via a proxy connection.
 
-2. This works only if there is a Prometheus service (called prometheus) in the same project as Grafana. If this is not the case, it is necessary to edit the datasource to point to another location.
+2. This works if there is a Prometheus service (called Prometheus) in the same project as Grafana. If this is not the case, it is necessary to edit the data source to point to the appropriate location.
 
 ### Grafana Dashboard
 
-1. The Grafana template automatically provisions sample dashboards. These dashboards are by no means comprehensive but could be used as a starting point for further customization.
+1. The Grafana template automatically provisions sample dashboards. These dashboards are not comprehensive, but you can use them as a starting point for further customization.
 
 ![grafana-springboot](grafana-springboot.png)
 

@@ -1,20 +1,20 @@
 +++ 
 date = 2020-07-04
 title = "Slack bot with Nodejs"
-description = "Building a slack bot using bolt library in Nodejs"
+description = "Building a slack bot using bolt library in NodeJS"
 slug = "nodejs-slack-bot" 
-tags = ["slack-bot", "nodejs"]
+tags = ["slack-bot", "NodeJS"]
 categories = []
 externalLink = ""
 series = []
 socialShare=true
 +++
 
-Build your own personal slack bot in few steps. In this post we'll navigate through process of creating the bot.
+Build your slack bot in a few steps. In this post, we'll navigate the process of creating the bot.
 
 ## Slack setup
 
-First create a slack [workspace](https://slack.com/intl/en-ng/create#email)
+First, create a slack [workspace](https://slack.com/intl/en-ng/create#email)
 
 - Give your workspace a name
 
@@ -22,22 +22,22 @@ First create a slack [workspace](https://slack.com/intl/en-ng/create#email)
 
 Create a new bot at [slack apps](https://api.slack.com/apps)
 
-- Give your new app a name
-- Choose workspace you created before to install the app
+- Give your new application a name
+- Choose the workspace you created before installing the bot application
 
 ![create_app](create_app.png)
 
-Then go to `Features > OAuth & Permissions` screen to scroll down to `Bot Token Scopes` to specify the OAuth scopes, select `app_mentions` and `chat_write` to enable the bot to send messages.
+Then go to the `Features > OAuth & Permissions` screen to scroll down to `Bot Token Scopes` to specify the OAuth scopes, and select `app_mentions` and `chat_write` to enable the bot to send messages.
 
 ![add_oauth](add_oauth.png)
 
-Before jumping into application setup, let's copy signing secret and verification token from basic information page. we'll be using this later in our nodejs application
+Before jumping into the application setup, copy the signing secret and verification token from the basic information page. We'll be using this later in our NodeJS application.
 
 ![secret_token](secret_token.png)
 
 ## Application setup
 
-Create a npm project, install `@slack/bolt` and `dotenv` packages
+Create an npm project, install `@slack/bolt` and `dotenv` packages
 
 ```bash
 mkdir test-bot && cd test-bot
@@ -45,7 +45,7 @@ npm init -y
 npm i dotenv @slack/bolt -S
 ```
 
-Add start command to scripts if necessary
+Add start command to scripts if necessary.
 
 ```json
 ...
@@ -63,7 +63,7 @@ SLACK_BOT_TOKEN= #token goes here
 SLACK_SIGNING_SECRET= #signing secret goes here
 ```
 
-In your index.js file, require the Bolt package, and initialize an app with credentials
+In your index.js file, require the Bolt package, and initialize an app with credentials.
 
 ```javascript
 require("dotenv").config();
@@ -83,11 +83,11 @@ const bot = new App({
 })();
 ```
 
-Deploy application to a live server like `ngrok`.
+Deploy the application to a live server like `ngrok`.
 
 #### Event Setup
 
-We'll need to subscribe to events, so that when a Slack event happens (like a user mentions app), app server will receive an event payload
+We'll need to subscribe to events so that when a Slack event happens (like a user mentions an app), the app server will receive an event payload.
 
 - Go to Event Subscriptions from the left-hand menu, and turn the toggle switch on to enable events
 
@@ -103,11 +103,11 @@ Install app to workspace
 
 ![install_app_workspace](install_app_workspace.png)
 
-You should see bot in your workspace now!
+You should see the bot in your workspace now!
 
 #### Handling Events
 
-To listen to any Events API events from Slack, use the event() method. This allows your app to take action when something happens in Slack. In this scenario, it's triggered when a user mentions app.
+To listen to any Events API events from Slack, use the event() method. This method allows your app to take action on Slack events. In this scenario, it's triggered when a user mentions the app.
 
 ```javascript
 bot.event("app_mention", async ({ context, event }) => {
@@ -117,7 +117,7 @@ bot.event("app_mention", async ({ context, event }) => {
     if (command.includes("Hi")) {
       reply = `Hi <@${event.user}>,  you mentioned me`;
     } else {
-      reply = "How can i help you?";
+      reply = "How can I help you?";
     }
     await bot.client.chat.postMessage({
       token: context.botToken,
@@ -132,10 +132,10 @@ bot.event("app_mention", async ({ context, event }) => {
 
 Okay, let's try the app!
 
-Add app to a channel and mention the app. You should see a response from bot!
+Add the app to a channel and mention the app. You should see a response from the bot!
 
 ### Troubleshooting
 
-Reinstall app if you don't see any responses from bot
+Reinstall the app if you don't see any responses from the bot
 
 ![reinstall_app](reinstall_app.png)

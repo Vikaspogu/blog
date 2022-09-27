@@ -6,13 +6,13 @@ slug="intro-tektoncd-ocp"
 socialShare=true
 +++
 
-Recently I came across [tektoncd](https://tekton.dev/) project, **_The Tekton Pipelines project provides Kubernetes-style resources for declaring CI/CD-style pipelines_** caught my attention and started playing with it.
+Recently I came across [tektoncd](https://tekton.dev/) project, **_The Tekton Pipelines project provides Kubernetes-style resources for declaring CI/CD-style pipelines_** caught my attention, and I started playing with it.
 
 ## Basic Concepts
 
 ![tekton concepts](concepts.png)
 
-In order to create a tekton pipeline, one does the following:
+To create a Tekton pipeline, one does the following:
 
 - Create custom or install existing reusable Tasks
 - Create a Pipeline and PipelineResources to define your application's delivery pipeline
@@ -20,7 +20,7 @@ In order to create a tekton pipeline, one does the following:
 
 ### Installing Tekton on OpenShift
 
-Login as a user with `cluster-admin` privileges
+Log in as a user with `cluster-admin` privileges.
 
 ```bash
 oc new-project tekton-pipelines
@@ -30,7 +30,7 @@ oc apply --filename https://storage.googleapis.com/tekton-releases/latest/releas
 
 ### Install dashboard
 
-Dashboard is a general purpose, web-based UI for Tekton Pipelines. Tekton also has [cli](https://github.com/tektoncd/cli) client
+The dashboard is a general-purpose, web-based UI for Tekton Pipelines. Tekton also has [cli](https://github.com/tektoncd/cli) client
 
 ```bash
 curl -L https://github.com/tektoncd/dashboard/releases/download/v0/gcr-tekton-dashboard.yaml | oc apply -f -
@@ -50,7 +50,7 @@ oc expose service tekton-dashboard \
 
 ### Create pipeline
 
-This pipeline builds image from the source, starts a new rollout
+This pipeline builds an image from the source and starts a new rollout.
 
 Create a new project
 
@@ -189,13 +189,13 @@ spec:
 oc apply -f go-sample-template.yml
 ```
 
-Deployment will not complete since there are no container image for `go-sample` app
+The deployment will not be complete since there are no container images for the `go-sample` app.
 
 ![App template](temp.png)
 
 Create a `s2i-go`, `OpenShift-cli` task. You can find more examples of reusable `task`s in the [Tekton Catalog](https://github.com/tektoncd/catalog) and [OpenShift Catalog](https://github.com/OpenShift/pipelines-catalog) repositories.
 
-**Note:** Tasks consist of a number of steps that are executed sequentially. Each task is executed in a separate container within the same pod
+**Note:** Tasks consist of several steps that get executed sequentially. The pipeline will perform each task in a separate container within the same pod.
 
 ```bash
 oc apply -f https://raw.githubusercontent.com/OpenShift/pipelines-catalog/master/s2i-go/s2i-go-task.yaml
@@ -233,7 +233,7 @@ oc apply -f resources.yml
 
 ![Pipeline resources](resource.png)
 
-Create pipeline, pipelines has two tasks here `build`, `deploy`. Build uses `s2i-go` task to create image from source and deploy uses `OpenShift-client` task to rollout latest deployment of `go-sample`
+Create pipeline; pipelines have two tasks here `build` and `deploy.` Build uses `s2i-go` task to create an image from source and deploy uses `OpenShift-client` task to rollout latest deployment of `go-sample`
 
 ```yaml
 apiVersion: tekton.dev/v1alpha1
@@ -278,7 +278,7 @@ oc apply -f go-sample-pipeline.yml
 
 ![Pipeline](pipeline.png)
 
-Start pipeline on dashboard or by [tektoncli](https://github.com/tektoncd/cli)
+Start pipeline on the dashboard or by [tektoncli](https://github.com/tektoncd/cli)
 
 ```bash
 tkn pipeline start go-sample-pipeline \
@@ -288,12 +288,12 @@ tkn pipeline start go-sample-pipeline \
 
 ![PipelineRun](pipelinerun.png)
 
-Click on `Create PipelineRun`, select pipeline, resources, service account and start the pipeline
+Click on `Create PipelineRun`, select pipeline, resources, and service account and start the pipeline.
 
 ![Pipeline start](startrun.png)
 
-Once, finished you should see all tasks marked in green
+Once finished, you should see all tasks marked in green.
 
 ![App template](pipelinefinish.png)
 
-`go-sample` deployment should have 1 running pod
+The `go-sample` deployment should have one running pod.

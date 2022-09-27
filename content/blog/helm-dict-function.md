@@ -10,7 +10,7 @@ series = []
 socialShare=true
 +++
 
-Recently I was in a situation where I ended up writing multiple if-else statements in the helm template. Code block didn't look clean and, I begin to explore alternative ways to achieve a clean and concise way to achieve the same behavior.
+Recently I was in a situation where I ended up writing multiple if-else statements in the helm template. As a result, the code block wasn't clean, and I began to explore alternative ways to achieve the same behavior concisely.
 
 [Helm dict function](https://github.com/Masterminds/sprig/blob/master/docs/dicts.md#dictionaries-and-dict-functions) perfectly fits my use case.
 

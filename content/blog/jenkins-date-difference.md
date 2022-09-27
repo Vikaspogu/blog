@@ -3,14 +3,14 @@ date = 2020-07-07
 title = "Jenkins pipeline date helper functions"
 description = "Jenkins pipeline function to get days between dates"
 slug = "" 
-tags = ["jenkins","groovy","date"]
+tags = ["Jenkins","groovy","date"]
 categories = []
 externalLink = ""
 series = []
 socialShare=true
 +++
 
-This is how you can calculate days between two dates in Jenkins pipeline. `@NonCPS` annotation is useful when you have methods which use objects that aren't `serializable`
+The below snippet shows how to calculate days between two dates in the Jenkins pipeline. `@NonCPS` annotation is functional when you have methods that use objects that aren't `serializable`.
 
 ```groovy
 import java.text.SimpleDateFormat
@@ -35,7 +35,7 @@ def getRemainingDays(previousDate){
 }
 ```
 
-Calculate if date is greater than 14 days
+Calculate if the date is greater than 14 days
 
 ```groovy
 import java.time.LocalDate

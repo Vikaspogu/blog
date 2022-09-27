@@ -8,13 +8,13 @@ socialShare=true
 
 ## Couchbase SSL
 
-If you have followed [dynamic creation of java keystores in OpenShift](https://developers.redhat.com/blog/2017/11/22/dynamically-creating-java-keystores-OpenShift/) post and wondered how to use similar concepts for couchbase database and a java application. This post will help you.
+Suppose you have followed [dynamic creation of java keystores in OpenShift](https://developers.redhat.com/blog/2017/11/22/dynamically-creating-java-keystores-OpenShift/) post and wondered how to use similar concepts for couchbase database and a java application. This post will help you.
 
 ### Couchbase setup
 
-This is the couchbase [documentation](https://docs.couchbase.com/server/6.0/manage/manage-security/configure-server-certificates.html#configure-server-side-certificates) for configuring server side certificates, we are interested in last few steps since OpenShift will generate key and cert by adding annotation to the couchbase service.
+Here is the couchbase [documentation](https://docs.couchbase.com/server/6.0/manage/manage-security/configure-server-certificates.html#configure-server-side-certificates) for configuring server-side certificates, we are interested in last few steps since OpenShift will generate key and cert by adding an annotation to the couchbase service.
 
-**Note:** By adding this annotation you can [dynamically create certificates](https://docs.OpenShift.com/container-platform/3.11/dev_guide/secrets.html#service-serving-certificate-secrets)
+**Note:** By adding this annotation, you can [dynamically create certificates](https://docs.OpenShift.com/container-platform/3.11/dev_guide/secrets.html#service-serving-certificate-secrets)
 `service.alpha.OpenShift.io/serving-cert-secret-name: couchbase-db-certs`
 
 couchbase service looks like this:
@@ -38,13 +38,13 @@ spec:
       targetPort: 8091
 ```
 
-To convert certificates as couchbase expects, we are going to use an [init container](https://docs.OpenShift.com/container-platform/3.11/architecture/core_concepts/pods_and_services.html#pods-services-init-containers).
+To convert certificates as couchbase expects, we will use an [init container](https://docs.OpenShift.com/container-platform/3.11/architecture/core_concepts/pods_and_services.html#pods-services-init-containers).
 
-We will use an `emptyDir` volume to store cert and key in `/opt/couchbase/var/lib/couchbase/inbox/` location so that couchbase can access them.
+We will use an `emptyDir` volume to store the cert and key in the `/opt/couchbase/var/lib/couchbase/inbox/` location so that couchbase can access them.
 
-Init container will run sequence of commands to split certificate, place them into `/opt/couchbase/var/lib/couchbase/inbox/` location and name cert file as `chain.pem`, key as `pkey.key`.
+Init container will run a sequence of commands to split certificate, place them into `/opt/couchbase/var/lib/couchbase/inbox/` location, and name cert file as `chain.pem`, key as `pkey.key`.
 
-init container will look as follows:
+Init container will look as follows:
 
 ```yaml
 initContainers:
@@ -82,7 +82,7 @@ volumes:
       secretName: couchbase-db-certs
 ```
 
-Next add `couchbase-ssl-volume` emptyDir volume mount to actual container so file can be access by couchbase.
+Next, add `couchbase-ssl-volume` emptyDir volume mount to the actual container so the file can be accessed by couchbase.
 
 ```yaml
 spec:
@@ -94,7 +94,7 @@ spec:
           name: couchbase-ssl-volume
 ```
 
-I am using a `rhel7-couchbase` image, on startup it runs a initialization script to setup cluster; at that time we will upload the certificate, and activate it using these commands.
+I am using a `rhel7-couchbase` image; on startup, it runs an initialization script to set up the cluster; at that time, we will upload the certificate and activate it using these commands.
 
 ```bash
 couchbase-cli ssl-manage -c http://localhost:8091 -u Administrator \
@@ -111,7 +111,7 @@ Pass the cert location as environment variable `SERVICE_CERT` in deployment conf
       value: /opt/couchbase/var/lib/couchbase/inbox/service-crt-01
 ```
 
-Verify logs on container
+Verify logs on the container
 
 ```text
 SUCCESS: Uploaded cluster certificate to http://localhost:8091
@@ -122,7 +122,7 @@ We can also verify in couchbase UI
 
 ![Couchbase UI](couchbase_OpenShift_ssl.png)
 
-At this point couchbase setup is done.
+At this point, we completed the couchbase setup.
 
 ### Application setup
 
@@ -196,7 +196,7 @@ cachedCluster = CouchbaseCluster.create(env, "couchbase-db")
   .authenticate("Administrator", "password");
 ```
 
-Deploy your application, if successful you should see similar output in container logs
+Deploy your application; if successful, you should see similar output in container logs
 
 ```log
 2019-08-28 15:33:27.952  INFO 1 --- [cTaskExecutor-1]

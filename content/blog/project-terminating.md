@@ -1,13 +1,13 @@
 +++
-title= "Deleting a OpenShift project stuck in terminating state"
+title= "Deleting an OpenShift project stuck in terminating state"
 date= "2019-05-15"
 tags= ["OpenShift"]
 socialShare=true
 +++
 
-Recently I was faced an issue where one of my project was stuck in terminating state for days. The workaround below fixed the issue.
+Recently I faced an issue where one of my projects got stuck in a terminating state for days. The workaround below fixed the problem.
 
-Export OpenShift project as an JSON Object
+Export OpenShift project as a JSON Object
 
 ```bash
 oc get project delete-me -o json > ns-without-finalizers.json
@@ -28,7 +28,7 @@ spec:
   finalizers: []
 ```
 
-On one of the master node, execute these commands.
+On one of the master nodes, execute these commands.
 
 ```bash
 kubectl proxy & PID=$!

@@ -2,40 +2,40 @@
 date = 2019-12-16
 title = "Basic Authentication in Go with Gin"
 description = "Basic user authentication with gin web framework in Golang"
-tags = ["golang", "basicauth","gin"]
+tags = ["golang", "basic-auth","gin"]
 categories = []
 externalLink = ""
 series = []
 socialShare=true
 +++
 
-This is short post on adding basic authentication to go applications. Our sample application uses gin web framework
+This short post looks at adding basic authentication to GoLang applications. Below example application uses the gin web framework.
 
-Let's start by creating a gin router with default middleware, by default it serves on `:8080` unless a `PORT` environment variable was defined
+Let's start by creating a gin router with default middleware. By default, it serves on `:8080` unless we define a `PORT` environment variable.
 
 ```go
 func main(){
-	r := gin.Default()
-	r.GET("/getAllUsers", basicAuth, handlers.UsersList)
-	_ = r.Run()
+    r := gin.Default()
+    r.GET("/getAllUsers", basicAuth, handlers.UsersList)
+    _ = r.Run()
 }
 ```
 
-Now that we have our basic route, lets create a method to add authentication logic. Get basic auth credentials from context request and validate them. If user isn't authenticated, authentication window is prompted with username and password.
+Now that we have our primary route let us create a method to add authentication logic. First, get basic auth credentials from the context request and validate them. The browser will prompt an authentication window for username and password details if the user is not authenticated.
 
 ```go
 func basicAuth(c *gin.Context) {
-	// Get the Basic Authentication credentials
-	user, password, hasAuth := c.Request.BasicAuth()
-	if hasAuth && user == "testuser" && password == "testpass" {
-		log.WithFields(log.Fields{
-			"user": user,
-		}).Info("User authenticated")
-	} else {
-		c.Abort()
-		c.Writer.Header().Set("WWW-Authenticate", "Basic realm=Restricted")
-		return
-	}
+    // Get the Basic Authentication credentials
+    user, password, hasAuth := c.Request.BasicAuth()
+    if hasAuth && user == "testuser" && password == "testpass" {
+        log.WithFields(log.Fields{
+            "user": user,
+        }).Info("User authenticated")
+    } else {
+        c.Abort()
+        c.Writer.Header().Set("WWW-Authenticate", "Basic realm=Restricted")
+        return
+    }
 }
 ```
 

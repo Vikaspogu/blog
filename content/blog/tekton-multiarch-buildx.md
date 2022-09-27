@@ -1,7 +1,7 @@
 +++ 
 date = 2021-01-19
-title = "Build multi arch docker image using Tekton"
-description = "multi arch builds in tekton using docker buildx"
+title = "Build multi-arch docker image using Tekton"
+description = "multi-arch builds in Tekton using docker buildx"
 slug = "" 
 tags = ["tekton", "multi-arch", "buildx"]
 categories = []
@@ -10,13 +10,13 @@ series = []
 socialShare=true
 +++
 
-There are three different strategies to build multi-platform images that are supported by Buildx and Dockerfiles:
+There are three different strategies to build multi-platform images that Buildx and Dockerfiles support:
 
 - Using the QEMU emulation support in the kernel
 - Building on multiple native nodes using the same builder instance
 - Using a stage in Dockerfile to cross-compile to different architectures
 
-I’ll focus on the first option, cross building with emulation.
+I'll focus on the first option, cross-building with emulation using buildx.
 
 ```bash
 docker buildx build --platform linux/amd64,linux/arm64 .
@@ -24,11 +24,11 @@ docker buildx build --platform linux/amd64,linux/arm64 .
 
 ## Setup
 
-This differs from platform to platform but one thing we all have in common is pipelines, so I’ve constructed a basic buildx setup for TektonCD task.
+Steps might differ from platform to platform, but the pipelines will remain the same. So I've constructed a basic buildx setup for the TektonCD task.
 
 ## Pipeline
 
-Below is a modified task of [docker-build](https://github.com/tektoncd/catalog/blob/master/task/docker-build/0.1/docker-build.yaml)
+I am taking the upstream [docker-build](https://github.com/tektoncd/catalog/blob/master/task/docker-build/0.1/docker-build.yaml) task and modifying it to my needs
 
 What's modified
 
@@ -37,8 +37,7 @@ What's modified
 - Run the latest `docker/binfmt` tag to use its qemu parts
 - Docker login (using secret for values)
 - Docker build with `docker buildx build --platform`
-
-Create a secret holding docker username and token
+- Create a secret holding docker username and token
 
 ```bash
 kubectl create secret generic docker-token \
@@ -177,4 +176,4 @@ spec:
     emptyDir: {}
 ```
 
-Make sure you have a base image that supports multiarch like alpine or one of [these](https://hub.docker.com/search?category=base&source=verified&type=image&architecture=arm%2Carm64%2Camd64) base images
+Make sure you have a base image that supports multi-arch like alpine or one of [these](https://hub.docker.com/search?category=base&source=verified&type=image&architecture=arm%2Carm64%2Camd64) base images

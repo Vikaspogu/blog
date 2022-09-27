@@ -6,21 +6,21 @@ slug="redhat-sso-react"
 socialShare=true
 +++
 
-In this post, I will show you how to secure a React app using RedHat SSO (upstream keycloak). In this case, `openid-connect` is my identity provider.
+This post will show you how to secure a React app using RedHat SSO (upstream Keycloak). In this case, `OpenID-connect` is my identity provider.
 
 ![sso_setup](sso-openid.png)
 
-Install the official keycloak js adapter
+Install the official Keycloak js adapter
 
 ```bash
 npm i keycloak-js --save
 ```
 
-Setup the client with the host and port; in my case it's `localhost:9000`
+Add host and port information to the client; in my case, it's `localhost:9000`
 
 ![sso_setup](sso-client-settings.png)
 
-In App.js add in a JavaScript object with the required configuration; you will find these configurations under `Clients`->`Installation`
+In App.js, add a JavaScript object with the required configuration; you will find these configurations under `Clients`->`Installation`.
 
 ```javascript
 //keycloak init options
@@ -34,7 +34,9 @@ const initOptions = {
 
 ![sso_setup](sso-config.png)
 
-By default, to authenticate you need to call the login function. However, there are two options available to make the adapter automatically authenticate. You can pass `login-required` or `check-sso` to the init function. `login-required` will authenticate the client if the user is logged-in to `{project_name}` or display the login page if not. `check-sso` will only authenticate the client if the user is already logged-in; if the user is not logged-in the browser will be redirected back to the application and remain unauthenticated.
+By default, to authenticate, you need to call the login function. However, there are two options available to make the adapter automatically authenticate. First, you can pass `login-required` or `check-sso` to the init function. 
+`login-required` will authenticate the client if the user is logged-in to `{project_name}` or display the login page if not. 
+`check-sso` will only authenticate the client if the user is already logged-in; if the user is not logged in, the browser will be redirected back to the application and remain unauthenticated.
 
 ```javascript
 componentDidMount() {
@@ -92,4 +94,4 @@ Run your app
 $ npm run start
 ```
 
-Navigate to `http://localhost:9000`; you should see the login page if you are not authenticated
+Navigate to `http://localhost:9000`; you should see the login page if the user is not authenticated.
