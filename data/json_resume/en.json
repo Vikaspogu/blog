@@ -6,7 +6,7 @@
     "image": "https://raw.githubusercontent.com/Vikaspogu/blog/master/static/images/myAvatar.png",
     "email": "vikaspoguadf@gmail.com",
     "location": {
-      "city": "Rochester, Minnesota"
+      "city": "Rochester, Minnesota."
     },
     "profiles": [
       {
@@ -26,7 +26,7 @@
       "startDate": "2017-07",
       "highlights": [
         "Microservice application development (Java, Go, Node.js)",
-        "Containerize applications, while implementing a microservice architecture",
+        "Containerize applications while implementing a microservice architecture",
         "Develop and enable best practices for CI/CD using Jenkins and other build and delivery tools",
         "Developing CI/CD roadmap and implementing in the project",
         "Configuration management with Ansible",
