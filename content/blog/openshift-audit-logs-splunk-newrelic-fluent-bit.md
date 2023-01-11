@@ -1,7 +1,6 @@
 ---
 title: "Forward Openshift Audit Logs to Splunk using Newrelic Fluent Bit"
 date: "2023-01-11T12:52:13-06:00"
-draft: true
 comments: false
 socialShare: true
 toc: false
