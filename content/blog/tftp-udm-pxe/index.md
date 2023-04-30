@@ -1,16 +1,15 @@
 ---
-title: "PXE boot with Synology NAS and UDM router"
+title: "PXE boot with Synology NAS"
 date: 2022-05-13T16:09:15-05:00
-tags: ["PXE", "NAS", "UDM"]
+tags: ["PXE", "NAS"]
 socialShare: true
 ---
 
-In this post, I have documented the steps I followed to install RHEL 8 by booting from a PXE server over the network with a Kickstart file using Synology NAS as TFTP, HTTP server, and UDM as DHCP.
+In this post, I have documented the steps I followed to install RHEL 8 by booting from a PXE server over the network with a Kickstart file using Synology NAS as TFTP, and HTTP server.
 
 1. [Install & Configure TFTP](#install-and-configure-tftp)
 2. [Install & Configure HTTP server](#install-and-configure-http-server)
-3. [Enable network boot on UDM](#enable-network-boot-udm)
-4. [PXE Boot setup](#pxe-boot-setup)
+3. [PXE Boot setup](#pxe-boot-setup)
     * [Prepare Installation Repository](#prepare-installation-repository)
     * [Prepare kickstart file](#prepare-kickstart-file)
     * [Perform PXE boot](#perform-pxe-boot)
