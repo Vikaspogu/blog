@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
   "basics": {
     "name": "Vikas Pogu",
-    "label": "Senior Consultant at Red Hat",
+    "label": "Architect@Red Hat",
     "image": "https://raw.githubusercontent.com/Vikaspogu/blog/master/static/images/myAvatar.png",
     "email": "vikaspoguadf@gmail.com",
     "location": {
@@ -21,16 +21,44 @@
       "name": "Red Hat",
       "location": "Remote(Rochester, MN)",
       "description": "Cloud Technology company",
+      "position": "Architect",
+      "url": "http://redhat.com",
+      "startDate": "2023-01",
+      "highlights": [
+        "Solution lead for small sized teams delivering project"
+      ]
+    },
+    {
+      "name": "Red Hat",
+      "location": "Remote(Rochester, MN)",
+      "description": "Cloud Technology company",
       "position": "Senior Consultant",
       "url": "http://redhat.com",
-      "startDate": "2017-07",
+      "startDate": "2019-01",
+      "endDate": "2023-01",
       "highlights": [
         "Microservice application development (Java, Go, Node.js)",
         "Containerize applications while implementing a microservice architecture",
         "Develop and enable best practices for CI/CD using Jenkins and other build and delivery tools",
-        "Developing CI/CD roadmap and implementing in the project",
+        "Developing enterprise CI/CD pipelines",
         "Configuration management with Ansible",
-        "Routine presentations including topics such as microservices architecture, Istio, Knative, feature flags, DevOps, time-series metrics"
+        "Multi-cluster management with Red Hat Advanced cluster management",
+        "OpenShift cluster configuration using ArgoCD"
+      ]
+    },
+    {
+      "name": "Red Hat",
+      "location": "Remote(Rochester, MN)",
+      "description": "Cloud Technology company",
+      "position": "Consultant",
+      "url": "http://redhat.com",
+      "startDate": "2017-07",
+      "endDate": "2019-01",
+      "highlights": [
+        "Migrating on-prem workloads to containers", 
+        "Deploying container workloads to the OpenShift container orchestration system",
+        "Building enterprise CI/CD system using Jenkins, Kubernetes"
+
       ]
     },
     {
