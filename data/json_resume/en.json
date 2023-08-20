@@ -21,7 +21,7 @@
       "name": "Red Hat",
       "location": "Remote(Rochester, MN)",
       "description": "Cloud Technology company",
-      "position": "Architect",
+      "position": "Red Hat Architect",
       "url": "http://redhat.com",
       "startDate": "2023-01",
       "highlights": [
@@ -50,7 +50,7 @@
       "name": "Red Hat",
       "location": "Remote(Rochester, MN)",
       "description": "Cloud Technology company",
-      "position": "Consultant",
+      "position": "Red Hat Consultant",
       "url": "http://redhat.com",
       "startDate": "2017-07",
       "endDate": "2019-01",
@@ -58,7 +58,6 @@
         "Migrating on-prem workloads to containers", 
         "Deploying container workloads to the OpenShift container orchestration system",
         "Building enterprise CI/CD system using Jenkins, Kubernetes"
-
       ]
     },
     {
