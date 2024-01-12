@@ -4,6 +4,9 @@ date: "2023-01-21T11:36:34-06:00"
 comments: false
 socialShare: true
 toc: false
+tags:
+    - postgresql
+    - upgrade
 ---
 
 I have been running an instance of bitnami's version of Postgresql 12 for a while, and I have recently upgraded/migrated data from version 12 to 15.

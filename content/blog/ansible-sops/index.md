@@ -4,6 +4,10 @@ date: "2023-04-29T20:01:54-05:00"
 comments: false
 socialShare: true
 toc: false
+tags:
+  - ansible
+  - sops
+  - custom execution image
 ---
 
 
