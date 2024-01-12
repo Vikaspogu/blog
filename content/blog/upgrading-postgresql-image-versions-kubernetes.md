@@ -1,9 +1,7 @@
 ---
 title: "Upgrading PostgreSQL in Kubernetes"
-date: "2023-01-21T11:36:34-06:00"
+date: "2023-01-21"
 comments: false
-socialShare: true
-toc: false
 tags:
     - postgresql
     - upgrade

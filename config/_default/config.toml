@@ -1,106 +1,13 @@
-baseURL = "http://localhost"
-copyright = "Copyright © 2021"
-title = "Vikas Pogu"
-#paginate = 10
+# -- Site Configuration --
+# Refer to the theme docs for more details about each of these parameters.
+# https://jpanther.github.io/congo/docs/getting-started/
+
+baseURL = "https://vikaspogu.dev/"
+defaultContentLanguage = "en"
+
 enableRobotsTXT = true
+paginate = 10
+summaryLength = 0
 
-[markup]
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      # This settings allows inlining <script> and <style> tags in markdown, 
-      # which is useful and required to use Prism plugins, but may be dangerous 
-      # if the content isn't trustworthy.
-      unsafe = true
-
-[imaging]
-  # JPEG and WebP image processing quality, defaults to 75%
-  quality = 75
-
-[params]
-  # dark or light, defaults to light
-  #defaultTheme = "light"
-  # gray red green yellow blue purple aqua orange, defaults to blue
-  #themeColor = "blue"
-  # soft medium hard, defaults to medium
-  #themeContrast = "medium"
-  author = "Vikas Pogu"
-  subtitle = "My blog"
-  description = "Blog using a retro-looking Hugo theme inspired by gruvbox."
-
-  [params.logo]
-    text = "My blog..."
-    url = "/"
-
-  [params.prism]
-    languages = [
-      "markup",
-      "css",
-      "clike",
-      "javascript",
-      "bash",
-      "diff",
-      "toml"
-    ]
-    plugins = [
-      "normalize-whitespace",
-      "toolbar",
-      "copy-to-clipboard",
-      "line-numbers",
-      "command-line",
-      "diff-highlight"
-    ]
-  
-  # By default, the theme creates resized versions of images ranging from 300 to
-  # 700 pixels wide in increments of 100 pixels
-  [params.imageResize]
-    min = 100
-    max = 500
-    increment = 100
-
-  # Social share links for posts:
-  #   - iconSuite: "simple-icon" or "tabler-icon"
-  #   - iconName: name of the icon from the "iconSuite"
-  #   - {url} placeholder for post .Permalink
-  #   - {title} placeholder for post .Title
-  # See  https://github.com/bradvin/social-share-urls for more format strings
-  [[params.socialShare]]
-    iconSuite = "simple-icon"
-    iconName = "linkedin"
-    formatString = "https://www.linkedin.com/sharing/share-offsite/?url={url}"
-  [[params.socialShare]]
-    iconSuite = "simple-icon"
-    iconName = "reddit"
-    formatString = "https://reddit.com/submit?url={url}&title={title}"
-  [[params.socialShare]]
-    iconSuite = "tabler-icon"
-    iconName = "mail"
-    formatString = "mailto:?subject={title}&body={url}"
-
-[menu]
-  [[menu.main]]
-    identifier = "blog"
-    name = "Blog"
-    url = "/blog"
-    weight = 10
-  [[menu.main]]
-    identifier = "cv"
-    name = "CV"
-    url = "/cv"
-    weight = 30
-  [[menu.main]]
-    identifier = "about"
-    name = "About"
-    url = "/about"
-    weight = 40
-  [[menu.main]]
-    identifier = "rss"
-    name = "RSS"
-    url = "/index.xml"
-    weight = 40
-
-[languages]
-  [languages.en]
-    languageName = "English"
-    weight = 10
-    [languages.en.params.jsonResume]
-      present = "present"
+[outputs]
+  home = ["HTML", "RSS", "JSON"]

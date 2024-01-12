@@ -1,10 +1,5 @@
----
-title: "{{ humanize .Name | title }}"
-date: "{{ .Date }}"
-draft: true
-comments: false
-socialShare: true
-toc: false
-cover:
-  src: cover.png
----
++++
+title = '{{ replace .File.ContentBaseName "-" " " | title }}'
+date = {{ .Date }}
+draft = true
++++

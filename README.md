@@ -5,7 +5,7 @@
 
 ## Overview
 
-Welcome to my blog repo based on [hugo-theme-gruvbox](https://github.com/schnerring/hugo-theme-gruvbox)
+Welcome to my blog repo based on [congo](https://jpanther.github.io/congo/)
 
 ---
 
