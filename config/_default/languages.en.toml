@@ -14,9 +14,9 @@ title = "Tech Chronicles..."
 
 [author]
   name = "Vikas Pogu"
-  image = "img/myAvatar.png"
+  image = "img/myAvatar.jpg"
   # headline = ""
-  bio = "Your guide to the techverse! By day, I'm conquering code. Join me for tech hacks, and the occasional tech tale. Let's geek out together! 🚀💻 #TechEnthusiast #BloggerLife"
+  bio = "Your guide to the techverse! Join me for tech hacks, and the occasional tech tale. Let's geek out together! 🚀💻"
   # links = [
   #   { email = "mailto:hello@your_domain.com" },
   #   { link = "https://link-to-some-website.com/" },

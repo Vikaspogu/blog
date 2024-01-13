@@ -11,15 +11,15 @@ I am a big fan of FluxCD and its integration with secrets management; however, r
 
 So I started my journey to configure ArgoCD with SOPS; there isn't a direct integration with SOPS. So we will have to use the [Kustomize](https://github.com/kubernetes-sigs/kustomize/) plugin called [ksops](https://github.com/viaduct-ai/kustomize-sops), which is the suggested tool on Argo's website and it has pretty good instructions for [Argo integration](https://github.com/viaduct-ai/kustomize-sops#argo-cd-integration-).
 
-### What is KSOPS?
+## What is KSOPS?
 
 KSOPS, or kustomize-SOPS, is a kustomize plugin for managing SOPS encrypted resources. KSOPS is used to decrypt any Kubernetes resources but is most commonly used to decrypt encrypted Kubernetes Secrets and ConfigMaps. The main goal of KSOPS is to manage encrypted resources the same way we manage the Kubernetes manifests.
 
-### Setup
+## Setup
 
 I am setting up this integration on my OpenShift cluster and deploying ArgoCD via [Operator](https://argocd-operator.readthedocs.io/en/latest/). For file encryption, I'll use [Age encryption](https://github.com/FiloSottile/age) tool recommended over PGP by SOPS documentation.
 
-#### Install and Generate the age key
+### Generate age key
 
 [Install](https://github.com/FiloSottile/age#installation) age package
 
@@ -31,16 +31,18 @@ Public key: age1helqcqsh9464r8chnwc2fzj8uv7vr5ntnsft0tn45v2xtz0hpfwq98cmsg
 Create a secret with the age private key; the key name must end with .agekey to be detected as an age key:
 ```
 
-#### Create a secret with the age key in `openshift-gitops` project
+### Secret
+
+Create a kubernetes secret from the age key in `openshift-gitops` project
 
 ```bash
 $ cat age.agekey | kubectl create secret generic sops-age --namespace=openshift-gitops \
 --from-file=key.txt=/dev/stdin
 ```
 
-#### Update the repo definition of ArgoCD CR to configure KSOPS custom tooling
+### Configuration
 
-Below configuration mounts the age secret and installs the KSOPS tool using initContainer
+Update the `spec.repo`` definition of ArgoCD CR to configure KSOPS custom tooling. Below configuration mounts the age secret and installs the KSOPS tool using initContainer
 
 ```yaml
 repo:

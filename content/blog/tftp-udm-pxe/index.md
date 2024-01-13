@@ -7,20 +7,20 @@ socialShare: true
 
 In this post, I have documented the steps I followed to install RHEL 8 by booting from a PXE server over the network with a Kickstart file using Synology NAS as TFTP, and HTTP server.
 
-1. [Install & Configure TFTP](#install-and-configure-tftp)
-2. [Install & Configure HTTP server](#install-and-configure-http-server)
-3. [PXE Boot setup](#pxe-boot-setup)
-    * [Prepare Installation Repository](#prepare-installation-repository)
-    * [Prepare kickstart file](#prepare-kickstart-file)
-    * [Perform PXE boot](#perform-pxe-boot)
+1. Configure TFTP
+2. Install & Configure HTTP server
+3. PXE Boot
+    * Prepare Installation
+    * Kickstart file
+    * PXE boot
 
-## Install and Configure TFTP
+## TFTP
 
 Trivial File Transfer Protocol (TFTP) is a simple file transfer protocol, generally used for transferring configurations or boot files when authentication is not required.
 
 Synology NAS comes with TFTP file services.
 
-### To configure TFTP
+### Configure TFTP
 
 Go to `Control Panel` > `File Services` > `Advanced`
 
@@ -29,16 +29,18 @@ Go to `Control Panel` > `File Services` > `Advanced`
 
 ![TFTP](tftp.png)
 
-## Install and Configure HTTP server
+## HTTP server
 
 We also need a service to host our image repository; we can use FTP or HTTP, or NFS to host our image repository. Synology NAS comes with web hosting features. In Web Station, we will create a port-based virtual host to host the contents of our image repository.
+
+### Install Packages
 
 Install the following packages from the Synology package center
 
 * Web Station
 * Apache HTTP Server 2.4
 
-### Create a virtual host
+### Configure
 
 Open `Web Station` and go to `Web Service Portal` > Select `Create Service Portal`
 
@@ -69,9 +71,9 @@ Navigate to `IP:8080`, and you should see a similar screen with files in the fol
 
 ![HTTP Server](virtualhost-4.png)
 
-## PXE Boot Setup
+## PXE Boot
 
-### Prepare Installation Repository
+### Prepare Installation
 
 * Download the ISO image file of the complete installation DVD
 * Create a directory named `images/rhel/8.6` under the root directory of the TFTP/HTTP server
@@ -120,7 +122,7 @@ menuentry 'Install RHEL 8.6 on T7910' {
 }
 ```
 
-### Prepare kickstart file
+### Kickstart file
 
 Next, we will create our kickstart file for an unattended automated installation. I have used the kickstart configuration tool available at https://access.redhat.com/labs/kickstartconfig/ in the Red Hat Customer Portal Labs. This tool will walk you through basic configuration and allows you to download the resulting Kickstart file.
 
@@ -143,7 +145,7 @@ menuentry 'Install RHEL 8.6 on T7910' {
 }
 ```
 
-### Perform PXE boot
+### PXE boot
 
 We are ready to perform UEFI PXE Boot. The shortcut button to boot over the network may vary for different hardware, F12 on most common hardware.
 

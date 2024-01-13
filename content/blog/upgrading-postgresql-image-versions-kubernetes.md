@@ -13,33 +13,35 @@ This post doesn't cover in-place upgrades; instead, it will require you to spin 
 
 ## Deploy New Container Image
 
-The first step is to deploy a new Postgres container using the updated image version. This container **MUST NOT** mount the same volume as the older Postgres container. 
+The first step is to deploy a new Postgres container using the updated image version. 
+
+> This container **MUST NOT** mount the same volume as the older Postgres container. 
 
 Instead, it will need to mount a new volume for the database. The new Postgres server will fail if you mount the older Postgres server volume. This is because Postgres requires the data to be migrated before it can load it.
 
 ## Backup
 
-- Install the PostgreSQL command line tool on your local machine
+Install the PostgreSQL command line tool on your local machine
 
-    ```bash
-    brew install PostgreSQL
-    ```
+```bash
+brew install PostgreSQL
+```
 
-- Start Kubernetes `port-forward` for postgres service to expose the port on the local system to perform a data dump
+Start Kubernetes `port-forward` for postgres service to expose the port on the local system to perform a data dump
 
-    ```bash
-    kubectl port-forward svc/postgresql-kube 5432 &
-    ```
+```bash
+kubectl port-forward svc/postgresql-kube 5432 &
+```
 
-- Run `pg_dumpall`, a utility for writing out (dumping) all of your PostgreSQL databases of a cluster
+Run `pg_dumpall`, a utility for writing out (dumping) all of your PostgreSQL databases of a cluster
 
-    ```bash
-    pg_dumpall -h 127.0.0.1 -p 5432 -U postgres -W -f database.sql
-    ```
+```bash
+pg_dumpall -h 127.0.0.1 -p 5432 -U postgres -W -f database.sql
+```
 
 If everything goes successfully, a new file is created on the local filesystem.
 
-### Import
+## Import
 
 We'll use the Kubernetes copy(`cp`) command to transfer the dump file into the container.
 
