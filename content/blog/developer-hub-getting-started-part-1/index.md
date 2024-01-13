@@ -105,8 +105,6 @@ global:
         package: ./dynamic-plugins/dist/janus-idp-backstage-plugin-ocm-backend-dynamic
       - disabled: false
         package: ./dynamic-plugins/dist/roadiehq-scaffolder-backend-module-utils-dynamic
-      - disabled: false
-        package: ./dynamic-plugins/dist/backstage-plugin-techdocs-backend-dynamic
 ...
 {{< /highlight >}}
 
