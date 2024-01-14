@@ -36,6 +36,7 @@ global:
 Install the helm chart with modified values
 
 ```bash
+oc new-project developer-hub
 helm install developer-hub developer-hub/developer-hub -f values.yaml
 ```
 
@@ -139,19 +140,97 @@ Verify if plugins are installed in the `install-dynamic-plugins init container` 
 
 > In the spirit of brevity and to ensure accuracy, I've posted the configuration code snippets for your convenience. However, for a more detailed and nuanced understanding of the integration process, I highly recommend referring to the official product documentation.
 
+{{< alert >}}
+Integration code snippets are added to the configmap; for reference, here is the complete [configmap](https://raw.githubusercontent.com/Vikaspogu/openshift-multicluster/main/kustomize/cluster-overlays/pxm-acm/developer-hub-chart/app-config-rhdh.yaml)
+{{< /alert >}}
+
 ### Externalize configuration
 
 Create a `configmap` to add configuration to the developer hub as described in the [documentation](https://access.redhat.com/documentation/en-us/red_hat_developer_hub/1.0/html/getting_started_with_red_hat_developer_hub/ref-rhdh-supported-configs_rhdh-getting-started)
 
-{{< alert >}}
-Integration code snippets are added to the configmap; for reference, here is the complete [configmap](https://raw.githubusercontent.com/Vikaspogu/openshift-multicluster/main/kustomize/cluster-overlays/pxm-acm/developer-hub-chart/app-config-rhdh.yaml)
-{{< /alert >}}
+![Alt text](configmap.png "ConfigMap")
+
+Mount the ConfigMap, add `extraAppConfig` to the values file under `upstream.backstage` section
+
+{{< highlight yaml "linenos=table,hl_lines=21-23" >}}
+upstream:
+  backstage:
+    appConfig:
+      app:
+        baseUrl: 'https://{{- include "janus-idp.hostname" . }}'
+      backend:
+        baseUrl: 'https://{{- include "janus-idp.hostname" . }}'
+        cors:
+          origin: 'https://{{- include "janus-idp.hostname" . }}'
+        database:
+          connection:
+            password: ${POSTGRESQL_ADMIN_PASSWORD}
+            user: postgres
+        auth:
+          keys:
+            - secret: ${BACKEND_SECRET}
+    args:
+      - "--config"
+      - dynamic-plugins-root/app-config.dynamic-plugins.yaml
+    command: []
+    extraAppConfig:
+      - configMapRef: app-config-rhdh
+        filename: app-config-rhdh.yaml
+{{< /highlight >}}
+
+Re-install the chart with updated values
+
+```bash
+helm upgrade --install developer-hub developer-hub/developer-hub -f values.yaml
+```
 
 ### GitHub Integration
 
 Seamlessly connect your projects with GitHub by configuring the [integration](https://access.redhat.com/documentation/en-us/red_hat_developer_hub/1.0/html/getting_started_with_red_hat_developer_hub/ref-rhdh-supported-configs_rhdh-getting-started#setting-github-integration-and-authentication).
 
+Create a secret named `rhdh-secrets` as mentioned in documentation with GitHub clientId, secret and token
+
+```bash
+oc create secret generic rhdh-secrets --from-literal=GITHUB_APP_CLIENT_ID=dummy --from-literal=GITHUB_APP_CLIENT_SECRET=dummy --from-literal=GITHUB_TOKEN=dummy
+```
+
+Mount the `rhdh-secrets`, add `extraEnvVarsSecrets` to the values file under `upstream.backstage` section
+
+{{< highlight yaml "linenos=table,hl_lines=21-22" >}}
+upstream:
+  backstage:
+    appConfig:
+      app:
+        baseUrl: 'https://{{- include "janus-idp.hostname" . }}'
+      backend:
+        baseUrl: 'https://{{- include "janus-idp.hostname" . }}'
+        cors:
+          origin: 'https://{{- include "janus-idp.hostname" . }}'
+        database:
+          connection:
+            password: ${POSTGRESQL_ADMIN_PASSWORD}
+            user: postgres
+        auth:
+          keys:
+            - secret: ${BACKEND_SECRET}
+    args:
+      - "--config"
+      - dynamic-plugins-root/app-config.dynamic-plugins.yaml
+    command: []
+    extraEnvVarsSecrets:
+      - rhdh-secrets
+    extraAppConfig:
+      - configMapRef: app-config-rhdh
+        filename: app-config-rhdh.yaml
+{{< /highlight >}}
+
+Update the `app-config-rhdh` configmap and add below configuration
+
 ```yaml
+integrations:
+  github:
+    - host: github.com
+      token: ${GITHUB_TOKEN}
 auth:
   # see https://backstage.io/docs/auth/ to learn about auth providers
   environment: development
@@ -162,11 +241,69 @@ auth:
         clientSecret: ${GITHUB_APP_CLIENT_SECRET}
 ```
 
+Re-installing the chart will recreate a new pod with updated values and configmap
+
+```bash
+helm upgrade --install developer-hub developer-hub/developer-hub -f values.yaml
+```
+
 ![Alt text](github-auth.png "GitHub Auth")
 
 ### Navigating Clusters with Open Cluster Management
 
 Open Cluster Management extends our reach to manage and monitor multiple clusters effortlessly. To enable we can add kubernetes [configuration](https://backstage.io/docs/features/kubernetes/configuration) and reference the cluster in catalog provider
+
+We are setting up authentication for the Kubernetes cluster using the serviceaccount token. Create a serviceaccount in the developer-hub namespace
+
+```bash
+oc create sa developer-hub -n developer-hub
+```
+
+Obtain a long-lived token by creating a secret
+
+```bash
+oc apply -f - <<EOF
+apiVersion: v1
+kind: Secret
+metadata:
+  name: developer-hub-sa
+  namespace: developer-hub
+  annotations:
+    kubernetes.io/service-account.name: developer-hub
+type: kubernetes.io/service-account-token
+EOF
+```
+
+Add a new entry in the `extraEnvVars` to mount the serviceaccount token secret as an environment variables in the values file under `upstream.backstage` section
+
+{{< highlight yaml "linenos=table,hl_lines=20-24" >}}
+upstream:
+  backstage:
+    ...
+    extraEnvVarsSecrets:
+      - rhdh-secrets
+    extraAppConfig:
+      - configMapRef: app-config-rhdh
+        filename: app-config-rhdh.yaml
+    extraEnvVars:
+      - name: BACKEND_SECRET
+        valueFrom:
+          secretKeyRef:
+            key: backend-secret
+            name: '{{ include "janus-idp.backend-secret-name" $ }}'
+      - name: POSTGRESQL_ADMIN_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            key: postgres-password
+            name: '{{- include "janus-idp.postgresql.secretName" . }}'
+      - name: KUBE_TOKEN
+        valueFrom:
+          secretKeyRef:
+            key: token
+            name: developer-hub-sa
+{{< /highlight >}}
+
+Update the `app-config-rhdh` configmap with below configuration
 
 ```yaml
 kubernetes:
@@ -196,11 +333,63 @@ catalog:
             seconds: 60
 ```
 
+Re-installing the chart will recreate a new pod with updated values and mount serviceaccount token secret as an environment variable
+
+```bash
+helm upgrade --install developer-hub developer-hub/developer-hub -f values.yaml
+```
+
 ![Alt text](ocm.png "Multicluster")
 
 ### Synchronizing with ArgoCD
 
-The ArgoCD Backstage plugin provides synced, health status and updates the history of your services to your Developer Portal. Add the `ARGOCD_TOKEN` as an environment variable, or create a secret and add it from secret.
+The ArgoCD Backstage plugin provides synced, health status and updates the history of your services to your Developer Portal.
+
+Generate a new token from the ArgoCD instance
+
+![Alt text](argocd-token.png "ArgoCD token")
+
+Create a new secret from the ArgoCD token
+
+```bash
+oc create secret generic argocd-token --from-literal=ARGOCD_TOKEN=dummy
+```
+
+Add a new entry in the `extraEnvVars` to mount the secret as an environment variables in the values file under `upstream.backstage` section
+
+{{< highlight yaml "linenos=table,hl_lines=25-29" >}}
+upstream:
+  backstage:
+    ...
+    extraEnvVarsSecrets:
+      - rhdh-secrets
+    extraAppConfig:
+      - configMapRef: app-config-rhdh
+        filename: app-config-rhdh.yaml
+    extraEnvVars:
+      - name: BACKEND_SECRET
+        valueFrom:
+          secretKeyRef:
+            key: backend-secret
+            name: '{{ include "janus-idp.backend-secret-name" $ }}'
+      - name: POSTGRESQL_ADMIN_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            key: postgres-password
+            name: '{{- include "janus-idp.postgresql.secretName" . }}'
+      - name: KUBE_TOKEN
+        valueFrom:
+          secretKeyRef:
+            key: token
+            name: developer-hub-sa
+      - name: ARGOCD_TOKEN
+        valueFrom:
+          secretKeyRef:
+            key: ARGOCD_TOKEN
+            name: argocd-token
+{{< /highlight >}}
+
+Update the `app-config-rhdh` configmap with below configuration
 
 ```yaml
 argocd:
@@ -210,6 +399,12 @@ argocd:
           token: ${ARGOCD_TOKEN}
           url: https://openshift-gitops-server-openshift-gitops.apps.example.com
       type: config
+```
+
+Re-installing the chart
+
+```bash
+helm upgrade --install developer-hub developer-hub/developer-hub -f values.yaml
 ```
 
 ![Alt text](argocd.png "ArgoCD")
