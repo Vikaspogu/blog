@@ -16,7 +16,7 @@ Today, I'm excited to share my learnings on the journey of getting started with 
 Deploying the Red Hat Developer Hub is a breeze, and Helm charts make it a cinch. First, add the helm chart repo for the developer hub. Then, we'll download the values yaml since we need to update a few values accordingly.
 
 ```bash
-helm repo add developer-hub https://redhat-developer.github.io/helm-charts
+helm repo add openshift-helm-charts https://charts.openshift.io/
 helm show values openshift-helm-charts/redhat-developer-hub > values.yaml
 ```
 
