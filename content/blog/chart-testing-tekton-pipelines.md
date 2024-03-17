@@ -36,9 +36,10 @@ Error: failed installing charts: failed processing charts
 ```
 
 To solve the above error, we'll follow below steps:
+
 - Create a new service account and secret token from the service account.
 - Grant appropriate permissions to the service account.
-- Create a kubeconfig file using the kubeconfig creator task. By Mounting the service account token as an environment variable from the secret in the task
+- Create a kubeconfig file using the kubeconfig creator task. By [mounting](https://tekton.dev/docs/pipelines/tasks/#using-a-secret-as-an-environment-source) the service account token as an environment variable from the secret in the task
 - This task's output will be the kubeconfig file stored in the workspace and shared across tasks.
 
 Create a new service account
