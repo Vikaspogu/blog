@@ -105,6 +105,6 @@ Follow [this](https://developers.cloudflare.com/cloudflare-one/connections/conne
 
 ### Verify the Tunnel
 
-Open a web browser and navigate to the OpenShift console. 
+Open a web browser and navigate to the OpenShift console.
 
 Congratulations! You have successfully set up a Cloudflared tunnel on OpenShift, which allows you to expose your web application securely to the internet.
