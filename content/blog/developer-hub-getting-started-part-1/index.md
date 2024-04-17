@@ -415,4 +415,4 @@ helm upgrade --install developer-hub developer-hub/developer-hub -f values.yaml
 
 In Part 1, we've navigated through installation, enabled plugins, configured the integration, and set the stage for a seamless developer experience.
 
-In our upcoming [Part 2](https://vikaspogu.dev/blog/developer-hub-getting-started-part-2/), we'll dive into the magic of software template creation.
+In our upcoming [Part 2](https://vikaspogu.github.io/blog/developer-hub-getting-started-part-2/), we'll dive into the magic of software template creation.

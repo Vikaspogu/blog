@@ -5,7 +5,7 @@ draft = false
 tags=["Red Hat Developer Hub","Backstage","IDP"]
 +++
 
-In this [continuation](https://vikaspogu.dev/blog/developer-hub-getting-started-part-1/) of our getting started with Developer Hub series, we're diving into the art of crafting templates. These templates will not only streamline your workflow but also serve as the cornerstone for automated deployments.
+In this [continuation](https://vikaspogu.github.io/blog/developer-hub-getting-started-part-1/) of our getting started with Developer Hub series, we're diving into the art of crafting templates. These templates will not only streamline your workflow but also serve as the cornerstone for automated deployments.
 
 ## High-level overview
 

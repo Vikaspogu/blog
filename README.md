@@ -1,4 +1,4 @@
-# Vikaspogu.dev (Blog)
+# vikaspogu.github.io (Blog)
 
  [![GitHub last commit](https://img.shields.io/github/last-commit/vikaspogu/blog?color=purple&style=flat-square)](https://github.com/vikaspogu/blog/commits/master)
  ![SIZE](https://img.shields.io/github/repo-size/vikaspogu/blog?style=flat-square)
