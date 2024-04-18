@@ -1,4 +1,4 @@
-# vikaspogu.github.io (Blog)
+# vikaspogu.dev (Blog)
 
  [![GitHub last commit](https://img.shields.io/github/last-commit/vikaspogu/blog?color=purple&style=flat-square)](https://github.com/vikaspogu/blog/commits/master)
  ![SIZE](https://img.shields.io/github/repo-size/vikaspogu/blog?style=flat-square)
@@ -26,7 +26,7 @@ git clone https://github.com/Vikaspogu/blog.git && cd blog
 hugo server -D
 rm -rf public
 git rm --cached public -fr
-git submodule add --force -b master git@github.com:vikaspogu/vikaspogu.github.io.git public
+git submodule add --force -b master git@github.com:vikaspogu/vikaspogu.dev.git public
 hugo
 task push COMMIT_MSG="<commit message>"
 ```
