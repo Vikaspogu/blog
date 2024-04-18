@@ -5,37 +5,7 @@
 
 ## Overview
 
-Welcome to my blog repo based on [congo](https://jpanther.github.io/congo/)
-
----
-
-## :wrench:&nbsp; Tools
-
-_Below are the tools in use in this repo_
-
-| Tool                                                   | Purpose                                                                                                   |
-|--------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
-| [go-task](https://github.com/go-task/task)             | Replacement for make and makefile, who honestly likes that?                                              |
-
-## Useful Information
-
-### Cloning repo
-
-```bash
-git clone https://github.com/Vikaspogu/blog.git && cd blog
-hugo server -D
-rm -rf public
-git rm --cached public -fr
-git submodule add --force -b master git@github.com:vikaspogu/vikaspogu.dev.git public
-hugo
-task push COMMIT_MSG="<commit message>"
-```
-
-### Update submodule
-
-```bash
-git submodule update --init --recursive
-```
+Welcome to my blog  based on [congo](https://jpanther.github.io/congo/)
 
 ### Helpful Links
 
