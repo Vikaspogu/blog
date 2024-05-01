@@ -29,30 +29,42 @@ We'll use the [custom tooling](https://argocd-operator.readthedocs.io/en/latest/
 apiVersion: argoproj.io/v1alpha1
 kind: ArgoCD
 metadata:
-name: openshift-gitops
-namespace: openshift-gitops
+  name: openshift-gitops
+  namespace: openshift-gitops
 spec:
-repo:
-volumes: - configMap:
-name: helm-multivalues-plugin
-name: helm-multivalues-plugin - name: helm-custom-config
-emptyDir: {}
-env: - name: HELM_CACHE_HOME
-value: /.config/helm/cache - name: HELM_CONFIG_HOME
-value: /.config/helm/cache - name: HELM_DATA_HOME
-value: /.config/helm/data
-initContainers: - name: install-helm-multivalues-plugin
-image: registry.redhat.io/openshift-gitops-1/argocd-rhel8@sha256:baec6d73a77b832df8131bac3c5a86dc405ef89f600e27a22f164ed3c72816db
-command: [sh, -c]
-args: - "helm plugin install https://github.com/nico-ulbricht/helm-multivalues"
-env: - name: HELM_CACHE_HOME
-value: /helm-custom-config/cache - name: HELM_CONFIG_HOME
-value: /helm-custom-config/cache - name: HELM_DATA_HOME
-value: /helm-custom-config/data
-volumeMounts: - mountPath: /helm-custom-config
-name: helm-custom-config
-volumeMounts: - mountPath: /.config/helm
-name: helm-custom-config
+  repo:
+    volumes:
+      - configMap:
+          name: helm-multivalues-plugin
+        name: helm-multivalues-plugin
+      - name: helm-custom-config
+        emptyDir: {}
+    env:
+      - name: HELM_CACHE_HOME
+        value: /.config/helm/cache
+      - name: HELM_CONFIG_HOME
+        value: /.config/helm/cache
+      - name: HELM_DATA_HOME
+        value: /.config/helm/data
+    initContainers:
+      - name: install-helm-multivalues-plugin
+        image: registry.redhat.io/openshift-gitops-1/argocd-rhel8@sha256:baec6d73a77b832df8131bac3c5a86dc405ef89f600e27a22f164ed3c72816db
+        command: [sh, -c]
+        args:
+          - "helm plugin install https://github.com/nico-ulbricht/helm-multivalues"
+        env:
+          - name: HELM_CACHE_HOME
+            value: /helm-custom-config/cache
+          - name: HELM_CONFIG_HOME
+            value: /helm-custom-config/cache
+          - name: HELM_DATA_HOME
+            value: /helm-custom-config/data
+        volumeMounts:
+          - mountPath: /helm-custom-config
+            name: helm-custom-config
+    volumeMounts:
+      - mountPath: /.config/helm
+        name: helm-custom-config
 {{< /highlight >}}
 
 ### Configure Argo CMP
@@ -63,18 +75,17 @@ Next, create a ConfigMap with the configuration for the plugin. The `generate` c
 apiVersion: v1
 kind: ConfigMap
 metadata:
-name: helm-multivalues-plugin
-namespace: openshift-gitops
+  name: helm-multivalues-plugin
+  namespace: openshift-gitops
 data:
-plugin.yaml: |
-apiVersion: argoproj.io/v1alpha1
-kind: ConfigManagementPlugin
-metadata:
-name: helm-multivalues-plugin
-spec:
-generate:
-command: [sh, -c, 'helm multivalues template $ARGOCD_APP_NAME $ARGOCD_ENV_CHART_PATH --values $ARGOCD_ENV_VALUES_FILE -f $ARGOCD_ENV_VALUES_FOLDER']
-
+  plugin.yaml: |
+    apiVersion: argoproj.io/v1alpha1
+    kind: ConfigManagementPlugin
+    metadata:
+      name: helm-multivalues-plugin
+    spec:
+      generate:
+        command: [sh, -c, 'helm multivalues template $ARGOCD_APP_NAME $ARGOCD_ENV_CHART_PATH --values $ARGOCD_ENV_VALUES_FILE -f $ARGOCD_ENV_VALUES_FOLDER']
 {{< /highlight >}}
 
 The next step is to add the [sidecar](https://argo-cd.readthedocs.io/en/stable/operator-manual/config-management-plugins/#register-the-plugin-sidecar) to the ArgoCD operator CR.
@@ -83,44 +94,65 @@ The next step is to add the [sidecar](https://argo-cd.readthedocs.io/en/stable/o
 apiVersion: argoproj.io/v1alpha1
 kind: ArgoCD
 metadata:
-name: openshift-gitops
-namespace: openshift-gitops
+  name: openshift-gitops
+  namespace: openshift-gitops
 spec:
-repo:
-sidecarContainers: - name: helm-multivalues-plugin
-command: [/var/run/argocd/argocd-cmp-server]
-image: registry.redhat.io/openshift-gitops-1/argocd-rhel8@sha256:baec6d73a77b832df8131bac3c5a86dc405ef89f600e27a22f164ed3c72816db
-env: - name: HELM_CACHE_HOME
-value: /.config/helm/cache - name: HELM_CONFIG_HOME
-value: /.config/helm/cache - name: HELM_DATA_HOME
-value: /.config/helm/data
-volumeMounts: - mountPath: /var/run/argocd
-name: var-files - mountPath: /home/argocd/cmp-server/plugins
-name: plugins - mountPath: /tmp
-name: tmp - mountPath: /home/argocd/cmp-server/config/plugin.yaml
-subPath: plugin.yaml
-name: helm-multivalues-plugin - mountPath: /.config/helm
-name: helm-custom-config
-volumes: - configMap:
-name: helm-multivalues-plugin
-name: helm-multivalues-plugin - name: helm-custom-config
-emptyDir: {}
-env: - name: HELM_CACHE_HOME
-value: /.config/helm/cache - name: HELM_CONFIG_HOME
-value: /.config/helm/cache - name: HELM_DATA_HOME
-value: /.config/helm/data
-initContainers: - name: install-helm-multivalues-plugin
-image: registry.redhat.io/openshift-gitops-1/argocd-rhel8@sha256:baec6d73a77b832df8131bac3c5a86dc405ef89f600e27a22f164ed3c72816db
-command: [sh, -c]
-args: - "helm plugin install https://github.com/nico-ulbricht/helm-multivalues"
-env: - name: HELM_CACHE_HOME
-value: /helm-custom-config/cache - name: HELM_CONFIG_HOME
-value: /helm-custom-config/cache - name: HELM_DATA_HOME
-value: /helm-custom-config/data
-volumeMounts: - mountPath: /helm-custom-config
-name: helm-custom-config
-volumeMounts: - mountPath: /.config/helm
-name: helm-custom-config
+  repo:
+    sidecarContainers:
+      - name: helm-multivalues-plugin
+        command: [/var/run/argocd/argocd-cmp-server]
+        image: registry.redhat.io/openshift-gitops-1/argocd-rhel8@sha256:baec6d73a77b832df8131bac3c5a86dc405ef89f600e27a22f164ed3c72816db
+        env:
+          - name: HELM_CACHE_HOME
+            value: /.config/helm/cache
+          - name: HELM_CONFIG_HOME
+            value: /.config/helm/cache
+          - name: HELM_DATA_HOME
+            value: /.config/helm/data
+        volumeMounts:
+          - mountPath: /var/run/argocd
+            name: var-files
+          - mountPath: /home/argocd/cmp-server/plugins
+            name: plugins
+          - mountPath: /tmp
+            name: tmp
+          - mountPath: /home/argocd/cmp-server/config/plugin.yaml
+            subPath: plugin.yaml
+            name: helm-multivalues-plugin
+          - mountPath: /.config/helm
+            name: helm-custom-config
+    volumes:
+      - configMap:
+          name: helm-multivalues-plugin
+        name: helm-multivalues-plugin
+      - name: helm-custom-config
+        emptyDir: {}
+    env:
+      - name: HELM_CACHE_HOME
+        value: /.config/helm/cache
+      - name: HELM_CONFIG_HOME
+        value: /.config/helm/cache
+      - name: HELM_DATA_HOME
+        value: /.config/helm/data
+    initContainers:
+      - name: install-helm-multivalues-plugin
+        image: registry.redhat.io/openshift-gitops-1/argocd-rhel8@sha256:baec6d73a77b832df8131bac3c5a86dc405ef89f600e27a22f164ed3c72816db
+        command: [sh, -c]
+        args:
+          - "helm plugin install https://github.com/nico-ulbricht/helm-multivalues"
+        env:
+          - name: HELM_CACHE_HOME
+            value: /helm-custom-config/cache
+          - name: HELM_CONFIG_HOME
+            value: /helm-custom-config/cache
+          - name: HELM_DATA_HOME
+            value: /helm-custom-config/data
+        volumeMounts:
+          - mountPath: /helm-custom-config
+            name: helm-custom-config
+    volumeMounts:
+      - mountPath: /.config/helm
+        name: helm-custom-config
 {{< /highlight >}}
 
 A few things to review:
@@ -134,35 +166,42 @@ Apply the changes; Operator will rollout a latest changes of the repo-server pod
 
 Let's set up an ArgoCD application to test the changes
 
-{{< highlight yaml "linenos=table,hl_lines=15-23" >}}
+{{< highlight yaml "linenos=table,hl_lines=14-22" >}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-name: tenant-gitops-config
-labels:
-type: config
+  name: tenant-gitops-config
+  namespace: openshift-gitops
 spec:
-destination:
-server: "https://kubernetes.default.svc"
-project: default
-source:
-path: .
-repoURL: "https://github.com/Vikaspogu/openshift-multicluster.git"
-targetRevision: main
-plugin:
-name: helm-multivalues-plugin
-env: - name: CHART_PATH
-value: helm/charts/tenant-gitops - name: VALUES_FOLDER
-value: kustomize/cluster-overlays/dev-acm/tenant-gitops-helm/apps - name: VALUES_FILE
-value: kustomize/cluster-overlays/dev-acm/tenant-gitops-helm/values.yaml
-syncPolicy:
-retry:
-backoff:
-duration: 120s
-factor: 3
-maxDuration: 10m0s
-limit: 10
-syncOptions: - SkipDryRunOnMissingResource=true - Validate=false - ApplyOutOfSyncOnly=true - RespectIgnoreDifferences=true - Prune=true
+  destination:
+    server: "https://kubernetes.default.svc"
+  project: default
+  source:
+    path: .
+    repoURL: "https://github.com/Vikaspogu/openshift-multicluster.git"
+    targetRevision: main
+    plugin:
+      name: helm-multivalues-plugin
+      env:
+        - name: CHART_PATH
+          value: helm/charts/tenant-gitops
+        - name: VALUES_FOLDER
+          value: kustomize/cluster-overlays/dev-acm/tenant-gitops-helm/apps
+        - name: VALUES_FILE
+          value: kustomize/cluster-overlays/dev-acm/tenant-gitops-helm/values.yaml
+  syncPolicy:
+    retry:
+      backoff:
+        duration: 120s
+        factor: 3
+        maxDuration: 10m0s
+      limit: 10
+    syncOptions:
+      - SkipDryRunOnMissingResource=true
+      - Validate=false
+      - ApplyOutOfSyncOnly=true
+      - RespectIgnoreDifferences=true
+      - Prune=true
 {{< /highlight >}}
 
 ![Alt text](application.png "Deployed Helm Chart Application")
